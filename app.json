@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Do You Even Brainrot?",
+    "slug": "do-you-even-brainrot",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "brainrot",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0F0A1E",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.playbrainrot.brainrot"
+    },
+    "android": {
+      "package": "app.playbrainrot.brainrot",
+      "adaptiveIcon": {
+        "backgroundColor": "#0F0A1E"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "name": "Do You Even Brainrot?",
+      "shortName": "Brainrot",
+      "themeColor": "#A8FF3E",
+      "backgroundColor": "#0F0A1E"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0F0A1E",
+          "resizeMode": "contain"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

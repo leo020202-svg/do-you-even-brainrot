@@ -1,0 +1,5602 @@
+[
+  {
+    "id": "q001",
+    "category": "italian_brainrot",
+    "difficulty": "easy",
+    "question": "What is Tralalero Tralala depicted as?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A blue shark with three legs wearing Nike sneakers"
+      },
+      {
+        "id": "B",
+        "text": "A pizza-headed warrior"
+      },
+      {
+        "id": "C",
+        "text": "A pasta-shaped octopus"
+      },
+      {
+        "id": "D",
+        "text": "A flying meatball"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q002",
+    "category": "italian_brainrot",
+    "difficulty": "easy",
+    "question": "Bombardiro Crocodilo is a hybrid of which two things?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Shark and submarine"
+      },
+      {
+        "id": "B",
+        "text": "Crocodile and bomber plane"
+      },
+      {
+        "id": "C",
+        "text": "Lion and tank"
+      },
+      {
+        "id": "D",
+        "text": "Snake and helicopter"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q003",
+    "category": "italian_brainrot",
+    "difficulty": "medium",
+    "question": "What does the word 'Sahur' in Tung Tung Tung Sahur refer to?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A type of Italian pasta"
+      },
+      {
+        "id": "B",
+        "text": "An Indonesian pre-dawn Ramadan meal"
+      },
+      {
+        "id": "C",
+        "text": "An ancient war drum"
+      },
+      {
+        "id": "D",
+        "text": "A TikTok dance"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q004",
+    "category": "italian_brainrot",
+    "difficulty": "easy",
+    "question": "Ballerina Cappuccina has what as her head?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A teapot"
+      },
+      {
+        "id": "B",
+        "text": "An espresso machine"
+      },
+      {
+        "id": "C",
+        "text": "A cup of cappuccino"
+      },
+      {
+        "id": "D",
+        "text": "A gelato cone"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q005",
+    "category": "italian_brainrot",
+    "difficulty": "medium",
+    "question": "Tung Tung Tung Sahur is most commonly depicted as what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A wooden log creature with a face and bat"
+      },
+      {
+        "id": "B",
+        "text": "A walking cappuccino"
+      },
+      {
+        "id": "C",
+        "text": "An armored elephant"
+      },
+      {
+        "id": "D",
+        "text": "A floating pizza"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q006",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Lirili Larila is famously a hybrid of an elephant, a cactus, and what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A sombrero"
+      },
+      {
+        "id": "B",
+        "text": "Sandals"
+      },
+      {
+        "id": "C",
+        "text": "A pocket watch"
+      },
+      {
+        "id": "D",
+        "text": "Wings"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q007",
+    "category": "italian_brainrot",
+    "difficulty": "medium",
+    "question": "What platform is most responsible for the Italian brainrot explosion in 2024-2025?",
+    "options": [
+      {
+        "id": "A",
+        "text": "YouTube"
+      },
+      {
+        "id": "B",
+        "text": "Instagram"
+      },
+      {
+        "id": "C",
+        "text": "TikTok"
+      },
+      {
+        "id": "D",
+        "text": "Twitch"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q008",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "What technology is primarily used to create Italian brainrot character art?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hand-drawn animation"
+      },
+      {
+        "id": "B",
+        "text": "AI image generators"
+      },
+      {
+        "id": "C",
+        "text": "Stop motion clay"
+      },
+      {
+        "id": "D",
+        "text": "3D motion capture"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q009",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Bombombini Gusini is depicted as what kind of creature?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A military goose with bombs"
+      },
+      {
+        "id": "B",
+        "text": "A duck on rollerskates"
+      },
+      {
+        "id": "C",
+        "text": "A pigeon piloting a jet"
+      },
+      {
+        "id": "D",
+        "text": "A swan with rocket launchers"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q010",
+    "category": "italian_brainrot",
+    "difficulty": "medium",
+    "question": "Cappuccino Assassino is typically armed with what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Bombs"
+      },
+      {
+        "id": "B",
+        "text": "Katanas / samurai swords"
+      },
+      {
+        "id": "C",
+        "text": "Pistols"
+      },
+      {
+        "id": "D",
+        "text": "Bow and arrows"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q011",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Brr Brr Patapim has what unusual feature?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A glass torso"
+      },
+      {
+        "id": "B",
+        "text": "A tree/wooden body with a face"
+      },
+      {
+        "id": "C",
+        "text": "Eight arms"
+      },
+      {
+        "id": "D",
+        "text": "A clock for a head"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q012",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "What is the typical narration style of Italian brainrot videos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Silent with subtitles"
+      },
+      {
+        "id": "B",
+        "text": "AI-generated Italian voice over absurd lore"
+      },
+      {
+        "id": "C",
+        "text": "British David Attenborough parody"
+      },
+      {
+        "id": "D",
+        "text": "Whispered ASMR"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q013",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Tralalero Tralala's lore often involves which video game?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Fortnite"
+      },
+      {
+        "id": "B",
+        "text": "Roblox"
+      },
+      {
+        "id": "C",
+        "text": "Minecraft"
+      },
+      {
+        "id": "D",
+        "text": "Among Us"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q014",
+    "category": "italian_brainrot",
+    "difficulty": "medium",
+    "question": "Italian brainrot creatures are often called what collectively?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The Pasta Pals"
+      },
+      {
+        "id": "B",
+        "text": "AI Slop"
+      },
+      {
+        "id": "C",
+        "text": "The Brainrot Bestiary"
+      },
+      {
+        "id": "D",
+        "text": "The Spaghetti Squad"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q015",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Trippi Troppi is depicted as what kind of hybrid?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cat-shrimp"
+      },
+      {
+        "id": "B",
+        "text": "Dog-pizza"
+      },
+      {
+        "id": "C",
+        "text": "Frog-toaster"
+      },
+      {
+        "id": "D",
+        "text": "Bird-clock"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q016",
+    "category": "skibidi",
+    "difficulty": "medium",
+    "question": "Who created Skibidi Toilet?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Alexey Gerasimov (DaFuq!?Boom!)"
+      },
+      {
+        "id": "B",
+        "text": "MrBeast"
+      },
+      {
+        "id": "C",
+        "text": "PewDiePie"
+      },
+      {
+        "id": "D",
+        "text": "Markiplier"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q017",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "What animation software is Skibidi Toilet primarily made with?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Blender"
+      },
+      {
+        "id": "B",
+        "text": "Maya"
+      },
+      {
+        "id": "C",
+        "text": "Source Filmmaker (SFM)"
+      },
+      {
+        "id": "D",
+        "text": "After Effects"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q018",
+    "category": "skibidi",
+    "difficulty": "easy",
+    "question": "Who are the enemies of the Skibidi Toilets?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sinkmen"
+      },
+      {
+        "id": "B",
+        "text": "Cameramen, Speakermen, and TV-men (The Alliance)"
+      },
+      {
+        "id": "C",
+        "text": "Doormen"
+      },
+      {
+        "id": "D",
+        "text": "Mirrormen"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q019",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "What two songs is the Skibidi tune based on?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Crank That + Soulja Boy"
+      },
+      {
+        "id": "B",
+        "text": "Dom Dom Yes Yes + Biser King's Skibidi Dop Dop"
+      },
+      {
+        "id": "C",
+        "text": "Gangnam Style + Despacito"
+      },
+      {
+        "id": "D",
+        "text": "Macarena + Crazy Frog"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q020",
+    "category": "skibidi",
+    "difficulty": "easy",
+    "question": "Where does the first Skibidi Toilet emerge from?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A bathtub"
+      },
+      {
+        "id": "B",
+        "text": "A toilet"
+      },
+      {
+        "id": "C",
+        "text": "A sink"
+      },
+      {
+        "id": "D",
+        "text": "A washing machine"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q021",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "What year did Skibidi Toilet first appear on YouTube Shorts?",
+    "options": [
+      {
+        "id": "A",
+        "text": "2021"
+      },
+      {
+        "id": "B",
+        "text": "2022"
+      },
+      {
+        "id": "C",
+        "text": "2023"
+      },
+      {
+        "id": "D",
+        "text": "2024"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q022",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "What is the typical leader of the Alliance forces called?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Titan Cameraman"
+      },
+      {
+        "id": "B",
+        "text": "Mega Microphone"
+      },
+      {
+        "id": "C",
+        "text": "Ultra TV Boss"
+      },
+      {
+        "id": "D",
+        "text": "Speaker Supreme"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q023",
+    "category": "skibidi",
+    "difficulty": "medium",
+    "question": "Skibidi Toilet is generally considered the gateway meme of which generation?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Gen X"
+      },
+      {
+        "id": "B",
+        "text": "Millennials"
+      },
+      {
+        "id": "C",
+        "text": "Gen Z"
+      },
+      {
+        "id": "D",
+        "text": "Gen Alpha"
+      }
+    ],
+    "correct_answer": "D",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q024",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "What does 'G-Man' Toilet refer to in Skibidi lore?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A secret human ally"
+      },
+      {
+        "id": "B",
+        "text": "A scientist/leader toilet character"
+      },
+      {
+        "id": "C",
+        "text": "The very first toilet"
+      },
+      {
+        "id": "D",
+        "text": "A villain spy"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q025",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "Skibidi Toilet started as which format before its long-form series?",
+    "options": [
+      {
+        "id": "A",
+        "text": "TikTok dances"
+      },
+      {
+        "id": "B",
+        "text": "YouTube Shorts"
+      },
+      {
+        "id": "C",
+        "text": "Twitch streams"
+      },
+      {
+        "id": "D",
+        "text": "Reddit posts"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q026",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "What does 'rizz' mean?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Money"
+      },
+      {
+        "id": "B",
+        "text": "Charisma / ability to attract someone"
+      },
+      {
+        "id": "C",
+        "text": "Confidence in school"
+      },
+      {
+        "id": "D",
+        "text": "A type of dance"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q027",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "Which streamer is most credited with popularizing 'rizz'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ninja"
+      },
+      {
+        "id": "B",
+        "text": "Kai Cenat"
+      },
+      {
+        "id": "C",
+        "text": "xQc"
+      },
+      {
+        "id": "D",
+        "text": "Pokimane"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q028",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "A 'sigma' male refers to what archetype?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A leader of the pack"
+      },
+      {
+        "id": "B",
+        "text": "A lone-wolf, self-reliant male"
+      },
+      {
+        "id": "C",
+        "text": "A nerd/intellectual"
+      },
+      {
+        "id": "D",
+        "text": "A class clown"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q029",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "What does 'gyatt' typically refer to?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A type of car"
+      },
+      {
+        "id": "B",
+        "text": "A large/attractive backside"
+      },
+      {
+        "id": "C",
+        "text": "A handshake"
+      },
+      {
+        "id": "D",
+        "text": "A workout move"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q030",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "Calling something 'so Ohio' usually means it's…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Old-fashioned"
+      },
+      {
+        "id": "B",
+        "text": "Weird, cursed, or bad"
+      },
+      {
+        "id": "C",
+        "text": "Expensive"
+      },
+      {
+        "id": "D",
+        "text": "Cool"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q031",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "What is the 'Fanum tax'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Taxing rich streamers"
+      },
+      {
+        "id": "B",
+        "text": "Taking food from a friend"
+      },
+      {
+        "id": "C",
+        "text": "Charging entry to a stream"
+      },
+      {
+        "id": "D",
+        "text": "A tax on subscriptions"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q032",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "What is 'mewing'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A new dance trend"
+      },
+      {
+        "id": "B",
+        "text": "Pressing tongue against roof of mouth to define the jawline"
+      },
+      {
+        "id": "C",
+        "text": "A type of cat noise meme"
+      },
+      {
+        "id": "D",
+        "text": "Whispering insults"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q033",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "What does 'no cap' mean?",
+    "options": [
+      {
+        "id": "A",
+        "text": "No hat allowed"
+      },
+      {
+        "id": "B",
+        "text": "No lie / for real"
+      },
+      {
+        "id": "C",
+        "text": "Unlimited"
+      },
+      {
+        "id": "D",
+        "text": "I disagree"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q034",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "'Bussin' usually describes…",
+    "options": [
+      {
+        "id": "A",
+        "text": "A bad outfit"
+      },
+      {
+        "id": "B",
+        "text": "Really good food"
+      },
+      {
+        "id": "C",
+        "text": "A long bus ride"
+      },
+      {
+        "id": "D",
+        "text": "Loud music"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q035",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "'It's giving…' as a phrase originated from which culture?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Surf culture"
+      },
+      {
+        "id": "B",
+        "text": "Black/ballroom culture"
+      },
+      {
+        "id": "C",
+        "text": "Goth culture"
+      },
+      {
+        "id": "D",
+        "text": "Anime culture"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q036",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "What is 'looksmaxxing'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Posting the best selfies"
+      },
+      {
+        "id": "B",
+        "text": "Maximizing one's physical attractiveness through various methods"
+      },
+      {
+        "id": "C",
+        "text": "A photo filter app"
+      },
+      {
+        "id": "D",
+        "text": "A type of cosmetic surgery"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q037",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "What does 'mogging' someone mean?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Following them online"
+      },
+      {
+        "id": "B",
+        "text": "Dominating them in attractiveness or presence"
+      },
+      {
+        "id": "C",
+        "text": "Blocking them on TikTok"
+      },
+      {
+        "id": "D",
+        "text": "Stealing their content"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q038",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "'Goofy ahh' is a stylized way of writing what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Goofy ass"
+      },
+      {
+        "id": "B",
+        "text": "Goofy aha"
+      },
+      {
+        "id": "C",
+        "text": "Goofy alpha"
+      },
+      {
+        "id": "D",
+        "text": "Goofy art"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q039",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "What does 'delulu' mean?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Delicate"
+      },
+      {
+        "id": "B",
+        "text": "Delusional, usually playful"
+      },
+      {
+        "id": "C",
+        "text": "Delightful"
+      },
+      {
+        "id": "D",
+        "text": "Delayed"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q040",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "Today, 'slay' most often means…",
+    "options": [
+      {
+        "id": "A",
+        "text": "To kill in a video game"
+      },
+      {
+        "id": "B",
+        "text": "To do something exceptionally well"
+      },
+      {
+        "id": "C",
+        "text": "To be unhappy"
+      },
+      {
+        "id": "D",
+        "text": "To copy someone"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q041",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "Calling someone an 'NPC' implies they…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Play too many video games"
+      },
+      {
+        "id": "B",
+        "text": "Behave in an unoriginal, scripted way"
+      },
+      {
+        "id": "C",
+        "text": "Don't have social media"
+      },
+      {
+        "id": "D",
+        "text": "Are anti-tech"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q042",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "What is your 'Roman Empire'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A favorite history class"
+      },
+      {
+        "id": "B",
+        "text": "Something you think about way too often"
+      },
+      {
+        "id": "C",
+        "text": "A fitness regimen"
+      },
+      {
+        "id": "D",
+        "text": "A board game"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q043",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "What does 'iPad kid' typically describe?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A child genius"
+      },
+      {
+        "id": "B",
+        "text": "A child raised on tablets, often pejoratively"
+      },
+      {
+        "id": "C",
+        "text": "A homeschooled child"
+      },
+      {
+        "id": "D",
+        "text": "A coding prodigy"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q044",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "What does 'six seven' (6-7) refer to in current Gen Alpha slang?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A height"
+      },
+      {
+        "id": "B",
+        "text": "An ironic nonsense phrase from a basketball/rap clip"
+      },
+      {
+        "id": "C",
+        "text": "A grade in school"
+      },
+      {
+        "id": "D",
+        "text": "A subway station"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q045",
+    "category": "gen_alpha_slang",
+    "difficulty": "expert",
+    "question": "The phrase 'chopped' (used about appearance) means…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Stylish"
+      },
+      {
+        "id": "B",
+        "text": "Unattractive / aesthetically losing"
+      },
+      {
+        "id": "C",
+        "text": "Muscular"
+      },
+      {
+        "id": "D",
+        "text": "Tall"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q046",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "Who is the 'Hawk Tuah' girl?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hailey Welch"
+      },
+      {
+        "id": "B",
+        "text": "Bobbi Althoff"
+      },
+      {
+        "id": "C",
+        "text": "Alix Earle"
+      },
+      {
+        "id": "D",
+        "text": "Jools Lebron"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q047",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "Where did the 'Hawk Tuah' moment originate?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A podcast"
+      },
+      {
+        "id": "B",
+        "text": "A Nashville street interview"
+      },
+      {
+        "id": "C",
+        "text": "A reality TV show"
+      },
+      {
+        "id": "D",
+        "text": "A Twitch stream"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q048",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "The Costco Guys' signature line is…",
+    "options": [
+      {
+        "id": "A",
+        "text": "\"Big in big out\""
+      },
+      {
+        "id": "B",
+        "text": "\"We bring the BOOM\""
+      },
+      {
+        "id": "C",
+        "text": "\"Costco crew, where you?\""
+      },
+      {
+        "id": "D",
+        "text": "\"Cookies for life\""
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q049",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "NPC livestreaming was popularized largely by which creator?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Charli D'Amelio"
+      },
+      {
+        "id": "B",
+        "text": "PinkyDoll"
+      },
+      {
+        "id": "C",
+        "text": "Bella Poarch"
+      },
+      {
+        "id": "D",
+        "text": "Addison Rae"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q050",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "The 'Pedro Pedro Pedro' raccoon dance song is originally by which artist?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Lady Gaga"
+      },
+      {
+        "id": "B",
+        "text": "Raffaella Carrà"
+      },
+      {
+        "id": "C",
+        "text": "Cher"
+      },
+      {
+        "id": "D",
+        "text": "Donna Summer"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q051",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "The 'Roman Empire' trend asked men how often they thought about what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sports"
+      },
+      {
+        "id": "B",
+        "text": "The Roman Empire"
+      },
+      {
+        "id": "C",
+        "text": "Their exes"
+      },
+      {
+        "id": "D",
+        "text": "Money"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q052",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "The 'girl dinner' trend showcased what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Five-star meals"
+      },
+      {
+        "id": "B",
+        "text": "Snack/charcuterie-style plates as dinner"
+      },
+      {
+        "id": "C",
+        "text": "Vegan recipes"
+      },
+      {
+        "id": "D",
+        "text": "Diet shakes"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q053",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "Who is the creator behind 'very mindful, very demure'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Jools Lebron"
+      },
+      {
+        "id": "B",
+        "text": "Alix Earle"
+      },
+      {
+        "id": "C",
+        "text": "Tube Girl"
+      },
+      {
+        "id": "D",
+        "text": "Drew Afualo"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q054",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "The 'Tube Girl' trend was originated by whom?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tinx"
+      },
+      {
+        "id": "B",
+        "text": "Sabrina Bahsoon"
+      },
+      {
+        "id": "C",
+        "text": "Remi Bader"
+      },
+      {
+        "id": "D",
+        "text": "Mikayla Nogueira"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q055",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "'Couch Guy' went viral for what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A funny dance"
+      },
+      {
+        "id": "B",
+        "text": "His seemingly suspicious reaction when his girlfriend surprised him at college"
+      },
+      {
+        "id": "C",
+        "text": "A cooking fail"
+      },
+      {
+        "id": "D",
+        "text": "Falling off a sofa"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q056",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "Which sound is most associated with 'aesthetic clean girl' videos in 2024?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Adele - Hello"
+      },
+      {
+        "id": "B",
+        "text": "\"Of course\" / similar mellow loops"
+      },
+      {
+        "id": "C",
+        "text": "Wii Sports theme"
+      },
+      {
+        "id": "D",
+        "text": "Eminem - Lose Yourself"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q057",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "What does the 'Sephora kids' / 'Sephora tweens' discourse criticize?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Adults shoplifting"
+      },
+      {
+        "id": "B",
+        "text": "Young children buying expensive skincare"
+      },
+      {
+        "id": "C",
+        "text": "Influencer marketing limits"
+      },
+      {
+        "id": "D",
+        "text": "Mall culture decline"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q058",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "The 'I'm just a girl' trend was supercharged by which 2023 film?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Oppenheimer"
+      },
+      {
+        "id": "B",
+        "text": "Barbie"
+      },
+      {
+        "id": "C",
+        "text": "Spider-Man: Across the Spider-Verse"
+      },
+      {
+        "id": "D",
+        "text": "Wonka"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q059",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "Which dance launched Charli D'Amelio's career?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The Renegade"
+      },
+      {
+        "id": "B",
+        "text": "The Woah"
+      },
+      {
+        "id": "C",
+        "text": "The Floss"
+      },
+      {
+        "id": "D",
+        "text": "The Cupid Shuffle"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q060",
+    "category": "viral_moments",
+    "difficulty": "expert",
+    "question": "The 'Of course, of course' sound mainstreamed alongside which aesthetic?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cottagecore"
+      },
+      {
+        "id": "B",
+        "text": "Clean girl / quiet luxury"
+      },
+      {
+        "id": "C",
+        "text": "Y2K revival"
+      },
+      {
+        "id": "D",
+        "text": "Goblincore"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q061",
+    "category": "creators",
+    "difficulty": "easy",
+    "question": "Who is the most-followed creator on TikTok?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Charli D'Amelio"
+      },
+      {
+        "id": "B",
+        "text": "Khaby Lame"
+      },
+      {
+        "id": "C",
+        "text": "MrBeast"
+      },
+      {
+        "id": "D",
+        "text": "Bella Poarch"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q062",
+    "category": "creators",
+    "difficulty": "easy",
+    "question": "Khaby Lame is famous for what kind of videos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cooking tutorials"
+      },
+      {
+        "id": "B",
+        "text": "Silent reactions to overcomplicated 'life hacks'"
+      },
+      {
+        "id": "C",
+        "text": "Parkour"
+      },
+      {
+        "id": "D",
+        "text": "Singing covers"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q063",
+    "category": "creators",
+    "difficulty": "easy",
+    "question": "MrBeast's real name is…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Jimmy Donaldson"
+      },
+      {
+        "id": "B",
+        "text": "Mark Fisher"
+      },
+      {
+        "id": "C",
+        "text": "Jake Beast"
+      },
+      {
+        "id": "D",
+        "text": "James Wilson"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q064",
+    "category": "creators",
+    "difficulty": "medium",
+    "question": "Who is iShowSpeed?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A tech reviewer"
+      },
+      {
+        "id": "B",
+        "text": "A loud streamer famous for his Cristiano Ronaldo fandom"
+      },
+      {
+        "id": "C",
+        "text": "A chef"
+      },
+      {
+        "id": "D",
+        "text": "A makeup artist"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q065",
+    "category": "creators",
+    "difficulty": "medium",
+    "question": "Who is Bobbi Althoff best known as?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A makeup brand founder"
+      },
+      {
+        "id": "B",
+        "text": "A deadpan podcast host who interviewed Drake"
+      },
+      {
+        "id": "C",
+        "text": "A TikTok dancer"
+      },
+      {
+        "id": "D",
+        "text": "A reality TV producer"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q066",
+    "category": "creators",
+    "difficulty": "medium",
+    "question": "Alix Earle exploded on TikTok largely because of which video format?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Mukbangs"
+      },
+      {
+        "id": "B",
+        "text": "Get Ready With Me (GRWM)"
+      },
+      {
+        "id": "C",
+        "text": "Cooking"
+      },
+      {
+        "id": "D",
+        "text": "Pranks"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q067",
+    "category": "creators",
+    "difficulty": "hard",
+    "question": "Brittany Broski originally went viral as…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Kombucha Girl"
+      },
+      {
+        "id": "B",
+        "text": "Soup Lady"
+      },
+      {
+        "id": "C",
+        "text": "Coffee Queen"
+      },
+      {
+        "id": "D",
+        "text": "Cereal Girl"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q068",
+    "category": "creators",
+    "difficulty": "medium",
+    "question": "Druski is best known for…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hip-hop production"
+      },
+      {
+        "id": "B",
+        "text": "Comedy sketches and rap reactions"
+      },
+      {
+        "id": "C",
+        "text": "Boxing"
+      },
+      {
+        "id": "D",
+        "text": "Cooking content"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q069",
+    "category": "creators",
+    "difficulty": "hard",
+    "question": "Sketch (the streamer) is famous for which catchphrase?",
+    "options": [
+      {
+        "id": "A",
+        "text": "\"It's lit fam!\""
+      },
+      {
+        "id": "B",
+        "text": "\"What's up, brother!\""
+      },
+      {
+        "id": "C",
+        "text": "\"Let's get it!\""
+      },
+      {
+        "id": "D",
+        "text": "\"No shot!\""
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q070",
+    "category": "creators",
+    "difficulty": "hard",
+    "question": "Mark Rober is known for which kind of content?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cooking shows"
+      },
+      {
+        "id": "B",
+        "text": "Engineering and science videos, including glitter-bomb traps"
+      },
+      {
+        "id": "C",
+        "text": "Travel vlogs"
+      },
+      {
+        "id": "D",
+        "text": "Gaming streams"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q071",
+    "category": "creators",
+    "difficulty": "medium",
+    "question": "Who is Logan Paul's younger brother and fellow boxer/YouTuber?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Jake Paul"
+      },
+      {
+        "id": "B",
+        "text": "Tyler Paul"
+      },
+      {
+        "id": "C",
+        "text": "Sean Paul"
+      },
+      {
+        "id": "D",
+        "text": "Ryan Paul"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q072",
+    "category": "creators",
+    "difficulty": "expert",
+    "question": "The 'Try Guys' originated at which media company?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Vox"
+      },
+      {
+        "id": "B",
+        "text": "BuzzFeed"
+      },
+      {
+        "id": "C",
+        "text": "Vice"
+      },
+      {
+        "id": "D",
+        "text": "Refinery29"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q073",
+    "category": "creators",
+    "difficulty": "hard",
+    "question": "Kai Cenat primarily streams on which platform?",
+    "options": [
+      {
+        "id": "A",
+        "text": "TikTok Live"
+      },
+      {
+        "id": "B",
+        "text": "YouTube"
+      },
+      {
+        "id": "C",
+        "text": "Twitch"
+      },
+      {
+        "id": "D",
+        "text": "Kick"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q074",
+    "category": "creators",
+    "difficulty": "expert",
+    "question": "Bella Poarch's first viral TikTok used which song?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Savage by Megan Thee Stallion"
+      },
+      {
+        "id": "B",
+        "text": "M to the B by Millie B"
+      },
+      {
+        "id": "C",
+        "text": "Renegade"
+      },
+      {
+        "id": "D",
+        "text": "Say So"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q075",
+    "category": "creators",
+    "difficulty": "expert",
+    "question": "Tana Mongeau is famous for popularizing which YouTube format?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Mukbang"
+      },
+      {
+        "id": "B",
+        "text": "Storytime"
+      },
+      {
+        "id": "C",
+        "text": "ASMR"
+      },
+      {
+        "id": "D",
+        "text": "Unboxing"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q076",
+    "category": "cross_platform",
+    "difficulty": "medium",
+    "question": "Instagram Reels launched globally in what year?",
+    "options": [
+      {
+        "id": "A",
+        "text": "2018"
+      },
+      {
+        "id": "B",
+        "text": "2019"
+      },
+      {
+        "id": "C",
+        "text": "2020"
+      },
+      {
+        "id": "D",
+        "text": "2021"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q077",
+    "category": "cross_platform",
+    "difficulty": "hard",
+    "question": "YouTube Shorts launched globally in what year?",
+    "options": [
+      {
+        "id": "A",
+        "text": "2019"
+      },
+      {
+        "id": "B",
+        "text": "2020"
+      },
+      {
+        "id": "C",
+        "text": "2021"
+      },
+      {
+        "id": "D",
+        "text": "2022"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q078",
+    "category": "cross_platform",
+    "difficulty": "easy",
+    "question": "What does 'POV' mean in a TikTok title?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Pretty Over Vain"
+      },
+      {
+        "id": "B",
+        "text": "Point of View"
+      },
+      {
+        "id": "C",
+        "text": "Place of Visit"
+      },
+      {
+        "id": "D",
+        "text": "Push or Vibe"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q079",
+    "category": "cross_platform",
+    "difficulty": "easy",
+    "question": "What does a TikTok 'Duet' do?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Lets you record alongside another video"
+      },
+      {
+        "id": "B",
+        "text": "Posts to two accounts"
+      },
+      {
+        "id": "C",
+        "text": "Splits revenue"
+      },
+      {
+        "id": "D",
+        "text": "Auto-translates the audio"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q080",
+    "category": "cross_platform",
+    "difficulty": "medium",
+    "question": "What does a TikTok 'Stitch' do?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Embed an Instagram Reel"
+      },
+      {
+        "id": "B",
+        "text": "Clip up to a few seconds of another video and continue with your own"
+      },
+      {
+        "id": "C",
+        "text": "Sew two of your videos together"
+      },
+      {
+        "id": "D",
+        "text": "Add subtitles automatically"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q081",
+    "category": "cross_platform",
+    "difficulty": "medium",
+    "question": "What is the typical TikTok 'storytime' format?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Animated short"
+      },
+      {
+        "id": "B",
+        "text": "First-person narrated personal story"
+      },
+      {
+        "id": "C",
+        "text": "Children's bedtime tale"
+      },
+      {
+        "id": "D",
+        "text": "A movie review"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q082",
+    "category": "cross_platform",
+    "difficulty": "hard",
+    "question": "Most Vine creators initially migrated to which platform after Vine shut down?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Instagram and YouTube"
+      },
+      {
+        "id": "B",
+        "text": "Facebook Watch"
+      },
+      {
+        "id": "C",
+        "text": "Snapchat Discover"
+      },
+      {
+        "id": "D",
+        "text": "Tumblr"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q083",
+    "category": "cross_platform",
+    "difficulty": "hard",
+    "question": "GRWM stands for…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Get Ready With Me"
+      },
+      {
+        "id": "B",
+        "text": "Get Real With Me"
+      },
+      {
+        "id": "C",
+        "text": "Going Right With Music"
+      },
+      {
+        "id": "D",
+        "text": "Goals, Reels, Watch, Mute"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q084",
+    "category": "cross_platform",
+    "difficulty": "expert",
+    "question": "TikTok's parent company is…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tencent"
+      },
+      {
+        "id": "B",
+        "text": "ByteDance"
+      },
+      {
+        "id": "C",
+        "text": "Alibaba"
+      },
+      {
+        "id": "D",
+        "text": "Baidu"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q085",
+    "category": "cross_platform",
+    "difficulty": "expert",
+    "question": "Which platform pioneered the vertical short-video, swipe-up feed before TikTok globally?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Vine"
+      },
+      {
+        "id": "B",
+        "text": "Musical.ly (which became TikTok)"
+      },
+      {
+        "id": "C",
+        "text": "Triller"
+      },
+      {
+        "id": "D",
+        "text": "Dubsmash"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q086",
+    "category": "deep_cuts",
+    "difficulty": "medium",
+    "question": "The 'Doge' meme features which dog breed?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Akita"
+      },
+      {
+        "id": "B",
+        "text": "Shiba Inu"
+      },
+      {
+        "id": "C",
+        "text": "Corgi"
+      },
+      {
+        "id": "D",
+        "text": "Husky"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q087",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "The original Doge's real name was…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Maru"
+      },
+      {
+        "id": "B",
+        "text": "Kabosu"
+      },
+      {
+        "id": "C",
+        "text": "Nala"
+      },
+      {
+        "id": "D",
+        "text": "Boo"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q088",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "Pepe the Frog was originally created by which artist?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Matt Furie"
+      },
+      {
+        "id": "B",
+        "text": "Tim Buckley"
+      },
+      {
+        "id": "C",
+        "text": "KC Green"
+      },
+      {
+        "id": "D",
+        "text": "Scott Cawthon"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q089",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "The 'This is fine' dog meme comes from a comic by…",
+    "options": [
+      {
+        "id": "A",
+        "text": "KC Green"
+      },
+      {
+        "id": "B",
+        "text": "Matt Furie"
+      },
+      {
+        "id": "C",
+        "text": "Sarah Andersen"
+      },
+      {
+        "id": "D",
+        "text": "Andrew Hussie"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q090",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "'Hide the Pain Harold' is a real Hungarian man named…",
+    "options": [
+      {
+        "id": "A",
+        "text": "András Arató"
+      },
+      {
+        "id": "B",
+        "text": "István Kovács"
+      },
+      {
+        "id": "C",
+        "text": "Béla Tóth"
+      },
+      {
+        "id": "D",
+        "text": "Géza Nagy"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q091",
+    "category": "deep_cuts",
+    "difficulty": "medium",
+    "question": "Big Chungus is a chubby parody of which cartoon character?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tom (from Tom & Jerry)"
+      },
+      {
+        "id": "B",
+        "text": "Bugs Bunny"
+      },
+      {
+        "id": "C",
+        "text": "Garfield"
+      },
+      {
+        "id": "D",
+        "text": "Donald Duck"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q092",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "'We Are Number One' came from which children's TV show?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Yo Gabba Gabba"
+      },
+      {
+        "id": "B",
+        "text": "LazyTown"
+      },
+      {
+        "id": "C",
+        "text": "Sesame Street"
+      },
+      {
+        "id": "D",
+        "text": "Teletubbies"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q093",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "The 'Stonks' meme features which character?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Wojak"
+      },
+      {
+        "id": "B",
+        "text": "Meme Man"
+      },
+      {
+        "id": "C",
+        "text": "Cheems"
+      },
+      {
+        "id": "D",
+        "text": "Gigachad"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q094",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "The 'Surprised Pikachu' meme is a screenshot from which original anime?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Pokémon (original 90s series)"
+      },
+      {
+        "id": "B",
+        "text": "Digimon"
+      },
+      {
+        "id": "C",
+        "text": "Dragon Ball Z"
+      },
+      {
+        "id": "D",
+        "text": "One Piece"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q095",
+    "category": "deep_cuts",
+    "difficulty": "easy",
+    "question": "What year was 'brain rot' selected as Oxford's Word of the Year?",
+    "options": [
+      {
+        "id": "A",
+        "text": "2022"
+      },
+      {
+        "id": "B",
+        "text": "2023"
+      },
+      {
+        "id": "C",
+        "text": "2024"
+      },
+      {
+        "id": "D",
+        "text": "2025"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q096",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "The 'Distracted Boyfriend' meme is a stock photo by photographer…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Antonio Guillem"
+      },
+      {
+        "id": "B",
+        "text": "Steve McCurry"
+      },
+      {
+        "id": "C",
+        "text": "Annie Leibovitz"
+      },
+      {
+        "id": "D",
+        "text": "David LaChapelle"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q097",
+    "category": "deep_cuts",
+    "difficulty": "medium",
+    "question": "Which character do 'Wojak' memes feature?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Pepe"
+      },
+      {
+        "id": "B",
+        "text": "Feels Guy / a bald cartoon face"
+      },
+      {
+        "id": "C",
+        "text": "Trollface"
+      },
+      {
+        "id": "D",
+        "text": "Rage Guy"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q098",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "'Gigachad' is a stylized image originally created using whose photographs?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A bodybuilder named Berlin (Ernest Khalimov)"
+      },
+      {
+        "id": "B",
+        "text": "Dwayne Johnson"
+      },
+      {
+        "id": "C",
+        "text": "Chris Hemsworth"
+      },
+      {
+        "id": "D",
+        "text": "Henry Cavill"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q099",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "Cheems, the popular Shiba Inu meme, is famous for what speech style?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Adding 'm' to words (e.g., 'bonk' to 'bomk')"
+      },
+      {
+        "id": "B",
+        "text": "Speaking only in caps"
+      },
+      {
+        "id": "C",
+        "text": "Whispering"
+      },
+      {
+        "id": "D",
+        "text": "Singing"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q100",
+    "category": "deep_cuts",
+    "difficulty": "medium",
+    "question": "What's the catchphrase of the 'It Ain't Much, But It's Honest Work' meme?",
+    "options": [
+      {
+        "id": "A",
+        "text": "\"It is what it is\""
+      },
+      {
+        "id": "B",
+        "text": "\"It ain't much, but it's honest work\""
+      },
+      {
+        "id": "C",
+        "text": "\"Slow and steady\""
+      },
+      {
+        "id": "D",
+        "text": "\"Hustle hard\""
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q101",
+    "category": "italian_brainrot",
+    "difficulty": "easy",
+    "question": "Tralalero Tralala is famously a three-legged shark wearing what brand of sneakers?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Adidas"
+      },
+      {
+        "id": "B",
+        "text": "Nike"
+      },
+      {
+        "id": "C",
+        "text": "Crocs"
+      },
+      {
+        "id": "D",
+        "text": "Skechers"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q102",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Who is Ballerina Cappuccina married to in fan lore?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Bombardiro Crocodilo"
+      },
+      {
+        "id": "B",
+        "text": "Cappuccino Assassino"
+      },
+      {
+        "id": "C",
+        "text": "Chimpanzini Bananini"
+      },
+      {
+        "id": "D",
+        "text": "Brr Brr Patapim"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q103",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "How did Cappuccino Assassino acquire Ballerina Cappuccina as his wife (per the lore)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A pirouette-off"
+      },
+      {
+        "id": "B",
+        "text": "He kidnapped her"
+      },
+      {
+        "id": "C",
+        "text": "An espresso-fueled duel"
+      },
+      {
+        "id": "D",
+        "text": "A reality dating show"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q104",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Ballerina Cappuccina's sister is named…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Latte Lina"
+      },
+      {
+        "id": "B",
+        "text": "Espressona Signora"
+      },
+      {
+        "id": "C",
+        "text": "Mocha Mama"
+      },
+      {
+        "id": "D",
+        "text": "Frappuccia Frappuccina"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q105",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Lirili Larila's signature ability is…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Flight"
+      },
+      {
+        "id": "B",
+        "text": "Controlling time"
+      },
+      {
+        "id": "C",
+        "text": "Talking to fish"
+      },
+      {
+        "id": "D",
+        "text": "Spitting espresso"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q106",
+    "category": "italian_brainrot",
+    "difficulty": "medium",
+    "question": "Chimpanzini Bananini is most often described as…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cowardly"
+      },
+      {
+        "id": "B",
+        "text": "Indestructible"
+      },
+      {
+        "id": "C",
+        "text": "Allergic to bananas"
+      },
+      {
+        "id": "D",
+        "text": "Constantly hungover"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q107",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Tung Tung Tung Sahur's name comes from the sound of beating a kentungan to announce what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A wedding"
+      },
+      {
+        "id": "B",
+        "text": "The pre-dawn meal Sahur during Ramadan"
+      },
+      {
+        "id": "C",
+        "text": "A wrestling match"
+      },
+      {
+        "id": "D",
+        "text": "A Vespa start-up"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q108",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Which country was Tung Tung Tung Sahur actually invented in?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Italy"
+      },
+      {
+        "id": "B",
+        "text": "Indonesia"
+      },
+      {
+        "id": "C",
+        "text": "Spain"
+      },
+      {
+        "id": "D",
+        "text": "Brazil"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q109",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "The original Tralalero Tralala viral video was reportedly created by which TikTok user, who got banned shortly after posting?",
+    "options": [
+      {
+        "id": "A",
+        "text": "@elchino1246"
+      },
+      {
+        "id": "B",
+        "text": "@amoamimandy.1a"
+      },
+      {
+        "id": "C",
+        "text": "@eZburger401"
+      },
+      {
+        "id": "D",
+        "text": "@noxaasht"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q110",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Which celebrity's viral 'Tralalero tralala' Italian rhyming meme from 2023 partly inspired the trend?",
+    "options": [
+      {
+        "id": "A",
+        "text": "John Cena"
+      },
+      {
+        "id": "B",
+        "text": "Dwayne 'The Rock' Johnson"
+      },
+      {
+        "id": "C",
+        "text": "Vin Diesel"
+      },
+      {
+        "id": "D",
+        "text": "Steve-O"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q111",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Bombombini Gusini is essentially what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A turtle in a Vespa"
+      },
+      {
+        "id": "B",
+        "text": "A goose with fighter-jet wings"
+      },
+      {
+        "id": "C",
+        "text": "A pelican with a rifle"
+      },
+      {
+        "id": "D",
+        "text": "A swan in army boots"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q112",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Italian brainrot characters' names typically end in which Italian-sounding suffix?",
+    "options": [
+      {
+        "id": "A",
+        "text": "-otto or -otta"
+      },
+      {
+        "id": "B",
+        "text": "-ini or -ello"
+      },
+      {
+        "id": "C",
+        "text": "-ucci or -azzo"
+      },
+      {
+        "id": "D",
+        "text": "-orto or -anza"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q113",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Wired Italia compared the Italian brainrot characters to what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The new Garfield"
+      },
+      {
+        "id": "B",
+        "text": "The Pokémon of the internet"
+      },
+      {
+        "id": "C",
+        "text": "Renaissance frescoes"
+      },
+      {
+        "id": "D",
+        "text": "AI-generated Smurfs"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q114",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Italian newsstands began selling collectible cards featuring brainrot characters under which brand name?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Brainetti"
+      },
+      {
+        "id": "B",
+        "text": "Skifidol"
+      },
+      {
+        "id": "C",
+        "text": "Rotcard"
+      },
+      {
+        "id": "D",
+        "text": "Cappuccards"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q115",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Which Roblox game is built entirely around Italian brainrot characters?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Brainrot Tycoon"
+      },
+      {
+        "id": "B",
+        "text": "Steal a Brainrot"
+      },
+      {
+        "id": "C",
+        "text": "Skibidi Universe"
+      },
+      {
+        "id": "D",
+        "text": "Cappuccino Wars"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q116",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "Which world leader released a TikTok featuring a Tung Tung Tung Sahur 3D model dancing in a government meeting?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Emmanuel Macron"
+      },
+      {
+        "id": "B",
+        "text": "Viktor Orbán of Hungary"
+      },
+      {
+        "id": "C",
+        "text": "Justin Trudeau"
+      },
+      {
+        "id": "D",
+        "text": "Giorgia Meloni"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q117",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "An Indonesian production company announced plans to make a film based on which brainrot character?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ballerina Cappuccina"
+      },
+      {
+        "id": "B",
+        "text": "Tung Tung Tung Sahur"
+      },
+      {
+        "id": "C",
+        "text": "Bombardiro Crocodilo"
+      },
+      {
+        "id": "D",
+        "text": "Lirili Larila"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q118",
+    "category": "italian_brainrot",
+    "difficulty": "hard",
+    "question": "Italian sticker giant Panini released what in 2025?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A Tralalero Tralala plushie"
+      },
+      {
+        "id": "B",
+        "text": "An Italian brainrot sticker album"
+      },
+      {
+        "id": "C",
+        "text": "A Bombardiro Crocodilo board game"
+      },
+      {
+        "id": "D",
+        "text": "A cappuccino flavor"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q119",
+    "category": "italian_brainrot",
+    "difficulty": "medium",
+    "question": "AI brainrot art is often described as which type of online content?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Solarpunk"
+      },
+      {
+        "id": "B",
+        "text": "AI slop"
+      },
+      {
+        "id": "C",
+        "text": "Vaporwave"
+      },
+      {
+        "id": "D",
+        "text": "Glitchcore"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q120",
+    "category": "italian_brainrot",
+    "difficulty": "expert",
+    "question": "The Italian brainrot meme coin that launched in March 2025 was called…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Trallacoin"
+      },
+      {
+        "id": "B",
+        "text": "Italianrot"
+      },
+      {
+        "id": "C",
+        "text": "Pastapump"
+      },
+      {
+        "id": "D",
+        "text": "Bombcoin"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q121",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "The '6-7' meme is built on which rapper's song?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Lil Yachty"
+      },
+      {
+        "id": "B",
+        "text": "Skrilla"
+      },
+      {
+        "id": "C",
+        "text": "Sexyy Red"
+      },
+      {
+        "id": "D",
+        "text": "Future"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q122",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "Skrilla's song that powers the 6-7 meme is officially titled…",
+    "options": [
+      {
+        "id": "A",
+        "text": "67 Anthem"
+      },
+      {
+        "id": "B",
+        "text": "Doot Doot (6 7)"
+      },
+      {
+        "id": "C",
+        "text": "Six Seven Slide"
+      },
+      {
+        "id": "D",
+        "text": "Philly 67"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q123",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "Which NBA player's listed height of 6 ft 7 in turned him into the meme's poster boy?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Victor Wembanyama"
+      },
+      {
+        "id": "B",
+        "text": "LaMelo Ball"
+      },
+      {
+        "id": "C",
+        "text": "Anthony Edwards"
+      },
+      {
+        "id": "D",
+        "text": "Tyrese Haliburton"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q124",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "The boy who went viral as the '67 Kid' yelling the phrase at a basketball game is named…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tucker Trevino"
+      },
+      {
+        "id": "B",
+        "text": "Maverick Trevillian"
+      },
+      {
+        "id": "C",
+        "text": "Mason Travers"
+      },
+      {
+        "id": "D",
+        "text": "Marvin Trent"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q125",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "Skrilla himself said the meaning of '6 7' in his song is…",
+    "options": [
+      {
+        "id": "A",
+        "text": "His jersey numbers"
+      },
+      {
+        "id": "B",
+        "text": "Intentionally undefined"
+      },
+      {
+        "id": "C",
+        "text": "A coded prayer"
+      },
+      {
+        "id": "D",
+        "text": "The price of a sandwich"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q126",
+    "category": "skibidi",
+    "difficulty": "easy",
+    "question": "Skibidi Toilet was created by which animator?",
+    "options": [
+      {
+        "id": "A",
+        "text": "MrBeast's editor"
+      },
+      {
+        "id": "B",
+        "text": "Alexey Gerasimov"
+      },
+      {
+        "id": "C",
+        "text": "Andrew Schulz"
+      },
+      {
+        "id": "D",
+        "text": "Sam Hyde"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q127",
+    "category": "skibidi",
+    "difficulty": "medium",
+    "question": "What is the exact name of Alexey Gerasimov's YouTube channel?",
+    "options": [
+      {
+        "id": "A",
+        "text": "SkibidiKing"
+      },
+      {
+        "id": "B",
+        "text": "DaFuq!?Boom!"
+      },
+      {
+        "id": "C",
+        "text": "ToiletWars"
+      },
+      {
+        "id": "D",
+        "text": "BoomFlush"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q128",
+    "category": "skibidi",
+    "difficulty": "hard",
+    "question": "The first Skibidi Toilet short was uploaded on what date?",
+    "options": [
+      {
+        "id": "A",
+        "text": "February 7, 2023"
+      },
+      {
+        "id": "B",
+        "text": "October 31, 2022"
+      },
+      {
+        "id": "C",
+        "text": "June 1, 2023"
+      },
+      {
+        "id": "D",
+        "text": "January 1, 2024"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q129",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "By December 2023, DaFuq!?Boom!'s subscriber count had hit roughly…",
+    "options": [
+      {
+        "id": "A",
+        "text": "3 million"
+      },
+      {
+        "id": "B",
+        "text": "37 million"
+      },
+      {
+        "id": "C",
+        "text": "100 million"
+      },
+      {
+        "id": "D",
+        "text": "500 thousand"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q130",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "DaFuq!?Boom! briefly out-grew which mega-channel during 2023?",
+    "options": [
+      {
+        "id": "A",
+        "text": "T-Series"
+      },
+      {
+        "id": "B",
+        "text": "MrBeast"
+      },
+      {
+        "id": "C",
+        "text": "PewDiePie"
+      },
+      {
+        "id": "D",
+        "text": "Cocomelon"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q131",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "In which Skibidi Toilet episode does Titan Cameraman first appear?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Episode 5"
+      },
+      {
+        "id": "B",
+        "text": "Episode 18"
+      },
+      {
+        "id": "C",
+        "text": "Episode 50"
+      },
+      {
+        "id": "D",
+        "text": "Episode 100"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q132",
+    "category": "skibidi",
+    "difficulty": "expert",
+    "question": "Who develops the mind-control parasite that turns Titan Speakerman against the Alliance?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Scientist Speakerman"
+      },
+      {
+        "id": "B",
+        "text": "Chief Scientist Skibidi Toilet"
+      },
+      {
+        "id": "C",
+        "text": "G-Man Cameraman"
+      },
+      {
+        "id": "D",
+        "text": "Dr. Plunger"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q133",
+    "category": "skibidi",
+    "difficulty": "easy",
+    "question": "Skibidi Toilet videos are animated using which software?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Blender"
+      },
+      {
+        "id": "B",
+        "text": "Source Filmmaker"
+      },
+      {
+        "id": "C",
+        "text": "Maya"
+      },
+      {
+        "id": "D",
+        "text": "Adobe Animate"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q134",
+    "category": "skibidi",
+    "difficulty": "medium",
+    "question": "Which alliance fights the Skibidi Toilets?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The Plumbers and Janitors"
+      },
+      {
+        "id": "B",
+        "text": "Cameramen, Speakermen, and TV-men"
+      },
+      {
+        "id": "C",
+        "text": "The Roomba Resistance"
+      },
+      {
+        "id": "D",
+        "text": "Mops United"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q135",
+    "category": "skibidi",
+    "difficulty": "medium",
+    "question": "Multiple US news outlets have linked the 6-7 meme to which broader phenomenon?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cottagecore"
+      },
+      {
+        "id": "B",
+        "text": "Brainrot / AI slop"
+      },
+      {
+        "id": "C",
+        "text": "ASMR"
+      },
+      {
+        "id": "D",
+        "text": "Y2K revival"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q136",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "If someone has 'rizz,' they have…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Rabies"
+      },
+      {
+        "id": "B",
+        "text": "Charisma / pulling power"
+      },
+      {
+        "id": "C",
+        "text": "A small dog"
+      },
+      {
+        "id": "D",
+        "text": "A skincare routine"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q137",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "'Fanum tax' was named after a friend of which streamer?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Adin Ross"
+      },
+      {
+        "id": "B",
+        "text": "Kai Cenat"
+      },
+      {
+        "id": "C",
+        "text": "xQc"
+      },
+      {
+        "id": "D",
+        "text": "iShowSpeed"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q138",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "Performing 'fanum tax' means…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Filing your IRS return"
+      },
+      {
+        "id": "B",
+        "text": "Stealing food off a friend's plate"
+      },
+      {
+        "id": "C",
+        "text": "Splitting an Uber fare"
+      },
+      {
+        "id": "D",
+        "text": "Paying tribute to Italy"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q139",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "Per Merriam-Webster, a 'sigma' is officially defined as…",
+    "options": [
+      {
+        "id": "A",
+        "text": "A Greek pasta"
+      },
+      {
+        "id": "B",
+        "text": "A coolly independent, successful man"
+      },
+      {
+        "id": "C",
+        "text": "A finance bro starter pack"
+      },
+      {
+        "id": "D",
+        "text": "A type of edit"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q140",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "'Gyatt' began life as a contraction of which exclamation?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Got that"
+      },
+      {
+        "id": "B",
+        "text": "Goddamn"
+      },
+      {
+        "id": "C",
+        "text": "Get it"
+      },
+      {
+        "id": "D",
+        "text": "Get out"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q141",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "Calling something 'so Ohio' usually means…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Patriotic"
+      },
+      {
+        "id": "B",
+        "text": "Cursed, weird, or off"
+      },
+      {
+        "id": "C",
+        "text": "Cold"
+      },
+      {
+        "id": "D",
+        "text": "Boring but reliable"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q142",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "'Delulu' is a clipped form of which word?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Deliberate"
+      },
+      {
+        "id": "B",
+        "text": "Delusional"
+      },
+      {
+        "id": "C",
+        "text": "Delirious"
+      },
+      {
+        "id": "D",
+        "text": "Delightful"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q143",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "'Mewing' is the practice of…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Whispering insults in cat noises"
+      },
+      {
+        "id": "B",
+        "text": "Pressing the tongue to the roof of the mouth to sculpt the jaw"
+      },
+      {
+        "id": "C",
+        "text": "Practicing TikTok dance moves"
+      },
+      {
+        "id": "D",
+        "text": "Speaking in a baby voice"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q144",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "'Looksmaxxing' refers to…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Taking the same selfie 40 times"
+      },
+      {
+        "id": "B",
+        "text": "Maximizing one's physical attractiveness via gym/diet/grooming"
+      },
+      {
+        "id": "C",
+        "text": "Buying every product Sephora sells"
+      },
+      {
+        "id": "D",
+        "text": "Photoshop tutorials"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q145",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "Being 'chopped' means…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Athletic"
+      },
+      {
+        "id": "B",
+        "text": "Aesthetically losing / unattractive"
+      },
+      {
+        "id": "C",
+        "text": "Newly single"
+      },
+      {
+        "id": "D",
+        "text": "Sleep-deprived"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q146",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "To 'mog' someone is to…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Borrow their hoodie"
+      },
+      {
+        "id": "B",
+        "text": "Dominate them in attractiveness or presence"
+      },
+      {
+        "id": "C",
+        "text": "Block them everywhere"
+      },
+      {
+        "id": "D",
+        "text": "Out-stream them"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q147",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "Your 'Roman Empire' is best described as…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Your high school transcript"
+      },
+      {
+        "id": "B",
+        "text": "A topic you weirdly think about all the time"
+      },
+      {
+        "id": "C",
+        "text": "A favorite history class"
+      },
+      {
+        "id": "D",
+        "text": "A 401(k) plan"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q148",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "Calling someone an 'NPC' implies they…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Are amazing at games"
+      },
+      {
+        "id": "B",
+        "text": "Behave in an unoriginal, scripted way"
+      },
+      {
+        "id": "C",
+        "text": "Hate technology"
+      },
+      {
+        "id": "D",
+        "text": "Are very competitive"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q149",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "'Bussin' is most often used to describe…",
+    "options": [
+      {
+        "id": "A",
+        "text": "A bad smell"
+      },
+      {
+        "id": "B",
+        "text": "Really good food"
+      },
+      {
+        "id": "C",
+        "text": "A traffic jam"
+      },
+      {
+        "id": "D",
+        "text": "An ex"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q150",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "'No cap' translates roughly to…",
+    "options": [
+      {
+        "id": "A",
+        "text": "No hat on indoors"
+      },
+      {
+        "id": "B",
+        "text": "No lie / for real"
+      },
+      {
+        "id": "C",
+        "text": "Unlimited drinks"
+      },
+      {
+        "id": "D",
+        "text": "Cancel the order"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q151",
+    "category": "gen_alpha_slang",
+    "difficulty": "medium",
+    "question": "'Skibidi' as Gen Alpha filler slang can mean…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Only 'cool'"
+      },
+      {
+        "id": "B",
+        "text": "Only 'bad'"
+      },
+      {
+        "id": "C",
+        "text": "Pretty much anything — cool, weird, dumb, awesome"
+      },
+      {
+        "id": "D",
+        "text": "Only 'tired'"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q152",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "Which word was Oxford's Word of the Year in 2023, paving the way for the brainrot wave?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Goblin mode"
+      },
+      {
+        "id": "B",
+        "text": "Rizz"
+      },
+      {
+        "id": "C",
+        "text": "Vibe"
+      },
+      {
+        "id": "D",
+        "text": "Mid"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q153",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "Oxford's Word of the Year in 2024 was…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Skibidi"
+      },
+      {
+        "id": "B",
+        "text": "Brain rot"
+      },
+      {
+        "id": "C",
+        "text": "Demure"
+      },
+      {
+        "id": "D",
+        "text": "Aura"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q154",
+    "category": "gen_alpha_slang",
+    "difficulty": "easy",
+    "question": "If someone's 'cooked,' they are…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hungry"
+      },
+      {
+        "id": "B",
+        "text": "In serious trouble or doomed"
+      },
+      {
+        "id": "C",
+        "text": "A great chef"
+      },
+      {
+        "id": "D",
+        "text": "Drunk only"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q155",
+    "category": "gen_alpha_slang",
+    "difficulty": "hard",
+    "question": "Calling something 'mid' means…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Expensive"
+      },
+      {
+        "id": "B",
+        "text": "Mediocre / unimpressive"
+      },
+      {
+        "id": "C",
+        "text": "Tall"
+      },
+      {
+        "id": "D",
+        "text": "Just right"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q156",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "The 'Hawk Tuah' girl is named…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Haliey Welch"
+      },
+      {
+        "id": "B",
+        "text": "Bobbi Althoff"
+      },
+      {
+        "id": "C",
+        "text": "Alix Earle"
+      },
+      {
+        "id": "D",
+        "text": "Jools Lebron"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q157",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "The 'Hawk Tuah' moment came from a street interview filmed in which city?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Austin"
+      },
+      {
+        "id": "B",
+        "text": "Nashville"
+      },
+      {
+        "id": "C",
+        "text": "New Orleans"
+      },
+      {
+        "id": "D",
+        "text": "Las Vegas"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q158",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "Which YouTube channel originally posted the Hawk Tuah video?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cut"
+      },
+      {
+        "id": "B",
+        "text": "Tim & Dee TV"
+      },
+      {
+        "id": "C",
+        "text": "Soft White Underbelly"
+      },
+      {
+        "id": "D",
+        "text": "All Gas No Brakes"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q159",
+    "category": "viral_moments",
+    "difficulty": "expert",
+    "question": "Haliey Welch's crypto memecoin was called…",
+    "options": [
+      {
+        "id": "A",
+        "text": "$SPIT"
+      },
+      {
+        "id": "B",
+        "text": "$HAWK"
+      },
+      {
+        "id": "C",
+        "text": "$TUAH"
+      },
+      {
+        "id": "D",
+        "text": "$BIRD"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q160",
+    "category": "viral_moments",
+    "difficulty": "expert",
+    "question": "Within hours of launch, the $HAWK token's value dropped by roughly how much?",
+    "options": [
+      {
+        "id": "A",
+        "text": "10%"
+      },
+      {
+        "id": "B",
+        "text": "Over 90%"
+      },
+      {
+        "id": "C",
+        "text": "It actually went up"
+      },
+      {
+        "id": "D",
+        "text": "It was never traded"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q161",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "The Costco Guys are a duo of…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Twin brothers"
+      },
+      {
+        "id": "B",
+        "text": "A father and son"
+      },
+      {
+        "id": "C",
+        "text": "Best friends"
+      },
+      {
+        "id": "D",
+        "text": "Cousins"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q162",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "Big Justice and AJ are based out of which state?",
+    "options": [
+      {
+        "id": "A",
+        "text": "New Jersey"
+      },
+      {
+        "id": "B",
+        "text": "Florida (Boca Raton)"
+      },
+      {
+        "id": "C",
+        "text": "Ohio"
+      },
+      {
+        "id": "D",
+        "text": "New York"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q163",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "The Costco Guys' signature pastry is the…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cinnamon roll"
+      },
+      {
+        "id": "B",
+        "text": "Double chunk chocolate cookie"
+      },
+      {
+        "id": "C",
+        "text": "Almond croissant"
+      },
+      {
+        "id": "D",
+        "text": "Pumpkin scone"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q164",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "On the Costco Guys' rating scale, what's the opposite of a 'BOOM'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A POP"
+      },
+      {
+        "id": "B",
+        "text": "A DOOM"
+      },
+      {
+        "id": "C",
+        "text": "A FLOP"
+      },
+      {
+        "id": "D",
+        "text": "A BUST"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q165",
+    "category": "viral_moments",
+    "difficulty": "expert",
+    "question": "The Costco Guys' 'We Bring the BOOM' beat is most often compared to which classic hip-hop track?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sugarhill Gang — Rapper's Delight"
+      },
+      {
+        "id": "B",
+        "text": "Run-DMC — It's Tricky"
+      },
+      {
+        "id": "C",
+        "text": "Salt-N-Pepa — Push It"
+      },
+      {
+        "id": "D",
+        "text": "Beastie Boys — Sabotage"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q166",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "Who popularized the 'very mindful, very demure' catchphrase?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Alix Earle"
+      },
+      {
+        "id": "B",
+        "text": "Jools Lebron"
+      },
+      {
+        "id": "C",
+        "text": "Tinx"
+      },
+      {
+        "id": "D",
+        "text": "Drew Afualo"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q167",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "'Tube Girl' viral fame was started by whom?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Bella Poarch"
+      },
+      {
+        "id": "B",
+        "text": "Sabrina Bahsoon"
+      },
+      {
+        "id": "C",
+        "text": "Charli D'Amelio"
+      },
+      {
+        "id": "D",
+        "text": "Mikayla Nogueira"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q168",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "Most-followed creator on TikTok is…",
+    "options": [
+      {
+        "id": "A",
+        "text": "MrBeast"
+      },
+      {
+        "id": "B",
+        "text": "Khaby Lame"
+      },
+      {
+        "id": "C",
+        "text": "Bella Poarch"
+      },
+      {
+        "id": "D",
+        "text": "Charli D'Amelio"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q169",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "Khaby Lame became famous mostly for what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cooking lessons"
+      },
+      {
+        "id": "B",
+        "text": "Silent reactions to overcomplicated 'life hacks'"
+      },
+      {
+        "id": "C",
+        "text": "Football trick shots"
+      },
+      {
+        "id": "D",
+        "text": "Magic tricks"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q170",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "Kai Cenat primarily streams on which platform?",
+    "options": [
+      {
+        "id": "A",
+        "text": "YouTube"
+      },
+      {
+        "id": "B",
+        "text": "Twitch"
+      },
+      {
+        "id": "C",
+        "text": "TikTok"
+      },
+      {
+        "id": "D",
+        "text": "Kick"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q171",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "Brittany Broski originally went viral as which 'Girl'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Kombucha"
+      },
+      {
+        "id": "B",
+        "text": "Tube"
+      },
+      {
+        "id": "C",
+        "text": "Couch"
+      },
+      {
+        "id": "D",
+        "text": "Charli"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q172",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "Sketch (the streamer) is most associated with which catchphrase?",
+    "options": [
+      {
+        "id": "A",
+        "text": "\"It's lit, fam!\""
+      },
+      {
+        "id": "B",
+        "text": "\"What's up, brother!\""
+      },
+      {
+        "id": "C",
+        "text": "\"Yes king!\""
+      },
+      {
+        "id": "D",
+        "text": "\"Let's get it!\""
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q173",
+    "category": "viral_moments",
+    "difficulty": "hard",
+    "question": "Bobbi Althoff's breakout interview was with which rapper?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Lil Wayne"
+      },
+      {
+        "id": "B",
+        "text": "Drake"
+      },
+      {
+        "id": "C",
+        "text": "Kendrick Lamar"
+      },
+      {
+        "id": "D",
+        "text": "Travis Scott"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q174",
+    "category": "viral_moments",
+    "difficulty": "easy",
+    "question": "iShowSpeed is most associated with worshipping which athlete?",
+    "options": [
+      {
+        "id": "A",
+        "text": "LeBron James"
+      },
+      {
+        "id": "B",
+        "text": "Cristiano Ronaldo"
+      },
+      {
+        "id": "C",
+        "text": "Lionel Messi"
+      },
+      {
+        "id": "D",
+        "text": "Patrick Mahomes"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q175",
+    "category": "viral_moments",
+    "difficulty": "medium",
+    "question": "MrBeast's real name is…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Jimmy Donaldson"
+      },
+      {
+        "id": "B",
+        "text": "James Williamson"
+      },
+      {
+        "id": "C",
+        "text": "John Donovan"
+      },
+      {
+        "id": "D",
+        "text": "Jake Davidson"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q176",
+    "category": "absurdity",
+    "difficulty": "hard",
+    "question": "Bombardiro Crocodilo is a hybrid of a crocodile and what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A submarine"
+      },
+      {
+        "id": "B",
+        "text": "A WWII bomber plane"
+      },
+      {
+        "id": "C",
+        "text": "A microwave"
+      },
+      {
+        "id": "D",
+        "text": "The Vatican"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q177",
+    "category": "absurdity",
+    "difficulty": "medium",
+    "question": "Which of these is NOT a real Italian brainrot character?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Brr Brr Patapim"
+      },
+      {
+        "id": "B",
+        "text": "Ballerina Cappuccina"
+      },
+      {
+        "id": "C",
+        "text": "Sigma Linguini Provolone"
+      },
+      {
+        "id": "D",
+        "text": "Bombombini Gusini"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q178",
+    "category": "absurdity",
+    "difficulty": "hard",
+    "question": "Which of these IS a real brainrot character despite sounding fake?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Trippi Troppi"
+      },
+      {
+        "id": "B",
+        "text": "Lasagna Larry"
+      },
+      {
+        "id": "C",
+        "text": "Pepperoni Pavarotti"
+      },
+      {
+        "id": "D",
+        "text": "Margherita Maradona"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q179",
+    "category": "absurdity",
+    "difficulty": "expert",
+    "question": "What was Ballerina Cappuccina spotted doing in her original viral clip?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A dramatic pirouette"
+      },
+      {
+        "id": "B",
+        "text": "Frothing a customer"
+      },
+      {
+        "id": "C",
+        "text": "Filing for divorce"
+      },
+      {
+        "id": "D",
+        "text": "Reviewing a Costco cookie"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q180",
+    "category": "absurdity",
+    "difficulty": "hard",
+    "question": "If a Gen Alpha kid says you're 'giving Ohio,' they mean…",
+    "options": [
+      {
+        "id": "A",
+        "text": "You look midwestern"
+      },
+      {
+        "id": "B",
+        "text": "You're being weird/cursed"
+      },
+      {
+        "id": "C",
+        "text": "You're trustworthy"
+      },
+      {
+        "id": "D",
+        "text": "You owe them lunch"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q181",
+    "category": "absurdity",
+    "difficulty": "medium",
+    "question": "Which of these is NOT a real, documented Gen Alpha slang term?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Rizz"
+      },
+      {
+        "id": "B",
+        "text": "Gyatt"
+      },
+      {
+        "id": "C",
+        "text": "Crinj-pilled"
+      },
+      {
+        "id": "D",
+        "text": "Mewing"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q182",
+    "category": "absurdity",
+    "difficulty": "hard",
+    "question": "The phrase 'I'm just a girl' was supercharged by which 2023 movie?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Oppenheimer"
+      },
+      {
+        "id": "B",
+        "text": "Barbie"
+      },
+      {
+        "id": "C",
+        "text": "Saltburn"
+      },
+      {
+        "id": "D",
+        "text": "Mean Girls (musical)"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q183",
+    "category": "absurdity",
+    "difficulty": "medium",
+    "question": "'Sephora kids' discourse is mostly criticizing what?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Adult skincare prices"
+      },
+      {
+        "id": "B",
+        "text": "Tweens buying expensive anti-aging products"
+      },
+      {
+        "id": "C",
+        "text": "Influencer perfume hauls"
+      },
+      {
+        "id": "D",
+        "text": "Fake makeup at malls"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q184",
+    "category": "absurdity",
+    "difficulty": "hard",
+    "question": "The 'NPC livestreaming' aesthetic was popularized by which creator?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Charli D'Amelio"
+      },
+      {
+        "id": "B",
+        "text": "PinkyDoll"
+      },
+      {
+        "id": "C",
+        "text": "Bella Poarch"
+      },
+      {
+        "id": "D",
+        "text": "Alix Earle"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q185",
+    "category": "absurdity",
+    "difficulty": "easy",
+    "question": "Pick the real meme:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Distracted Boyfriend"
+      },
+      {
+        "id": "B",
+        "text": "Confused Treadmill"
+      },
+      {
+        "id": "C",
+        "text": "Suspicious Toaster"
+      },
+      {
+        "id": "D",
+        "text": "Awkward Bidet"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q186",
+    "category": "absurdity",
+    "difficulty": "hard",
+    "question": "Which one of these is actually a real Italian brainrot character despite being almost too dumb?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Chimpanzini Bananini"
+      },
+      {
+        "id": "B",
+        "text": "Spaghettini Espressini"
+      },
+      {
+        "id": "C",
+        "text": "Calzone Calzonini"
+      },
+      {
+        "id": "D",
+        "text": "Risotto Robotti"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q187",
+    "category": "absurdity",
+    "difficulty": "expert",
+    "question": "Picking from these four, which Italian brainrot character has the longest 'true' name (Tung Tung…)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tralalero Tralala"
+      },
+      {
+        "id": "B",
+        "text": "Tung Tung Tung Tung Tung Sahur"
+      },
+      {
+        "id": "C",
+        "text": "Lirili Larila"
+      },
+      {
+        "id": "D",
+        "text": "Ballerina Cappuccina"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q188",
+    "category": "absurdity",
+    "difficulty": "hard",
+    "question": "'Couch Guy' became infamous because…",
+    "options": [
+      {
+        "id": "A",
+        "text": "He fell off a sofa"
+      },
+      {
+        "id": "B",
+        "text": "His face looked suspicious when his girlfriend surprised him at college"
+      },
+      {
+        "id": "C",
+        "text": "He sold a couch on Marketplace"
+      },
+      {
+        "id": "D",
+        "text": "He started a couch-podcast"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q189",
+    "category": "absurdity",
+    "difficulty": "expert",
+    "question": "Which of these is NOT a real Skibidi Toilet character class?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cameraman"
+      },
+      {
+        "id": "B",
+        "text": "TV-Man"
+      },
+      {
+        "id": "C",
+        "text": "Toaster-Man"
+      },
+      {
+        "id": "D",
+        "text": "Speakerman"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q190",
+    "category": "absurdity",
+    "difficulty": "expert",
+    "question": "Pick the line that's actually from the Italian Tralalero Tralala audio (translated):",
+    "options": [
+      {
+        "id": "A",
+        "text": "I shit even in the afterlife"
+      },
+      {
+        "id": "B",
+        "text": "Sigma, sigma, on the wall"
+      },
+      {
+        "id": "C",
+        "text": "Look at me, I'm the cappuccino now"
+      },
+      {
+        "id": "D",
+        "text": "Behold, the Roman Empire"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q191",
+    "category": "deep_cuts",
+    "difficulty": "medium",
+    "question": "The original 'Doge' meme dog's real name was…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Kabosu"
+      },
+      {
+        "id": "B",
+        "text": "Nana"
+      },
+      {
+        "id": "C",
+        "text": "Maru"
+      },
+      {
+        "id": "D",
+        "text": "Boo"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q192",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "Pepe the Frog was originally drawn by…",
+    "options": [
+      {
+        "id": "A",
+        "text": "KC Green"
+      },
+      {
+        "id": "B",
+        "text": "Matt Furie"
+      },
+      {
+        "id": "C",
+        "text": "Tim Buckley"
+      },
+      {
+        "id": "D",
+        "text": "Andy Hussie"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q193",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "'Hide the Pain Harold' is a real Hungarian retiree named…",
+    "options": [
+      {
+        "id": "A",
+        "text": "András Arató"
+      },
+      {
+        "id": "B",
+        "text": "Béla Kovács"
+      },
+      {
+        "id": "C",
+        "text": "István Tóth"
+      },
+      {
+        "id": "D",
+        "text": "Géza Nagy"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q194",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "'This is fine' dog originates from a webcomic by…",
+    "options": [
+      {
+        "id": "A",
+        "text": "KC Green"
+      },
+      {
+        "id": "B",
+        "text": "Sarah Andersen"
+      },
+      {
+        "id": "C",
+        "text": "Allie Brosh"
+      },
+      {
+        "id": "D",
+        "text": "Randall Munroe"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q195",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "The 'Distracted Boyfriend' stock photo was taken by photographer…",
+    "options": [
+      {
+        "id": "A",
+        "text": "Steve McCurry"
+      },
+      {
+        "id": "B",
+        "text": "Antonio Guillem"
+      },
+      {
+        "id": "C",
+        "text": "Annie Leibovitz"
+      },
+      {
+        "id": "D",
+        "text": "Cindy Sherman"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q196",
+    "category": "deep_cuts",
+    "difficulty": "hard",
+    "question": "'Big Chungus' is a chubby parody of which classic cartoon character?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Bugs Bunny"
+      },
+      {
+        "id": "B",
+        "text": "Tom Cat"
+      },
+      {
+        "id": "C",
+        "text": "Garfield"
+      },
+      {
+        "id": "D",
+        "text": "Daffy Duck"
+      }
+    ],
+    "correct_answer": "A",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q197",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "'We Are Number One' the meme song is from which kids' show?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Teletubbies"
+      },
+      {
+        "id": "B",
+        "text": "LazyTown"
+      },
+      {
+        "id": "C",
+        "text": "Yo Gabba Gabba"
+      },
+      {
+        "id": "D",
+        "text": "Bear in the Big Blue House"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q198",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "Cheems, the Shiba Inu meme, is famous for what speech tic?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Speaking only in caps"
+      },
+      {
+        "id": "B",
+        "text": "Adding 'm' to words (e.g., 'bork' → 'bonk' → 'bomk')"
+      },
+      {
+        "id": "C",
+        "text": "Whispering"
+      },
+      {
+        "id": "D",
+        "text": "Talking backwards"
+      }
+    ],
+    "correct_answer": "B",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q199",
+    "category": "deep_cuts",
+    "difficulty": "expert",
+    "question": "Gigachad is stylized digital art based on photography of which figure?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Dwayne Johnson"
+      },
+      {
+        "id": "B",
+        "text": "Henry Cavill"
+      },
+      {
+        "id": "C",
+        "text": "Ernest Khalimov ('Berlin')"
+      },
+      {
+        "id": "D",
+        "text": "Chris Hemsworth"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  },
+  {
+    "id": "q200",
+    "category": "deep_cuts",
+    "difficulty": "medium",
+    "question": "'Brain rot' was Oxford Word of the Year in what year?",
+    "options": [
+      {
+        "id": "A",
+        "text": "2022"
+      },
+      {
+        "id": "B",
+        "text": "2023"
+      },
+      {
+        "id": "C",
+        "text": "2024"
+      },
+      {
+        "id": "D",
+        "text": "2025"
+      }
+    ],
+    "correct_answer": "C",
+    "source": null,
+    "tags": [],
+    "active": true
+  }
+]
