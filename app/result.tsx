@@ -24,7 +24,15 @@ function verdictFor(correct: number, total: number): Verdict {
 
 export default function Result() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ shareText?: string; correct?: string }>();
+  const params = useLocalSearchParams<{
+    shareText?: string;
+    correct?: string;
+    pattern?: string;
+    score?: string;
+    practice?: string;
+    seed?: string;
+  }>();
+  const isPractice = params.practice === "1";
   const challenge = useMemo(() => getDailyChallenge(), []);
   const stored = useDailyStore((s) => s.results[challenge.dateKey]);
   const streak = useDailyStore((s) => s.currentStreak);
@@ -32,13 +40,19 @@ export default function Result() {
 
   const correct = useMemo(() => {
     if (params.correct) return Number(params.correct);
-    if (stored) return stored.outcomes.filter((o) => o === "correct").length;
+    if (stored && !isPractice) return stored.outcomes.filter((o) => o === "correct").length;
     return 0;
-  }, [params.correct, stored]);
+  }, [params.correct, stored, isPractice]);
 
-  const pattern = stored?.pattern ?? "⬜⬜⬜⬜⬜";
+  const pattern = isPractice
+    ? (params.pattern ?? "⬜⬜⬜⬜⬜")
+    : (stored?.pattern ?? params.pattern ?? "⬜⬜⬜⬜⬜");
   const verdict = verdictFor(correct, DAILY_QUESTION_COUNT);
-  const playerTotalScore = stored?.score ?? 0;
+  const playerTotalScore = isPractice
+    ? params.score
+      ? Number(params.score)
+      : 0
+    : (stored?.score ?? 0);
 
   // Final standings vs the 4 fake bots that played today.
   const bots = useMemo(() => pickDailyBots(challenge.index), [challenge.index]);
@@ -97,9 +111,23 @@ export default function Result() {
         <Text style={{ fontSize: 72 }}>{verdict.emoji}</Text>
       </View>
 
+      {isPractice ? (
+        <View className="items-center mb-2">
+          <Sticker tilt={-2} shadow={3} shadowColor="#FF3EA5">
+            <View className="bg-hot rounded-md px-3 py-1 border-2 border-ink">
+              <Text className="font-mono text-ink text-xs uppercase tracking-widest">
+                🎯 PRACTICE · streak untouched
+              </Text>
+            </View>
+          </Sticker>
+        </View>
+      ) : null}
+
       <Sticker tilt={-2} shadow={6} shadowColor="#FF3EA5">
         <View className="bg-ink rounded-3xl border-4 border-paper p-5">
-          <Text className="font-mono text-muted text-xs">BRAINROT DAILY · #{challenge.index}</Text>
+          <Text className="font-mono text-muted text-xs">
+            {isPractice ? "PRACTICE ROUND" : `BRAINROT DAILY · #${challenge.index}`}
+          </Text>
           <Text className={`font-display text-3xl mt-1 ${verdict.color}`}>{verdict.headline}</Text>
           <Text className="font-body text-paper text-sm mt-1">{verdict.line}</Text>
 
@@ -180,7 +208,32 @@ export default function Result() {
       </View>
 
       <View className="gap-3 pb-6 mt-5">
-        <Button label={shareLabel} emoji="📣" tilt={-1} onPress={onShare} full />
+        {isPractice ? (
+          <Button
+            label="run it again 🔄"
+            emoji="🎯"
+            tilt={-1}
+            onPress={() => router.replace(`/play?practice=1&t=${Date.now()}`)}
+            full
+          />
+        ) : (
+          <Button label={shareLabel} emoji="📣" tilt={-1} onPress={onShare} full />
+        )}
+        {isPractice ? (
+          <Button
+            label="share"
+            variant="secondary"
+            onPress={onShare}
+            full
+          />
+        ) : (
+          <Button
+            label="practice mode 🎯"
+            variant="secondary"
+            onPress={() => router.replace("/play?practice=1")}
+            full
+          />
+        )}
         <Button label="back to home" variant="ghost" onPress={() => router.replace("/")} full />
       </View>
     </Screen>

@@ -53,10 +53,9 @@ export type DailyChallenge = {
   questionIds: string[];
 };
 
-export function getDailyChallenge(d: Date = new Date()): DailyChallenge {
-  const idx = dailyIndex(d);
-  const rng = mulberry32(idx + 1);
-  // Mix difficulties: 2 easy, 2 medium, 1 hard for the day (per spec — mixed cats/difficulty).
+function pickQuestionsForSeed(seed: number): string[] {
+  const rng = mulberry32(seed);
+  // Mix difficulties: 2 easy, 2 medium, 1 hard (per spec — mixed cats/difficulty).
   const buckets: Question[][] = [
     questions.filter((q) => q.difficulty === "easy"),
     questions.filter((q) => q.difficulty === "easy"),
@@ -74,7 +73,6 @@ export function getDailyChallenge(d: Date = new Date()): DailyChallenge {
       picked.push(next);
     }
   }
-  // Fallback if buckets came up short.
   while (picked.length < DAILY_QUESTION_COUNT) {
     const pool = shuffle(questions, rng);
     const next = pool.find((q) => !used.has(q.id));
@@ -82,9 +80,31 @@ export function getDailyChallenge(d: Date = new Date()): DailyChallenge {
     used.add(next.id);
     picked.push(next);
   }
+  return picked.map((q) => q.id);
+}
+
+export function getDailyChallenge(d: Date = new Date()): DailyChallenge {
+  const idx = dailyIndex(d);
   return {
     index: idx,
     dateKey: localDateKey(d),
-    questionIds: picked.map((q) => q.id),
+    questionIds: pickQuestionsForSeed(idx + 1),
+  };
+}
+
+/**
+ * Practice run: same shape as the daily but seeded by `seed` instead of the
+ * day index, so each round picks a fresh set of questions and the result
+ * never counts toward the streak.
+ *
+ * `dateKey` carries the seed (prefixed `practice-`) so the play/reveal/result
+ * screens can use it as a stable cache key without colliding with real
+ * daily-results storage.
+ */
+export function getPracticeChallenge(seed: number = Date.now()): DailyChallenge {
+  return {
+    index: -1,
+    dateKey: `practice-${seed}`,
+    questionIds: pickQuestionsForSeed(seed),
   };
 }

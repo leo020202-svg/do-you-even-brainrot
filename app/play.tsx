@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Image, Pressable, Text, View, Platform } from "react-native";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/Button";
 import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
 import { categoryImage } from "@/lib/category-images";
-import { getDailyChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
+import { getDailyChallenge, getPracticeChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
 import { useDailyStore } from "@/features/daily/store";
 import { buildPattern, buildShareText } from "@/lib/share";
@@ -46,11 +46,25 @@ type Phase = "question" | "reveal";
 
 export default function Play() {
   const router = useRouter();
-  const challenge = useMemo(() => getDailyChallenge(), []);
-  const complete = useDailyStore((s) => s.completeDaily);
-  const alreadyPlayed = useDailyStore((s) => Boolean(s.results[challenge.dateKey]));
+  const params = useLocalSearchParams<{ practice?: string }>();
+  const isPractice = params.practice === "1";
 
-  const bots = useMemo(() => pickDailyBots(challenge.index), [challenge.index]);
+  // Stable seed for practice runs so re-renders don't reshuffle the question set.
+  const practiceSeed = useRef<number>(Date.now()).current;
+  const challenge = useMemo(
+    () => (isPractice ? getPracticeChallenge(practiceSeed) : getDailyChallenge()),
+    [isPractice, practiceSeed],
+  );
+  const complete = useDailyStore((s) => s.completeDaily);
+  const dailyAlreadyPlayed = useDailyStore((s) => Boolean(s.results[challenge.dateKey]));
+  const alreadyPlayed = !isPractice && dailyAlreadyPlayed;
+
+  // Bots in practice mode are seeded off the practice seed so each round
+  // generates a fresh leaderboard. Daily uses the day index (one stable bunch).
+  const bots = useMemo(
+    () => pickDailyBots(isPractice ? practiceSeed % 100000 : challenge.index),
+    [isPractice, practiceSeed, challenge.index],
+  );
 
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState<Phase>("question");
@@ -155,22 +169,35 @@ export default function Play() {
   async function finalize(finalOutcomes: AnswerOutcome[], finalScore: number) {
     const pattern = buildPattern(finalOutcomes);
     const totalMs = Date.now() - totalStartRef.current;
-    await complete({
-      dateKey: challenge.dateKey,
-      score: finalScore,
-      total: DAILY_QUESTION_COUNT * (500 + SPEED_BONUS_CEILING),
-      pattern,
-      outcomes: finalOutcomes,
-      timeMs: totalMs,
-    });
+    // Only daily runs update the streak / persist a result.
+    if (!isPractice) {
+      await complete({
+        dateKey: challenge.dateKey,
+        score: finalScore,
+        total: DAILY_QUESTION_COUNT * (500 + SPEED_BONUS_CEILING),
+        pattern,
+        outcomes: finalOutcomes,
+        timeMs: totalMs,
+      });
+    }
     const correct = finalOutcomes.filter((o) => o === "correct").length;
     const shareText = buildShareText({
-      dailyIndex: challenge.index,
+      dailyIndex: isPractice ? 0 : challenge.index,
       score: correct,
       total: DAILY_QUESTION_COUNT,
       pattern,
     });
-    router.replace({ pathname: "/result", params: { shareText, correct: String(correct) } });
+    router.replace({
+      pathname: "/result",
+      params: {
+        shareText,
+        correct: String(correct),
+        pattern,
+        score: String(finalScore),
+        practice: isPractice ? "1" : "0",
+        seed: String(practiceSeed),
+      },
+    });
   }
 
   const categoryEmoji = CATEGORY_EMOJI[q.category] ?? "✨";
@@ -209,6 +236,18 @@ export default function Play() {
   return (
     <Screen>
       <EmojiSplat seed={challenge.index + idx * 17 + 3} count={6} />
+
+      {isPractice ? (
+        <View className="items-center pt-3">
+          <Sticker tilt={-2} shadow={3} shadowColor="#FF3EA5">
+            <View className="bg-hot rounded-md px-3 py-1 border-2 border-ink">
+              <Text className="font-mono text-ink text-xs uppercase tracking-widest">
+                🎯 PRACTICE · doesn&apos;t count
+              </Text>
+            </View>
+          </Sticker>
+        </View>
+      ) : null}
 
       <View className="flex-row justify-between items-center pt-4">
         <Text className="font-mono text-paper text-base tracking-widest">

@@ -89,12 +89,28 @@ export default function Home() {
                 </View>
               </Sticker>
               <Button label="see your score card" emoji="🪪" onPress={() => router.push("/result")} full />
+              <Button
+                label="practice mode"
+                emoji="🎯"
+                variant="secondary"
+                onPress={() => router.push("/play?practice=1")}
+                full
+              />
               <Text className="font-body text-muted text-xs text-center mt-1">
-                back tomorrow ⏰ don&apos;t lose the streak
+                practice = unlimited rounds, doesn&apos;t touch your streak
               </Text>
             </>
           ) : (
-            <Button label="RUN IT" emoji="🔥" tilt={-1} onPress={() => router.push("/play")} full />
+            <>
+              <Button label="RUN IT" emoji="🔥" tilt={-1} onPress={() => router.push("/play")} full />
+              <Button
+                label="practice mode"
+                emoji="🎯"
+                variant="ghost"
+                onPress={() => router.push("/play?practice=1")}
+                full
+              />
+            </>
           )}
         </View>
       </View>
