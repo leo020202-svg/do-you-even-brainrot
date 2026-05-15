@@ -1,5 +1,6 @@
 node_modules/
 ~$*
+.claude/scheduled_tasks.lock
 .expo/
 dist/
 web-build/

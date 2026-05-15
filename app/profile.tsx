@@ -115,7 +115,13 @@ export default function Profile() {
         )}
       </ScrollView>
 
-      <View className="pb-6">
+      <View className="pb-6 gap-2">
+        <Button
+          label="image credits 📜"
+          variant="ghost"
+          onPress={() => router.push("/credits")}
+          full
+        />
         <Button label="wipe local data 🧹" variant="ghost" onPress={() => void reset()} full />
       </View>
     </Screen>

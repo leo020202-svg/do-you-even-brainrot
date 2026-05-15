@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Pressable, Text, View, Platform } from "react-native";
+import { Image, Pressable, Text, View, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/Button";
 import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
+import { categoryImage } from "@/lib/category-images";
 import { getDailyChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
 import { useDailyStore } from "@/features/daily/store";
@@ -343,9 +344,30 @@ function RevealScreen({
 
   const playerRank = rows.findIndex((r) => r.isYou) + 1;
 
+  const banner = categoryImage(question.category);
+
   return (
     <Screen>
       <EmojiSplat seed={dailyIndex + questionIdx * 31 + 99} count={6} />
+
+      {banner ? (
+        <View className="pt-3">
+          <Sticker tilt={-1.5} shadow={4} shadowColor="#FF3EA5">
+            <View className="rounded-2xl overflow-hidden border-4 border-paper">
+              <Image
+                source={banner}
+                style={{ width: "100%", height: 120 }}
+                resizeMode="cover"
+              />
+              <View className="absolute left-2 bottom-2 bg-ink/80 rounded-md px-2 py-1 border border-paper">
+                <Text className="font-mono text-paper text-xs uppercase tracking-widest">
+                  {question.category.replace(/_/g, " ")}
+                </Text>
+              </View>
+            </View>
+          </Sticker>
+        </View>
+      ) : null}
 
       <View className="pt-4 items-center">
         <Sticker tilt={-2} shadow={5} shadowColor={correct ? "#A8FF3E" : "#FF5C3E"}>

@@ -30,11 +30,12 @@ USER_AGENT = "DoYouEvenBrainrot/0.1 (https://github.com/leo020202-svg/do-you-eve
 CATEGORY_QUERIES: dict[str, str] = {
     "italian_brainrot": "Cappuccino latte art",
     "skibidi": "Toilet bowl porcelain",
-    "gen_alpha_slang": "Smartphone screen youth",
-    "viral_moments": "Smartphone selfie crowd",
+    "gen_alpha_slang": "Smartphone notification icons",
+    # face-free alternatives — avoid identifiable people per safety rules.
+    "viral_moments": "Smartphone camera macro photography",
     "creators": "Streaming microphone setup",
-    "cross_platform": "Smartphone laptop desk",
-    "deep_cuts": "Old VHS tape stack",
+    "cross_platform": "Smartphone tablet laptop devices",
+    "deep_cuts": "VHS cassette tape collection",
     "absurdity": "Rubber duck colorful",
 }
 
