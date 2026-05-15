@@ -2,9 +2,10 @@
 
 You are helping build **Do You Even Brainrot?** — a mobile trivia game about brainrot/Gen Alpha culture. This file is loaded on every session. Read it first, then read the docs in this order before doing anything else:
 
-1. `docs/PRODUCT_SPEC.md` — what we're building
-2. `docs/TECH_SPEC.md` — how we're building it (stack already chosen)
-3. `docs/ROADMAP.md` — which phase we're in
+1. `docs/HANDOFF.md` — current shipped state + open gaps + how to resume
+2. `docs/PRODUCT_SPEC.md` — what we're building
+3. `docs/TECH_SPEC.md` — how we're building it (stack already chosen)
+4. `docs/ROADMAP.md` — which phase we're in
 
 ## Working conventions
 
