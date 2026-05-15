@@ -51,9 +51,24 @@ const OPTION_TILT: Record<AnswerId, number> = { A: -1.5, B: 1.5, C: -0.5, D: 0.5
 
 type Phase = "question" | "reveal";
 
+// Re-exporting the synced flow under the same /play route — when ?start is
+// present, the URL refers to a Kahoot-style time-paced game that everyone in
+// the room sees at the same wall-clock moment. See app/play-synced.tsx and
+// src/lib/sync.ts.
+import PlaySynced from "./play-synced";
+
 export default function Play() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ practice?: string; room?: string }>();
+  const params = useLocalSearchParams<{ practice?: string; room?: string; start?: string }>();
+
+  // Delegate to the synced screen whenever ?start is a valid future-or-recent
+  // timestamp + ?room is set. Async/daily/practice still run the player-paced
+  // logic below.
+  const startNum = params.start ? Number(params.start) : NaN;
+  if (params.room && Number.isFinite(startNum)) {
+    return <PlaySynced />;
+  }
+
   const isPractice = params.practice === "1";
   const roomCode = useMemo(() => {
     if (!params.room) return null;

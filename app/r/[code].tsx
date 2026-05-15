@@ -6,11 +6,12 @@ import { isValidRoomCode, normalizeRoomCode } from "@/lib/room";
 
 /**
  * /r/[code] — pretty shortlink that just bounces to /play?room=CODE so all the
- * gameplay lives in one place. Used by the invite-link share text.
+ * gameplay lives in one place. Passes through ?start=TIMESTAMP for synced
+ * rooms so friends arrive on the countdown screen.
  */
 export default function RoomShortlink() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ code?: string }>();
+  const params = useLocalSearchParams<{ code?: string; start?: string }>();
 
   useEffect(() => {
     const raw = params.code ?? "";
@@ -19,8 +20,10 @@ export default function RoomShortlink() {
       router.replace("/friends");
       return;
     }
-    router.replace(`/play?room=${code}`);
-  }, [params.code, router]);
+    const startTs = params.start ? Number(params.start) : NaN;
+    const tail = Number.isFinite(startTs) ? `&start=${startTs}` : "";
+    router.replace(`/play?room=${code}${tail}`);
+  }, [params.code, params.start, router]);
 
   return (
     <Screen>

@@ -13,16 +13,33 @@ import {
   roomShareUrl,
 } from "@/lib/room";
 
+// How far ahead "start synced" schedules the kick-off. Long enough for friends
+// to actually open the link + see the countdown, short enough that nobody loses
+// interest. 30s feels right on a live call.
+const SYNC_LEAD_MS = 30_000;
+
 export default function Friends() {
   const router = useRouter();
   const [createdCode, setCreatedCode] = useState<string | null>(null);
+  const [syncStartTs, setSyncStartTs] = useState<number | null>(null);
   const [joinInput, setJoinInput] = useState("");
   const [joinError, setJoinError] = useState<string | null>(null);
   const [copyState, setCopyState] = useState<"idle" | "shared" | "copied" | "failed">("idle");
 
   function onCreate() {
     setCreatedCode(generateRoomCode());
+    setSyncStartTs(null);
     setCopyState("idle");
+  }
+
+  function onSyncStart() {
+    if (!createdCode) return;
+    const ts = Date.now() + SYNC_LEAD_MS;
+    setSyncStartTs(ts);
+    setCopyState("idle");
+    // Auto-navigate the host into the synced game so they see the same
+    // countdown their friends see.
+    router.replace(`/play?room=${createdCode}&start=${ts}`);
   }
 
   function onJoin() {
@@ -37,8 +54,12 @@ export default function Friends() {
 
   async function onShareInvite() {
     if (!createdCode) return;
-    const link = roomShareUrl(createdCode);
-    const text = `🧠 join my brainrot room\nroom code: ${createdCode}\n${link}`;
+    const baseUrl = roomShareUrl(createdCode);
+    const link = syncStartTs ? `${baseUrl}?start=${syncStartTs}` : baseUrl;
+    const heading = syncStartTs
+      ? `🧠 brainrot in 30s — join now`
+      : `🧠 join my brainrot room`;
+    const text = `${heading}\nroom code: ${createdCode}\n${link}`;
     const r = await shareResult(text);
     setCopyState(r);
   }
@@ -50,7 +71,9 @@ export default function Friends() {
         ? "link copied 📋"
         : copyState === "failed"
           ? "couldn't share, try again"
-          : "send invite 📣";
+          : syncStartTs
+            ? "send synced invite 📣"
+            : "send invite 📣";
 
   return (
     <Screen>
@@ -70,8 +93,9 @@ export default function Friends() {
           <View className="bg-ink rounded-3xl border-4 border-lime p-5">
             <Text className="font-mono text-muted text-xs">CREATE A ROOM</Text>
             <Text className="font-body text-paper text-sm mt-1">
-              spin up a 6-char code. share the link. everyone gets the same 5
-              questions, plays on their own device, then compares scores.
+              spin up a 6-char code, share the link, choose async (everyone
+              plays whenever) or synced (everyone plays at the same time, same
+              reveal).
             </Text>
             {createdCode ? (
               <View className="mt-4 gap-3">
@@ -85,18 +109,38 @@ export default function Friends() {
                 </Sticker>
                 <Sticker tilt={-0.5} shadow={2} shadowColor="#1A0F2E">
                   <View className="bg-bg rounded-xl border-2 border-muted px-3 py-2">
-                    <Text className="font-mono text-muted text-xs">SHAREABLE LINK</Text>
+                    <Text className="font-mono text-muted text-xs">
+                      {syncStartTs ? "SYNCED LINK · STARTS IN 30s" : "ASYNC LINK"}
+                    </Text>
                     <Text className="font-mono text-cyan text-xs" selectable>
-                      {roomShareUrl(createdCode)}
+                      {syncStartTs
+                        ? `${roomShareUrl(createdCode)}?start=${syncStartTs}`
+                        : roomShareUrl(createdCode)}
                     </Text>
                   </View>
                 </Sticker>
                 <Button label={shareLabel} emoji="📨" onPress={onShareInvite} full />
+                {syncStartTs ? null : (
+                  <Button
+                    label="start synced game (30s)"
+                    emoji="⏱️"
+                    variant="secondary"
+                    tilt={-1}
+                    onPress={onSyncStart}
+                    full
+                  />
+                )}
                 <Button
-                  label="i'll play first"
-                  emoji="🚀"
-                  variant="secondary"
-                  onPress={() => router.push(`/play?room=${createdCode}`)}
+                  label={syncStartTs ? "go to countdown 🚀" : "i'll play first"}
+                  emoji={syncStartTs ? undefined : "🚀"}
+                  variant={syncStartTs ? "primary" : "ghost"}
+                  onPress={() =>
+                    router.push(
+                      syncStartTs
+                        ? `/play?room=${createdCode}&start=${syncStartTs}`
+                        : `/play?room=${createdCode}`,
+                    )
+                  }
                   full
                 />
               </View>
@@ -143,8 +187,8 @@ export default function Friends() {
 
       <View className="pb-6 mt-4">
         <Text className="font-body text-muted text-xs text-center">
-          live Kahoot-style mode w/ realtime leaderboard ships in Phase 1 — see
-          docs/ROADMAP.md
+          synced rooms use a shared timestamp — no backend needed. true
+          realtime w/ live opponent scores ships in Phase 1.
         </Text>
       </View>
     </Screen>
