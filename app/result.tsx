@@ -9,7 +9,7 @@ import { useDailyStore } from "@/features/daily/store";
 import { getDailyChallenge, getRoomChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { buildShareText, shareResult } from "@/lib/share";
 import { pickDailyBots, botFinalScores } from "@/lib/bots";
-import { codeToSeed, isValidRoomCode, normalizeRoomCode, roomShareUrl } from "@/lib/room";
+import { codeToSeed, generateRoomCode, isValidRoomCode, normalizeRoomCode, roomShareUrl } from "@/lib/room";
 
 type Verdict = { headline: string; line: string; emoji: string; color: string };
 
@@ -30,10 +30,12 @@ export default function Result() {
     correct?: string;
     pattern?: string;
     score?: string;
+    total?: string;
     practice?: string;
     room?: string;
     seed?: string;
   }>();
+  const totalQuestions = params.total ? Number(params.total) : DAILY_QUESTION_COUNT;
   const isPractice = params.practice === "1";
   const roomCode = useMemo(() => {
     if (!params.room) return null;
@@ -62,7 +64,7 @@ export default function Result() {
     isPractice || isRoom
       ? (params.pattern ?? "⬜⬜⬜⬜⬜")
       : (stored?.pattern ?? params.pattern ?? "⬜⬜⬜⬜⬜");
-  const verdict = verdictFor(correct, DAILY_QUESTION_COUNT);
+  const verdict = verdictFor(correct, totalQuestions);
   const playerTotalScore =
     isPractice || isRoom
       ? params.score
@@ -93,14 +95,14 @@ export default function Result() {
 
   const shareText = useMemo(() => {
     if (isRoom && roomCode) {
-      return `🧠 brainrot room ${roomCode}\n${correct}/${DAILY_QUESTION_COUNT}\n${pattern}\nbeat me: ${roomShareUrl(roomCode)}`;
+      return `🧠 brainrot room ${roomCode}\n${correct}/${totalQuestions}\n${pattern}\nbeat me: ${roomShareUrl(roomCode)}`;
     }
     return (
       params.shareText ??
       buildShareText({
         dailyIndex: challenge.index,
         score: correct,
-        total: DAILY_QUESTION_COUNT,
+        total: totalQuestions,
         pattern,
       })
     );
@@ -167,7 +169,7 @@ export default function Result() {
           <View className="flex-row items-end mt-3">
             <Text className="font-display text-lime text-6xl leading-none">{correct}</Text>
             <Text className="font-display text-muted text-2xl ml-1 mb-1">
-              / {DAILY_QUESTION_COUNT}
+              / {totalQuestions}
             </Text>
           </View>
 
@@ -255,10 +257,16 @@ export default function Result() {
 
       <View className="gap-3 pb-6 mt-5">
         {isRoom ? (
-          <Button label={shareLabel} emoji="📣" tilt={-1} onPress={onShare} full />
+          <Button
+            label="play again 🔄"
+            emoji="🎲"
+            tilt={-1}
+            onPress={() => router.replace(`/play?room=${generateRoomCode()}`)}
+            full
+          />
         ) : isPractice ? (
           <Button
-            label="run it again 🔄"
+            label="play again 🔄"
             emoji="🎯"
             tilt={-1}
             onPress={() => router.replace(`/play?practice=1&t=${Date.now()}`)}
@@ -268,12 +276,7 @@ export default function Result() {
           <Button label={shareLabel} emoji="📣" tilt={-1} onPress={onShare} full />
         )}
         {isRoom ? (
-          <Button
-            label="new room 👯"
-            variant="secondary"
-            onPress={() => router.replace("/friends")}
-            full
-          />
+          <Button label={shareLabel} emoji="📣" variant="secondary" onPress={onShare} full />
         ) : isPractice ? (
           <Button label="share" variant="secondary" onPress={onShare} full />
         ) : (

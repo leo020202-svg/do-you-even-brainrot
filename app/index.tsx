@@ -40,17 +40,28 @@ export default function Home() {
             <Text className="font-mono text-cyan text-xs">DAILY #{challenge.index}</Text>
           </View>
         </Sticker>
-        <Link href="/profile" asChild>
-          <Pressable>
-            <Sticker tilt={2} shadow={4} shadowColor="#A8FF3E">
-              <View className="bg-ink rounded-full px-4 py-2 border-2 border-lime">
-                <Text className="font-display text-paper text-base">
-                  {streak > 0 ? `🔥 ${streak}` : "👤 profile"}
-                </Text>
-              </View>
-            </Sticker>
-          </Pressable>
-        </Link>
+        <View className="flex-row gap-2">
+          <Link href="/settings" asChild>
+            <Pressable>
+              <Sticker tilt={-2} shadow={3} shadowColor="#FF3EA5">
+                <View className="bg-ink rounded-full px-3 py-2 border-2 border-hot">
+                  <Text className="font-display text-paper text-base">⚙️</Text>
+                </View>
+              </Sticker>
+            </Pressable>
+          </Link>
+          <Link href="/profile" asChild>
+            <Pressable>
+              <Sticker tilt={2} shadow={4} shadowColor="#A8FF3E">
+                <View className="bg-ink rounded-full px-4 py-2 border-2 border-lime">
+                  <Text className="font-display text-paper text-base">
+                    {streak > 0 ? `🔥 ${streak}` : "👤 profile"}
+                  </Text>
+                </View>
+              </Sticker>
+            </Pressable>
+          </Link>
+        </View>
       </View>
 
       <View className="flex-1 justify-center -mt-4">

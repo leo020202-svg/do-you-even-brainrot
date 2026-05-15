@@ -53,19 +53,25 @@ export type DailyChallenge = {
   questionIds: string[];
 };
 
-function pickQuestionsForSeed(seed: number): string[] {
+type DifficultyLabel = "easy" | "medium" | "hard";
+
+const DEFAULT_DAILY_MIX: DifficultyLabel[] = [
+  "easy",
+  "easy",
+  "medium",
+  "medium",
+  "hard",
+];
+
+function pickQuestionsForSeed(
+  seed: number,
+  mix: DifficultyLabel[] = DEFAULT_DAILY_MIX,
+): string[] {
   const rng = mulberry32(seed);
-  // Mix difficulties: 2 easy, 2 medium, 1 hard (per spec — mixed cats/difficulty).
-  const buckets: Question[][] = [
-    questions.filter((q) => q.difficulty === "easy"),
-    questions.filter((q) => q.difficulty === "easy"),
-    questions.filter((q) => q.difficulty === "medium"),
-    questions.filter((q) => q.difficulty === "medium"),
-    questions.filter((q) => q.difficulty === "hard"),
-  ];
   const picked: Question[] = [];
   const used = new Set<string>();
-  for (const bucket of buckets) {
+  for (const diff of mix) {
+    const bucket = questions.filter((q) => q.difficulty === diff);
     const pool = shuffle(bucket.length > 0 ? bucket : questions, rng);
     const next = pool.find((q) => !used.has(q.id));
     if (next) {
@@ -73,7 +79,7 @@ function pickQuestionsForSeed(seed: number): string[] {
       picked.push(next);
     }
   }
-  while (picked.length < DAILY_QUESTION_COUNT) {
+  while (picked.length < mix.length) {
     const pool = shuffle(questions, rng);
     const next = pool.find((q) => !used.has(q.id));
     if (!next) break;
@@ -101,11 +107,14 @@ export function getDailyChallenge(d: Date = new Date()): DailyChallenge {
  * screens can use it as a stable cache key without colliding with real
  * daily-results storage.
  */
-export function getPracticeChallenge(seed: number = Date.now()): DailyChallenge {
+export function getPracticeChallenge(
+  seed: number = Date.now(),
+  mix?: DifficultyLabel[],
+): DailyChallenge {
   return {
     index: -1,
     dateKey: `practice-${seed}`,
-    questionIds: pickQuestionsForSeed(seed),
+    questionIds: pickQuestionsForSeed(seed, mix),
   };
 }
 

@@ -14,22 +14,23 @@ import {
 } from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
 import { useDailyStore } from "@/features/daily/store";
+import { useSettingsStore, difficultyMixFor } from "@/features/settings/store";
 import { buildPattern, buildShareText } from "@/lib/share";
 import { pickDailyBots, botRound, answerHistogram, type Bot } from "@/lib/bots";
 import { codeToSeed, isValidRoomCode, normalizeRoomCode } from "@/lib/room";
 import type { AnswerOutcome } from "@/features/daily/store";
 import type { AnswerId, Question } from "@/lib/questions";
 
-const PER_QUESTION_MS = 30_000;
+const DEFAULT_PER_QUESTION_MS = 30_000;
 const SPEED_BONUS_CEILING = 1000;
 const REVEAL_AUTO_ADVANCE_MS = 5000;
 
-function pointsFor(outcome: AnswerOutcome, msTaken: number): number {
+function pointsFor(outcome: AnswerOutcome, msTaken: number, perQuestionMs: number): number {
   if (outcome !== "correct") return 0;
   const base = 500;
   const speed = Math.max(
     0,
-    SPEED_BONUS_CEILING - Math.floor((msTaken / PER_QUESTION_MS) * SPEED_BONUS_CEILING),
+    SPEED_BONUS_CEILING - Math.floor((msTaken / perQuestionMs) * SPEED_BONUS_CEILING),
   );
   return base + speed;
 }
@@ -61,13 +62,32 @@ export default function Play() {
   }, [params.room]);
   const isRoom = roomCode !== null;
 
+  // Settings only affect practice mode — see src/features/settings/store.ts.
+  const settingsHydrated = useSettingsStore((s) => s.hydrated);
+  const hydrateSettings = useSettingsStore((s) => s.hydrate);
+  const settingsQuestions = useSettingsStore((s) => s.questionsPerRound);
+  const settingsSeconds = useSettingsStore((s) => s.secondsPerQuestion);
+  const settingsDifficulty = useSettingsStore((s) => s.difficulty);
+  useEffect(() => {
+    if (!settingsHydrated) void hydrateSettings();
+  }, [settingsHydrated, hydrateSettings]);
+
   // Stable seed for practice runs so re-renders don't reshuffle the question set.
   const practiceSeed = useRef<number>(Date.now()).current;
+  const practiceMix = useMemo(
+    () => difficultyMixFor(settingsDifficulty, settingsQuestions),
+    [settingsDifficulty, settingsQuestions],
+  );
   const challenge = useMemo(() => {
     if (isRoom && roomCode) return getRoomChallenge(roomCode, codeToSeed(roomCode));
-    if (isPractice) return getPracticeChallenge(practiceSeed);
+    if (isPractice) return getPracticeChallenge(practiceSeed, practiceMix);
     return getDailyChallenge();
-  }, [isRoom, roomCode, isPractice, practiceSeed]);
+  }, [isRoom, roomCode, isPractice, practiceSeed, practiceMix]);
+
+  // Number of questions for THIS run — practice uses the setting, others stay 5.
+  const totalQuestions = isPractice ? settingsQuestions : DAILY_QUESTION_COUNT;
+  // Time per question — practice uses the setting, others stay 30s.
+  const perQuestionMs = isPractice ? settingsSeconds * 1000 : DEFAULT_PER_QUESTION_MS;
   const complete = useDailyStore((s) => s.completeDaily);
   const dailyAlreadyPlayed = useDailyStore((s) => Boolean(s.results[challenge.dateKey]));
   // Only the real daily blocks replays; practice + rooms always let you replay.
@@ -142,17 +162,17 @@ export default function Play() {
   }
 
   const elapsed = tick * 100;
-  const remainingMs = Math.max(0, PER_QUESTION_MS - elapsed);
-  const remainingPct = phase === "question" ? remainingMs / PER_QUESTION_MS : 0;
+  const remainingMs = Math.max(0, perQuestionMs - elapsed);
+  const remainingPct = phase === "question" ? remainingMs / perQuestionMs : 0;
   const remainingSec = Math.ceil(remainingMs / 1000);
   const lowTime = remainingPct < 0.25 && remainingPct > 0;
 
   function lockIn(answer: AnswerId | null) {
     if (phase !== "question") return;
-    const msTaken = answer === null ? PER_QUESTION_MS : Date.now() - questionStartRef.current;
+    const msTaken = answer === null ? perQuestionMs : Date.now() - questionStartRef.current;
     const outcome: AnswerOutcome =
       answer === null ? "skipped" : answer === q!.correct_answer ? "correct" : "wrong";
-    const pts = pointsFor(outcome, msTaken);
+    const pts = pointsFor(outcome, msTaken, perQuestionMs);
     setPlayerPick(answer);
     setPlayerOutcome(outcome);
     setPlayerMs(msTaken);
@@ -163,7 +183,7 @@ export default function Play() {
   }
 
   function advance() {
-    if (idx + 1 >= DAILY_QUESTION_COUNT) {
+    if (idx + 1 >= totalQuestions) {
       finalize(outcomes, playerScore);
     } else {
       setIdx((i) => i + 1);
@@ -188,7 +208,7 @@ export default function Play() {
       await complete({
         dateKey: challenge.dateKey,
         score: finalScore,
-        total: DAILY_QUESTION_COUNT * (500 + SPEED_BONUS_CEILING),
+        total: totalQuestions * (500 + SPEED_BONUS_CEILING),
         pattern,
         outcomes: finalOutcomes,
         timeMs: totalMs,
@@ -198,7 +218,7 @@ export default function Play() {
     const shareText = buildShareText({
       dailyIndex: isPractice || isRoom ? 0 : challenge.index,
       score: correct,
-      total: DAILY_QUESTION_COUNT,
+      total: totalQuestions,
       pattern,
     });
     router.replace({
@@ -208,6 +228,7 @@ export default function Play() {
         correct: String(correct),
         pattern,
         score: String(finalScore),
+        total: String(totalQuestions),
         practice: isPractice ? "1" : "0",
         room: isRoom && roomCode ? roomCode : "",
         seed: String(practiceSeed),
@@ -219,7 +240,7 @@ export default function Play() {
 
   const progressDots = useMemo(
     () =>
-      Array.from({ length: DAILY_QUESTION_COUNT }).map((_, i) => {
+      Array.from({ length: totalQuestions }).map((_, i) => {
         if (i < outcomes.length) {
           const o = outcomes[i];
           if (o === "correct") return "🟩";
@@ -228,7 +249,7 @@ export default function Play() {
         }
         return i === idx ? "🟨" : "⚪";
       }),
-    [outcomes, idx],
+    [outcomes, idx, totalQuestions],
   );
 
   if (phase === "reveal") {
@@ -237,6 +258,7 @@ export default function Play() {
         question={q}
         questionIdx={idx}
         dailyIndex={challenge.index}
+        totalQuestions={totalQuestions}
         playerPick={playerPick}
         playerOutcome={playerOutcome}
         playerMs={playerMs}
@@ -349,6 +371,7 @@ type RevealProps = {
   question: Question;
   questionIdx: number;
   dailyIndex: number;
+  totalQuestions: number;
   playerPick: AnswerId | null;
   playerOutcome: AnswerOutcome | null;
   playerMs: number;
@@ -362,6 +385,7 @@ function RevealScreen({
   question,
   questionIdx,
   dailyIndex,
+  totalQuestions,
   playerPick,
   playerOutcome,
   playerScore,
@@ -520,7 +544,7 @@ function RevealScreen({
 
       <View className="pb-6">
         <Button
-          label={questionIdx + 1 >= DAILY_QUESTION_COUNT ? "see your verdict 🪪" : "next question →"}
+          label={questionIdx + 1 >= totalQuestions ? "see your verdict 🪪" : "next question →"}
           emoji="🚀"
           tilt={-1}
           onPress={onNext}

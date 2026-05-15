@@ -117,6 +117,12 @@ export default function Profile() {
 
       <View className="pb-6 gap-2">
         <Button
+          label="game settings ⚙️"
+          variant="secondary"
+          onPress={() => router.push("/settings")}
+          full
+        />
+        <Button
           label="image credits 📜"
           variant="ghost"
           onPress={() => router.push("/credits")}
