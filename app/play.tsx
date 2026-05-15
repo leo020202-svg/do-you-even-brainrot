@@ -6,11 +6,17 @@ import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/Button";
 import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
 import { categoryImage } from "@/lib/category-images";
-import { getDailyChallenge, getPracticeChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
+import {
+  getDailyChallenge,
+  getPracticeChallenge,
+  getRoomChallenge,
+  DAILY_QUESTION_COUNT,
+} from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
 import { useDailyStore } from "@/features/daily/store";
 import { buildPattern, buildShareText } from "@/lib/share";
 import { pickDailyBots, botRound, answerHistogram, type Bot } from "@/lib/bots";
+import { codeToSeed, isValidRoomCode, normalizeRoomCode } from "@/lib/room";
 import type { AnswerOutcome } from "@/features/daily/store";
 import type { AnswerId, Question } from "@/lib/questions";
 
@@ -46,25 +52,33 @@ type Phase = "question" | "reveal";
 
 export default function Play() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ practice?: string }>();
+  const params = useLocalSearchParams<{ practice?: string; room?: string }>();
   const isPractice = params.practice === "1";
+  const roomCode = useMemo(() => {
+    if (!params.room) return null;
+    const c = normalizeRoomCode(params.room);
+    return isValidRoomCode(c) ? c : null;
+  }, [params.room]);
+  const isRoom = roomCode !== null;
 
   // Stable seed for practice runs so re-renders don't reshuffle the question set.
   const practiceSeed = useRef<number>(Date.now()).current;
-  const challenge = useMemo(
-    () => (isPractice ? getPracticeChallenge(practiceSeed) : getDailyChallenge()),
-    [isPractice, practiceSeed],
-  );
+  const challenge = useMemo(() => {
+    if (isRoom && roomCode) return getRoomChallenge(roomCode, codeToSeed(roomCode));
+    if (isPractice) return getPracticeChallenge(practiceSeed);
+    return getDailyChallenge();
+  }, [isRoom, roomCode, isPractice, practiceSeed]);
   const complete = useDailyStore((s) => s.completeDaily);
   const dailyAlreadyPlayed = useDailyStore((s) => Boolean(s.results[challenge.dateKey]));
-  const alreadyPlayed = !isPractice && dailyAlreadyPlayed;
+  // Only the real daily blocks replays; practice + rooms always let you replay.
+  const alreadyPlayed = !isPractice && !isRoom && dailyAlreadyPlayed;
 
-  // Bots in practice mode are seeded off the practice seed so each round
-  // generates a fresh leaderboard. Daily uses the day index (one stable bunch).
-  const bots = useMemo(
-    () => pickDailyBots(isPractice ? practiceSeed % 100000 : challenge.index),
-    [isPractice, practiceSeed, challenge.index],
-  );
+  // Bots seeded off whatever uniquely identifies this run.
+  const bots = useMemo(() => {
+    if (isRoom && roomCode) return pickDailyBots(codeToSeed(roomCode) % 100000);
+    if (isPractice) return pickDailyBots(practiceSeed % 100000);
+    return pickDailyBots(challenge.index);
+  }, [isRoom, roomCode, isPractice, practiceSeed, challenge.index]);
 
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState<Phase>("question");
@@ -169,8 +183,8 @@ export default function Play() {
   async function finalize(finalOutcomes: AnswerOutcome[], finalScore: number) {
     const pattern = buildPattern(finalOutcomes);
     const totalMs = Date.now() - totalStartRef.current;
-    // Only daily runs update the streak / persist a result.
-    if (!isPractice) {
+    // Only the real daily updates the streak / persists a result.
+    if (!isPractice && !isRoom) {
       await complete({
         dateKey: challenge.dateKey,
         score: finalScore,
@@ -182,7 +196,7 @@ export default function Play() {
     }
     const correct = finalOutcomes.filter((o) => o === "correct").length;
     const shareText = buildShareText({
-      dailyIndex: isPractice ? 0 : challenge.index,
+      dailyIndex: isPractice || isRoom ? 0 : challenge.index,
       score: correct,
       total: DAILY_QUESTION_COUNT,
       pattern,
@@ -195,6 +209,7 @@ export default function Play() {
         pattern,
         score: String(finalScore),
         practice: isPractice ? "1" : "0",
+        room: isRoom && roomCode ? roomCode : "",
         seed: String(practiceSeed),
       },
     });
@@ -243,6 +258,16 @@ export default function Play() {
             <View className="bg-hot rounded-md px-3 py-1 border-2 border-ink">
               <Text className="font-mono text-ink text-xs uppercase tracking-widest">
                 🎯 PRACTICE · doesn&apos;t count
+              </Text>
+            </View>
+          </Sticker>
+        </View>
+      ) : isRoom && roomCode ? (
+        <View className="items-center pt-3">
+          <Sticker tilt={-2} shadow={3} shadowColor="#3EFFE9">
+            <View className="bg-cyan rounded-md px-3 py-1 border-2 border-ink">
+              <Text className="font-mono text-ink text-xs uppercase tracking-widest">
+                👯 ROOM · {roomCode}
               </Text>
             </View>
           </Sticker>

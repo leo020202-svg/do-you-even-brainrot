@@ -108,3 +108,16 @@ export function getPracticeChallenge(seed: number = Date.now()): DailyChallenge 
     questionIds: pickQuestionsForSeed(seed),
   };
 }
+
+/**
+ * Friend-room challenge — same 5 questions for everyone who enters the code.
+ * The room code is hashed to a seed (see src/lib/room.ts), so the question set
+ * is deterministic per code; results don't update the player's streak.
+ */
+export function getRoomChallenge(code: string, seed: number): DailyChallenge {
+  return {
+    index: -1,
+    dateKey: `room-${code}`,
+    questionIds: pickQuestionsForSeed(seed),
+  };
+}

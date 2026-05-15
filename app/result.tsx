@@ -6,9 +6,10 @@ import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { useDailyStore } from "@/features/daily/store";
-import { getDailyChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
+import { getDailyChallenge, getRoomChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { buildShareText, shareResult } from "@/lib/share";
 import { pickDailyBots, botFinalScores } from "@/lib/bots";
+import { codeToSeed, isValidRoomCode, normalizeRoomCode, roomShareUrl } from "@/lib/room";
 
 type Verdict = { headline: string; line: string; emoji: string; color: string };
 
@@ -30,29 +31,44 @@ export default function Result() {
     pattern?: string;
     score?: string;
     practice?: string;
+    room?: string;
     seed?: string;
   }>();
   const isPractice = params.practice === "1";
-  const challenge = useMemo(() => getDailyChallenge(), []);
+  const roomCode = useMemo(() => {
+    if (!params.room) return null;
+    const c = normalizeRoomCode(params.room);
+    return isValidRoomCode(c) ? c : null;
+  }, [params.room]);
+  const isRoom = roomCode !== null;
+  const challenge = useMemo(
+    () =>
+      isRoom && roomCode
+        ? getRoomChallenge(roomCode, codeToSeed(roomCode))
+        : getDailyChallenge(),
+    [isRoom, roomCode],
+  );
   const stored = useDailyStore((s) => s.results[challenge.dateKey]);
   const streak = useDailyStore((s) => s.currentStreak);
   const longest = useDailyStore((s) => s.longestStreak);
 
   const correct = useMemo(() => {
     if (params.correct) return Number(params.correct);
-    if (stored && !isPractice) return stored.outcomes.filter((o) => o === "correct").length;
+    if (stored && !isPractice && !isRoom) return stored.outcomes.filter((o) => o === "correct").length;
     return 0;
-  }, [params.correct, stored, isPractice]);
+  }, [params.correct, stored, isPractice, isRoom]);
 
-  const pattern = isPractice
-    ? (params.pattern ?? "⬜⬜⬜⬜⬜")
-    : (stored?.pattern ?? params.pattern ?? "⬜⬜⬜⬜⬜");
+  const pattern =
+    isPractice || isRoom
+      ? (params.pattern ?? "⬜⬜⬜⬜⬜")
+      : (stored?.pattern ?? params.pattern ?? "⬜⬜⬜⬜⬜");
   const verdict = verdictFor(correct, DAILY_QUESTION_COUNT);
-  const playerTotalScore = isPractice
-    ? params.score
-      ? Number(params.score)
-      : 0
-    : (stored?.score ?? 0);
+  const playerTotalScore =
+    isPractice || isRoom
+      ? params.score
+        ? Number(params.score)
+        : 0
+      : (stored?.score ?? 0);
 
   // Final standings vs the 4 fake bots that played today.
   const bots = useMemo(() => pickDailyBots(challenge.index), [challenge.index]);
@@ -75,17 +91,20 @@ export default function Result() {
   }, [bots, finalBotScores, playerTotalScore]);
   const playerRank = standings.findIndex((r) => r.isYou) + 1;
 
-  const shareText = useMemo(
-    () =>
+  const shareText = useMemo(() => {
+    if (isRoom && roomCode) {
+      return `🧠 brainrot room ${roomCode}\n${correct}/${DAILY_QUESTION_COUNT}\n${pattern}\nbeat me: ${roomShareUrl(roomCode)}`;
+    }
+    return (
       params.shareText ??
       buildShareText({
         dailyIndex: challenge.index,
         score: correct,
         total: DAILY_QUESTION_COUNT,
         pattern,
-      }),
-    [params.shareText, challenge.index, correct, pattern],
-  );
+      })
+    );
+  }, [params.shareText, challenge.index, correct, pattern, isRoom, roomCode]);
 
   const [shareState, setShareState] = useState<"idle" | "shared" | "copied" | "failed">("idle");
 
@@ -121,12 +140,26 @@ export default function Result() {
             </View>
           </Sticker>
         </View>
+      ) : isRoom && roomCode ? (
+        <View className="items-center mb-2">
+          <Sticker tilt={-2} shadow={3} shadowColor="#3EFFE9">
+            <View className="bg-cyan rounded-md px-3 py-1 border-2 border-ink">
+              <Text className="font-mono text-ink text-xs uppercase tracking-widest">
+                👯 ROOM · {roomCode}
+              </Text>
+            </View>
+          </Sticker>
+        </View>
       ) : null}
 
       <Sticker tilt={-2} shadow={6} shadowColor="#FF3EA5">
         <View className="bg-ink rounded-3xl border-4 border-paper p-5">
           <Text className="font-mono text-muted text-xs">
-            {isPractice ? "PRACTICE ROUND" : `BRAINROT DAILY · #${challenge.index}`}
+            {isPractice
+              ? "PRACTICE ROUND"
+              : isRoom && roomCode
+                ? `FRIEND ROOM · ${roomCode}`
+                : `BRAINROT DAILY · #${challenge.index}`}
           </Text>
           <Text className={`font-display text-3xl mt-1 ${verdict.color}`}>{verdict.headline}</Text>
           <Text className="font-body text-paper text-sm mt-1">{verdict.line}</Text>
@@ -207,8 +240,23 @@ export default function Result() {
         </Sticker>
       </View>
 
+      {isRoom && roomCode ? (
+        <View className="mt-4">
+          <Sticker tilt={-0.5} shadow={3} shadowColor="#FF3EA5">
+            <View className="bg-ink rounded-xl border-2 border-hot px-3 py-2">
+              <Text className="font-mono text-muted text-xs">SEND THIS LINK TO FRIENDS</Text>
+              <Text className="font-mono text-cyan text-xs mt-1" selectable>
+                {roomShareUrl(roomCode)}
+              </Text>
+            </View>
+          </Sticker>
+        </View>
+      ) : null}
+
       <View className="gap-3 pb-6 mt-5">
-        {isPractice ? (
+        {isRoom ? (
+          <Button label={shareLabel} emoji="📣" tilt={-1} onPress={onShare} full />
+        ) : isPractice ? (
           <Button
             label="run it again 🔄"
             emoji="🎯"
@@ -219,13 +267,15 @@ export default function Result() {
         ) : (
           <Button label={shareLabel} emoji="📣" tilt={-1} onPress={onShare} full />
         )}
-        {isPractice ? (
+        {isRoom ? (
           <Button
-            label="share"
+            label="new room 👯"
             variant="secondary"
-            onPress={onShare}
+            onPress={() => router.replace("/friends")}
             full
           />
+        ) : isPractice ? (
+          <Button label="share" variant="secondary" onPress={onShare} full />
         ) : (
           <Button
             label="practice mode 🎯"
