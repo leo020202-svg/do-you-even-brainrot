@@ -3,16 +3,19 @@ import { Pressable, Text, View, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Sticker } from "@/components/Sticker";
+import { Button } from "@/components/Button";
 import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
 import { getDailyChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
 import { useDailyStore } from "@/features/daily/store";
 import { buildPattern, buildShareText } from "@/lib/share";
+import { pickDailyBots, botRound, answerHistogram, type Bot } from "@/lib/bots";
 import type { AnswerOutcome } from "@/features/daily/store";
-import type { AnswerId } from "@/lib/questions";
+import type { AnswerId, Question } from "@/lib/questions";
 
 const PER_QUESTION_MS = 30_000;
 const SPEED_BONUS_CEILING = 1000;
+const REVEAL_AUTO_ADVANCE_MS = 5000;
 
 function pointsFor(outcome: AnswerOutcome, msTaken: number): number {
   if (outcome !== "correct") return 0;
@@ -36,13 +39,9 @@ const OPTION_TEXT: Record<AnswerId, string> = {
   C: "text-ink",
   D: "text-paper",
 };
-const OPTION_SHADOW: Record<AnswerId, string> = {
-  A: "#1A0F2E",
-  B: "#1A0F2E",
-  C: "#1A0F2E",
-  D: "#1A0F2E",
-};
 const OPTION_TILT: Record<AnswerId, number> = { A: -1.5, B: 1.5, C: -0.5, D: 0.5 };
+
+type Phase = "question" | "reveal";
 
 export default function Play() {
   const router = useRouter();
@@ -50,25 +49,57 @@ export default function Play() {
   const complete = useDailyStore((s) => s.completeDaily);
   const alreadyPlayed = useDailyStore((s) => Boolean(s.results[challenge.dateKey]));
 
+  const bots = useMemo(() => pickDailyBots(challenge.index), [challenge.index]);
+
   const [idx, setIdx] = useState(0);
-  const [selected, setSelected] = useState<AnswerId | null>(null);
+  const [phase, setPhase] = useState<Phase>("question");
+  const [playerPick, setPlayerPick] = useState<AnswerId | null>(null);
+  const [playerOutcome, setPlayerOutcome] = useState<AnswerOutcome | null>(null);
+  const [playerMs, setPlayerMs] = useState<number>(0);
   const [outcomes, setOutcomes] = useState<AnswerOutcome[]>([]);
-  const [score, setScore] = useState(0);
+  const [playerScore, setPlayerScore] = useState(0);
   const [tick, setTick] = useState(0);
 
   const questionStartRef = useRef<number>(Date.now());
   const totalStartRef = useRef<number>(Date.now());
 
+  // Running bot scores across rounds (rebuilt deterministically when idx changes).
+  const botRunningScores = useMemo(() => {
+    const out: Record<string, number> = {};
+    for (const b of bots) out[b.name] = 0;
+    for (let i = 0; i < idx; i++) {
+      const qid = challenge.questionIds[i];
+      if (!qid) continue;
+      const q = questionsById[qid];
+      if (!q) continue;
+      for (const b of bots) {
+        const r = botRound(b, q, challenge.index, i);
+        out[b.name] = (out[b.name] ?? 0) + r.points;
+      }
+    }
+    return out;
+  }, [bots, challenge.index, challenge.questionIds, idx]);
+
   useEffect(() => {
     if (alreadyPlayed) router.replace("/");
   }, [alreadyPlayed, router]);
 
+  // Timer ticks only during the question phase.
   useEffect(() => {
+    if (phase !== "question") return;
     questionStartRef.current = Date.now();
     setTick(0);
     const id = setInterval(() => setTick((t) => t + 1), 100);
     return () => clearInterval(id);
-  }, [idx]);
+  }, [idx, phase]);
+
+  // Auto-advance after the reveal screen has been on long enough.
+  useEffect(() => {
+    if (phase !== "reveal") return;
+    const id = setTimeout(advance, REVEAL_AUTO_ADVANCE_MS);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, idx]);
 
   const q = questionsById[challenge.questionIds[idx] ?? ""];
   if (!q) {
@@ -83,34 +114,42 @@ export default function Play() {
 
   const elapsed = tick * 100;
   const remainingMs = Math.max(0, PER_QUESTION_MS - elapsed);
-  const remainingPct = remainingMs / PER_QUESTION_MS;
+  const remainingPct = phase === "question" ? remainingMs / PER_QUESTION_MS : 0;
   const remainingSec = Math.ceil(remainingMs / 1000);
-  const lowTime = remainingPct < 0.25;
+  const lowTime = remainingPct < 0.25 && remainingPct > 0;
 
   function lockIn(answer: AnswerId | null) {
-    if (selected) return;
-    const msTaken = Date.now() - questionStartRef.current;
+    if (phase !== "question") return;
+    const msTaken = answer === null ? PER_QUESTION_MS : Date.now() - questionStartRef.current;
     const outcome: AnswerOutcome =
       answer === null ? "skipped" : answer === q!.correct_answer ? "correct" : "wrong";
     const pts = pointsFor(outcome, msTaken);
-    setSelected(answer ?? "A");
+    setPlayerPick(answer);
+    setPlayerOutcome(outcome);
+    setPlayerMs(msTaken);
+    setPlayerScore((s) => s + pts);
     setOutcomes((prev) => [...prev, outcome]);
-    setScore((s) => s + pts);
-
-    setTimeout(() => {
-      setSelected(null);
-      if (idx + 1 >= DAILY_QUESTION_COUNT) {
-        finalize([...outcomes, outcome], score + pts);
-      } else {
-        setIdx((i) => i + 1);
-      }
-    }, 1100);
+    // Jump straight to reveal — no waiting for the timer.
+    setPhase("reveal");
   }
 
+  function advance() {
+    if (idx + 1 >= DAILY_QUESTION_COUNT) {
+      finalize(outcomes, playerScore);
+    } else {
+      setIdx((i) => i + 1);
+      setPlayerPick(null);
+      setPlayerOutcome(null);
+      setPlayerMs(0);
+      setPhase("question");
+    }
+  }
+
+  // Auto-skip when question time runs out.
   useEffect(() => {
-    if (remainingMs <= 0 && !selected) lockIn(null);
+    if (phase === "question" && remainingMs <= 0) lockIn(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remainingMs, selected]);
+  }, [remainingMs, phase]);
 
   async function finalize(finalOutcomes: AnswerOutcome[], finalScore: number) {
     const pattern = buildPattern(finalOutcomes);
@@ -134,6 +173,7 @@ export default function Play() {
   }
 
   const categoryEmoji = CATEGORY_EMOJI[q.category] ?? "✨";
+
   const progressDots = useMemo(
     () =>
       Array.from({ length: DAILY_QUESTION_COUNT }).map((_, i) => {
@@ -147,6 +187,23 @@ export default function Play() {
       }),
     [outcomes, idx],
   );
+
+  if (phase === "reveal") {
+    return (
+      <RevealScreen
+        question={q}
+        questionIdx={idx}
+        dailyIndex={challenge.index}
+        playerPick={playerPick}
+        playerOutcome={playerOutcome}
+        playerMs={playerMs}
+        playerScore={playerScore}
+        bots={bots}
+        botRunningScores={botRunningScores}
+        onNext={advance}
+      />
+    );
+  }
 
   return (
     <Screen>
@@ -195,46 +252,205 @@ export default function Play() {
       </View>
 
       <View className="gap-3 pb-6">
-        {q.options.map((opt) => {
-          const isSelectedThis = selected === opt.id;
-          const correctReveal = selected && opt.id === q.correct_answer;
-          const wrongReveal = selected && isSelectedThis && opt.id !== q.correct_answer;
-          const box = correctReveal
-            ? "bg-cyan border-paper"
-            : wrongReveal
-              ? "bg-blood border-paper"
-              : `${OPTION_BG[opt.id]} border-ink`;
-          const txt = correctReveal
-            ? "text-ink"
-            : wrongReveal
-              ? "text-paper"
-              : OPTION_TEXT[opt.id];
-          return (
-            <Sticker
-              key={opt.id}
-              tilt={selected ? 0 : OPTION_TILT[opt.id]}
-              shadow={5}
-              shadowColor={OPTION_SHADOW[opt.id]}
+        {q.options.map((opt) => (
+          <Sticker
+            key={opt.id}
+            tilt={OPTION_TILT[opt.id]}
+            shadow={5}
+            shadowColor="#1A0F2E"
+          >
+            <Pressable
+              onPress={() => lockIn(opt.id)}
+              className={`rounded-2xl px-5 py-4 border-4 border-ink active:opacity-80 ${OPTION_BG[opt.id]}`}
+              style={Platform.OS === "web" ? { cursor: "pointer" } : undefined}
             >
-              <Pressable
-                onPress={() => lockIn(opt.id)}
-                disabled={Boolean(selected)}
-                className={`rounded-2xl px-5 py-4 border-4 active:opacity-80 ${box}`}
-                style={Platform.OS === "web" ? { cursor: selected ? "auto" : "pointer" } : undefined}
-              >
-                <View className="flex-row items-center gap-3">
-                  <Text className={`font-display text-2xl ${txt}`}>{opt.id}</Text>
-                  <Text className={`font-display text-lg flex-1 ${txt}`}>
-                    {opt.text}
-                  </Text>
-                  {correctReveal ? <Text className="text-2xl">✅</Text> : null}
-                  {wrongReveal ? <Text className="text-2xl">💀</Text> : null}
-                </View>
-              </Pressable>
-            </Sticker>
-          );
-        })}
+              <View className="flex-row items-center gap-3">
+                <Text className={`font-display text-2xl ${OPTION_TEXT[opt.id]}`}>{opt.id}</Text>
+                <Text className={`font-display text-lg flex-1 ${OPTION_TEXT[opt.id]}`}>
+                  {opt.text}
+                </Text>
+              </View>
+            </Pressable>
+          </Sticker>
+        ))}
       </View>
     </Screen>
   );
+}
+
+// ─── reveal phase ──────────────────────────────────────────────────────────
+
+type RevealProps = {
+  question: Question;
+  questionIdx: number;
+  dailyIndex: number;
+  playerPick: AnswerId | null;
+  playerOutcome: AnswerOutcome | null;
+  playerMs: number;
+  playerScore: number;
+  bots: Bot[];
+  botRunningScores: Record<string, number>;
+  onNext: () => void;
+};
+
+function RevealScreen({
+  question,
+  questionIdx,
+  dailyIndex,
+  playerPick,
+  playerOutcome,
+  playerScore,
+  bots,
+  botRunningScores,
+  onNext,
+}: RevealProps) {
+  // Bot results for THIS question (used for histogram + leaderboard delta).
+  const botResults = useMemo(
+    () => bots.map((b) => botRound(b, question, dailyIndex, questionIdx)),
+    [bots, question, dailyIndex, questionIdx],
+  );
+
+  const histogram = useMemo(
+    () => answerHistogram(bots, question, dailyIndex, questionIdx, playerPick),
+    [bots, question, dailyIndex, questionIdx, playerPick],
+  );
+  const totalAnswers = histogram.A + histogram.B + histogram.C + histogram.D;
+  const correctCount = histogram[question.correct_answer];
+  const correctPct = totalAnswers > 0 ? Math.round((correctCount / totalAnswers) * 100) : 0;
+
+  const correctOption = question.options.find((o) => o.id === question.correct_answer);
+  const correct = playerOutcome === "correct";
+  const skipped = playerOutcome === "skipped";
+
+  // Build leaderboard rows after this question.
+  const rows = useMemo(() => {
+    const playerRow = {
+      key: "you",
+      name: "you",
+      emoji: correct ? "🔥" : skipped ? "💤" : "🫠",
+      score: playerScore,
+      isYou: true,
+    };
+    const botRows = bots.map((b) => ({
+      key: b.name,
+      name: b.name,
+      emoji: b.emoji,
+      score: botRunningScores[b.name] ?? 0,
+      isYou: false,
+    }));
+    return [...botRows, playerRow].sort((a, b) => b.score - a.score);
+  }, [bots, botRunningScores, playerScore, correct, skipped]);
+
+  const playerRank = rows.findIndex((r) => r.isYou) + 1;
+
+  return (
+    <Screen>
+      <EmojiSplat seed={dailyIndex + questionIdx * 31 + 99} count={6} />
+
+      <View className="pt-4 items-center">
+        <Sticker tilt={-2} shadow={5} shadowColor={correct ? "#A8FF3E" : "#FF5C3E"}>
+          <View
+            className={`rounded-2xl px-5 py-3 border-4 ${
+              correct ? "bg-lime border-ink" : skipped ? "bg-ink border-muted" : "bg-blood border-paper"
+            }`}
+          >
+            <Text
+              className={`font-display text-3xl ${
+                correct ? "text-ink" : skipped ? "text-paper" : "text-paper"
+              }`}
+            >
+              {correct ? "✅ NAILED IT" : skipped ? "⏰ SKIPPED" : "💀 NOPE"}
+            </Text>
+          </View>
+        </Sticker>
+      </View>
+
+      <View className="mt-6">
+        <Text className="font-mono text-muted text-xs">CORRECT ANSWER</Text>
+        <Sticker tilt={-1} shadow={5} shadowColor="#3EFFE9">
+          <View className="bg-ink rounded-2xl border-4 border-cyan px-5 py-4 mt-1">
+            <Text className="font-display text-cyan text-2xl">
+              {question.correct_answer}. {correctOption?.text ?? "?"}
+            </Text>
+            <Text className="font-body text-paper text-xs mt-2">
+              {correctCount} of {totalAnswers} got this right ({correctPct}%)
+            </Text>
+          </View>
+        </Sticker>
+      </View>
+
+      {playerPick && !correct && !skipped ? (
+        <Text className="font-body text-muted text-xs mt-3">
+          you picked <Text className="text-blood font-display">{playerPick}</Text> with
+          {" " + (histogram[playerPick] - 1)} of these clowns. {goofyDecoyLine(histogram[playerPick] - 1)}
+        </Text>
+      ) : null}
+
+      <View className="mt-6 flex-1">
+        <Text className="font-mono text-muted text-xs">LEADERBOARD · after Q{questionIdx + 1}</Text>
+        <View className="mt-2 gap-2">
+          {rows.map((r, i) => {
+            const isFirst = i === 0;
+            const tilt = i % 2 === 0 ? -0.5 : 0.5;
+            return (
+              <Sticker
+                key={r.key}
+                tilt={tilt}
+                shadow={r.isYou ? 4 : 2}
+                shadowColor={r.isYou ? "#A8FF3E" : "#1A0F2E"}
+              >
+                <View
+                  className={`flex-row items-center rounded-xl px-3 py-2 border-2 ${
+                    r.isYou ? "bg-lime border-ink" : "bg-ink border-muted"
+                  }`}
+                >
+                  <Text className={`font-display text-xl w-8 ${r.isYou ? "text-ink" : "text-paper"}`}>
+                    {isFirst ? "👑" : `${i + 1}`}
+                  </Text>
+                  <Text className="text-2xl mr-2">{r.emoji}</Text>
+                  <Text
+                    className={`font-display flex-1 ${r.isYou ? "text-ink text-lg" : "text-paper text-base"}`}
+                  >
+                    {r.name}
+                  </Text>
+                  <Text
+                    className={`font-mono ${r.isYou ? "text-ink font-display text-lg" : "text-paper"}`}
+                  >
+                    {r.score.toLocaleString()}
+                  </Text>
+                </View>
+              </Sticker>
+            );
+          })}
+        </View>
+        <Text className="font-body text-muted text-xs mt-3 text-center italic">
+          {playerRank === 1
+            ? "you on top fr fr 👑"
+            : playerRank === rows.length
+              ? `last place but you tried. ${rows.length}/${rows.length} — own it.`
+              : `you're #${playerRank}. ${rows.length - playerRank} to chase.`}
+        </Text>
+      </View>
+
+      <View className="pb-6">
+        <Button
+          label={questionIdx + 1 >= DAILY_QUESTION_COUNT ? "see your verdict 🪪" : "next question →"}
+          emoji="🚀"
+          tilt={-1}
+          onPress={onNext}
+          full
+        />
+        <Text className="font-body text-muted text-xs text-center mt-2">
+          auto-advance in 5s · or just tap
+        </Text>
+      </View>
+    </Screen>
+  );
+}
+
+function goofyDecoyLine(n: number): string {
+  if (n <= 0) return "absolutely no one else fell for it. just you. lol.";
+  if (n === 1) return "1 other person also fumbled it.";
+  if (n <= 3) return `${n} others also got rizzed.`;
+  return `${n} of you really thought that was real 😭`;
 }
