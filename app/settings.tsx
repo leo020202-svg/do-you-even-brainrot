@@ -5,6 +5,7 @@ import { Screen } from "@/components/Screen";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
+import { SeoHead } from "@/components/SeoHead";
 import {
   useSettingsStore,
   QUESTIONS_OPTIONS,
@@ -78,6 +79,7 @@ export default function Settings() {
 
   return (
     <Screen>
+      <SeoHead title="Game settings" path="/settings" noindex />
       <EmojiSplat seed={777} count={6} />
 
       <View className="flex-row justify-between items-center pt-6">

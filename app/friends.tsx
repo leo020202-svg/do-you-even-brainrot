@@ -5,6 +5,7 @@ import { Screen } from "@/components/Screen";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
+import { SeoHead } from "@/components/SeoHead";
 import { shareResult } from "@/lib/share";
 import {
   generateRoomCode,
@@ -77,6 +78,11 @@ export default function Friends() {
 
   return (
     <Screen>
+      <SeoHead
+        title="Play with friends"
+        description="Spin up a 6-character room code and play the same 5 brainrot trivia questions with friends. Async or synced — no signup needed."
+        path="/friends"
+      />
       <EmojiSplat seed={888} count={9} />
 
       <View className="flex-row justify-between items-center pt-6">

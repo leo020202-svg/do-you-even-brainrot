@@ -1,10 +1,14 @@
 import { Image, Linking, Pressable, ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
+import { SeoHead } from "@/components/SeoHead";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { categoryImage } from "@/lib/category-images";
 import creditsData from "../data/category-images-credits.json";
+
+const HEAD_TITLE = "Image credits";
+const HEAD_DESC = "Attribution for the CC-licensed category banner images, all from Wikimedia Commons.";
 
 type Credit = {
   title: string;
@@ -27,6 +31,7 @@ export default function Credits() {
   const router = useRouter();
   return (
     <Screen>
+      <SeoHead title={HEAD_TITLE} description={HEAD_DESC} path="/credits" />
       <View className="flex-row justify-between items-center pt-6">
         <Sticker tilt={-2} shadow={4} shadowColor="#3EFFE9">
           <View className="bg-ink rounded-xl px-3 py-2 border-2 border-cyan">

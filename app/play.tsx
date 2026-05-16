@@ -5,6 +5,7 @@ import { Screen } from "@/components/Screen";
 import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/Button";
 import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
+import { SeoHead } from "@/components/SeoHead";
 import { categoryImage } from "@/lib/category-images";
 import {
   getDailyChallenge,
@@ -307,6 +308,7 @@ export default function Play() {
 
   return (
     <Screen>
+      <SeoHead title="Playing" path="/play" noindex />
       <EmojiSplat seed={challenge.index + idx * 17 + 3} count={6} />
 
       {isPractice ? (

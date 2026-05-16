@@ -7,7 +7,8 @@ export type Category =
   | "viral_moments"
   | "creators"
   | "cross_platform"
-  | "deep_cuts";
+  | "deep_cuts"
+  | "absurdity";
 
 export type Difficulty = "easy" | "medium" | "hard" | "expert";
 

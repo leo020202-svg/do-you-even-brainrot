@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Text, View } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
+import { SeoHead } from "@/components/SeoHead";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
@@ -126,6 +127,7 @@ export default function Result() {
 
   return (
     <Screen>
+      <SeoHead title="Your score" path="/result" noindex />
       <EmojiSplat seed={challenge.index * 7 + correct} count={10} />
 
       <View className="pt-2 items-center">

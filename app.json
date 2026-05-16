@@ -24,7 +24,8 @@
       "name": "Do You Even Brainrot?",
       "shortName": "Brainrot",
       "themeColor": "#A8FF3E",
-      "backgroundColor": "#0F0A1E"
+      "backgroundColor": "#0F0A1E",
+      "lang": "en"
     },
     "plugins": [
       "expo-router",

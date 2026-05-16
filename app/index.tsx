@@ -1,148 +1,250 @@
-import { useMemo } from "react";
-import { Text, View, Pressable } from "react-native";
+// Marketing landing — first-time visitor entry. Returning players auto-bounce
+// to /home so the daily flow stays one tap away. The full strategy + layout
+// rationale is in docs/STRATEGY.md §5.
+
+import { useEffect, useMemo } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
-import { getDailyChallenge } from "@/lib/daily";
+import { SeoHead } from "@/components/SeoHead";
 import { useDailyStore } from "@/features/daily/store";
 
-const TAGLINES = [
-  "how cooked are you?",
-  "prove the rizz, fr",
-  "ohio detector engaged",
-  "sigma test incoming",
-  "no thoughts, head full",
-  "skibidi or skibidon't",
+const MODES: Array<{ emoji: string; title: string; line: string; href: string; color: string }> = [
+  {
+    emoji: "🔥",
+    title: "Daily Challenge",
+    line: "one shot per day. 5 questions. build a streak. lose it overnight.",
+    href: "/play",
+    color: "#A8FF3E",
+  },
+  {
+    emoji: "👯",
+    title: "Friend Rooms (async)",
+    line: "share a 6-char code. everyone gets the same 5 questions. play whenever.",
+    href: "/friends",
+    color: "#FF3EA5",
+  },
+  {
+    emoji: "⚡",
+    title: "Friend Rooms (synced)",
+    line: "Kahoot-style countdown. everyone plays at once. shared reveals. discord-call ready.",
+    href: "/friends",
+    color: "#3EFFE9",
+  },
 ];
 
-export default function Home() {
-  const router = useRouter();
-  const challenge = useMemo(() => getDailyChallenge(), []);
-  const streak = useDailyStore((s) => s.currentStreak);
-  const longest = useDailyStore((s) => s.longestStreak);
-  const result = useDailyStore((s) => s.results[challenge.dateKey]);
-  const hydrated = useDailyStore((s) => s.hydrated);
+const CATEGORIES: Array<{ slug: string; emoji: string; name: string }> = [
+  { slug: "italian-brainrot", emoji: "🍝", name: "Italian Brainrot" },
+  { slug: "skibidi", emoji: "🚽", name: "Skibidi Lore" },
+  { slug: "gen-alpha-slang", emoji: "💀", name: "Gen Alpha Slang" },
+  { slug: "viral-moments", emoji: "📱", name: "Viral Moments" },
+  { slug: "creators", emoji: "🎬", name: "Creators" },
+  { slug: "cross-platform", emoji: "🌐", name: "Cross-Platform" },
+  { slug: "deep-cuts", emoji: "🕳️", name: "Deep Cuts" },
+  { slug: "absurdity", emoji: "🤡", name: "Absurdity" },
+];
 
-  const tagline = useMemo(
-    () => TAGLINES[challenge.index % TAGLINES.length] ?? TAGLINES[0],
-    [challenge.index],
-  );
+const FAQ: Array<{ q: string; a: string }> = [
+  {
+    q: "is this free?",
+    a: "yes. daily challenges and friend rooms are free forever. Phase 1 will add an optional $2.99 unlock for extra question packs.",
+  },
+  {
+    q: "do i need to sign up?",
+    a: "nope. just open it. your streak saves on your device. cross-device sync ships when we wire Supabase auth (Phase 0 close-out).",
+  },
+  {
+    q: "how do i play with friends?",
+    a: "tap 'play with friends' → generate a 6-char code → send the link. everyone on the link gets the same 5 questions.",
+  },
+  {
+    q: "what's brainrot anyway?",
+    a: "internet-native humor that's deliberately incoherent. AI-generated Italian creatures, Skibidi Toilet, Gen Alpha slang, TikTok comment-section lore. if you're not chronically online it sounds like noise. that's the joke.",
+  },
+  {
+    q: "who picks the questions?",
+    a: "humans. 200 hand-curated questions sourced from Italian Brainrot Wiki, Know Your Meme, and TikTok comment sections. weekly drops add ~25 more.",
+  },
+];
+
+export default function Landing() {
+  const router = useRouter();
+  const hydrated = useDailyStore((s) => s.hydrated);
+  const hasHistory = useDailyStore((s) => Object.keys(s.results).length > 0);
+  const streak = useDailyStore((s) => s.currentStreak);
+
+  // Returning players (anyone with at least one completed daily) auto-bounce
+  // to /home so the daily CTA is one tap away. First-time visitors stay here.
+  useEffect(() => {
+    if (hydrated && hasHistory) {
+      router.replace("/home");
+    }
+  }, [hydrated, hasHistory, router]);
+
+  const dailyPlayerCount = useMemo(() => "pre-launch · join the first wave", []);
 
   return (
     <Screen>
-      <EmojiSplat seed={challenge.index + 1} count={11} />
+      <SeoHead
+        title="Do You Even Brainrot?"
+        description="The daily brainrot trivia game. 5 questions about Italian brainrot, Skibidi lore, Gen Alpha slang, and TikTok culture. Free, no signup, share with friends."
+        path="/"
+      />
+      <EmojiSplat seed={3001} count={11} />
 
-      <View className="flex-row justify-between items-start pt-6">
-        <Sticker tilt={-3} shadow={4} shadowColor="#FF3EA5">
-          <View className="bg-ink rounded-xl px-3 py-2 border-2 border-hot">
-            <Text className="font-mono text-cyan text-xs">DAILY #{challenge.index}</Text>
-          </View>
-        </Sticker>
-        <View className="flex-row gap-2">
-          <Link href="/settings" asChild>
-            <Pressable>
-              <Sticker tilt={-2} shadow={3} shadowColor="#FF3EA5">
-                <View className="bg-ink rounded-full px-3 py-2 border-2 border-hot">
-                  <Text className="font-display text-paper text-base">⚙️</Text>
-                </View>
-              </Sticker>
-            </Pressable>
-          </Link>
-          <Link href="/profile" asChild>
-            <Pressable>
-              <Sticker tilt={2} shadow={4} shadowColor="#A8FF3E">
-                <View className="bg-ink rounded-full px-4 py-2 border-2 border-lime">
-                  <Text className="font-display text-paper text-base">
-                    {streak > 0 ? `🔥 ${streak}` : "👤 profile"}
-                  </Text>
-                </View>
-              </Sticker>
-            </Pressable>
-          </Link>
-        </View>
-      </View>
-
-      <View className="flex-1 justify-center -mt-4">
-        <View>
+      <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 24 }}>
+        {/* ── Hero ─────────────────────────────────────────────────────── */}
+        <View className="pt-8">
           <Sticker tilt={-2} shadow={5} shadowColor="#3EFFE9">
-            <Text className="font-display text-lime text-6xl leading-none">DO YOU</Text>
+            <Text className="font-display text-lime text-5xl leading-none">DO YOU</Text>
           </Sticker>
-        </View>
-        <View className="self-end mt-1">
-          <Sticker tilt={3} shadow={5} shadowColor="#FF3EA5">
-            <Text className="font-display text-cyan text-6xl leading-none">EVEN</Text>
-          </Sticker>
-        </View>
-        <View className="mt-1">
-          <Sticker tilt={-1} shadow={5} shadowColor="#FF5C3E">
-            <Text className="font-display text-hot text-6xl leading-none">BRAINROT?</Text>
-          </Sticker>
+          <View className="self-end mt-1">
+            <Sticker tilt={3} shadow={5} shadowColor="#FF3EA5">
+              <Text className="font-display text-cyan text-5xl leading-none">EVEN</Text>
+            </Sticker>
+          </View>
+          <View className="mt-1">
+            <Sticker tilt={-1} shadow={5} shadowColor="#FF5C3E">
+              <Text className="font-display text-hot text-5xl leading-none">BRAINROT?</Text>
+            </Sticker>
+          </View>
+
+          <Text className="font-body text-paper text-base mt-5">
+            the daily trivia game about Italian brainrot, Skibidi lore, Gen
+            Alpha slang, and TikTok culture. 5 questions. 30 seconds each.
+            <Text className="font-display text-lime"> how cooked are you?</Text>
+          </Text>
+
+          <View className="gap-3 mt-6">
+            <Button
+              label="play today's daily"
+              emoji="🔥"
+              tilt={-1}
+              onPress={() => router.push("/play")}
+              full
+            />
+            <Button
+              label="play with friends"
+              emoji="👯"
+              variant="secondary"
+              onPress={() => router.push("/friends")}
+              full
+            />
+          </View>
+
+          <Text className="font-mono text-muted text-xs mt-4">
+            {dailyPlayerCount} · {streak > 0 ? `🔥 streak: ${streak}` : "no signup · no install"}
+          </Text>
         </View>
 
-        <Text className="font-body text-paper text-base mt-6 italic">↳ {tagline}</Text>
-
-        <View className="mt-10 gap-3">
-          {!hydrated ? (
-            <Text className="font-body text-muted">Cooking... 🍳</Text>
-          ) : result ? (
-            <>
-              <Sticker tilt={-1} shadow={5} shadowColor="#A8FF3E">
-                <View className="bg-ink rounded-3xl border-4 border-lime p-5">
-                  <Text className="font-body text-paper text-sm">you already cooked today:</Text>
-                  <Text className="font-display text-lime text-4xl mt-1">
-                    {result.outcomes.filter((o) => o === "correct").length}/{result.outcomes.length} ✨
-                  </Text>
-                  <Text className="font-mono text-paper text-2xl tracking-widest mt-2">
-                    {result.pattern}
-                  </Text>
+        {/* ── How it works ─────────────────────────────────────────────── */}
+        <View className="mt-10">
+          <Text className="font-display text-paper text-2xl">how it works</Text>
+          <View className="gap-3 mt-3">
+            {[
+              { n: "01", t: "open it.", l: "no signup, no download. 30 seconds and you're in." },
+              { n: "02", t: "5 questions a day.", l: "italian brainrot, skibidi lore, slang, viral moments. mixed difficulty." },
+              { n: "03", t: "don't lose your streak.", l: "share your score card, drag your friends in, climb." },
+            ].map((s, i) => (
+              <Sticker key={s.n} tilt={i % 2 === 0 ? -0.5 : 0.5} shadow={3} shadowColor="#1A0F2E">
+                <View className="bg-ink rounded-2xl border-2 border-muted p-4 flex-row gap-3">
+                  <Text className="font-display text-lime text-2xl">{s.n}</Text>
+                  <View className="flex-1">
+                    <Text className="font-display text-paper text-lg">{s.t}</Text>
+                    <Text className="font-body text-muted text-sm mt-1">{s.l}</Text>
+                  </View>
                 </View>
               </Sticker>
-              <Button label="see your score card" emoji="🪪" onPress={() => router.push("/result")} full />
-              <Button
-                label="play with friends"
-                emoji="👯"
-                variant="secondary"
-                onPress={() => router.push("/friends")}
-                full
-              />
-              <Button
-                label="practice mode"
-                emoji="🎯"
-                variant="ghost"
-                onPress={() => router.push("/play?practice=1")}
-                full
-              />
-            </>
-          ) : (
-            <>
-              <Button label="RUN IT" emoji="🔥" tilt={-1} onPress={() => router.push("/play")} full />
-              <Button
-                label="play with friends"
-                emoji="👯"
-                variant="secondary"
-                onPress={() => router.push("/friends")}
-                full
-              />
-              <Button
-                label="practice mode"
-                emoji="🎯"
-                variant="ghost"
-                onPress={() => router.push("/play?practice=1")}
-                full
-              />
-            </>
-          )}
+            ))}
+          </View>
         </View>
-      </View>
 
-      <View className="pb-6 flex-row justify-between">
-        <Text className="font-mono text-muted text-xs">
-          longest: <Text className="text-paper">{longest}d</Text>
-        </Text>
-        <Text className="font-mono text-muted text-xs">v0.1 · phase 0</Text>
-      </View>
+        {/* ── Modes ────────────────────────────────────────────────────── */}
+        <View className="mt-10">
+          <Text className="font-display text-paper text-2xl">three modes</Text>
+          <View className="gap-3 mt-3">
+            {MODES.map((m, i) => (
+              <Link key={m.title} href={m.href as never} asChild>
+                <Pressable>
+                  <Sticker tilt={i % 2 === 0 ? -1 : 1} shadow={4} shadowColor={m.color}>
+                    <View className="bg-ink rounded-2xl border-4 p-4 flex-row items-center gap-3"
+                          style={{ borderColor: m.color }}>
+                      <Text className="text-4xl">{m.emoji}</Text>
+                      <View className="flex-1">
+                        <Text className="font-display text-paper text-lg">{m.title}</Text>
+                        <Text className="font-body text-muted text-sm mt-1">{m.line}</Text>
+                      </View>
+                      <Text className="font-display text-paper text-xl">→</Text>
+                    </View>
+                  </Sticker>
+                </Pressable>
+              </Link>
+            ))}
+          </View>
+        </View>
+
+        {/* ── Categories preview (SEO + browsing) ──────────────────────── */}
+        <View className="mt-10">
+          <Text className="font-display text-paper text-2xl">categories</Text>
+          <Text className="font-body text-muted text-sm mt-1">8 categories, 200 hand-curated questions, weekly drops.</Text>
+          <View className="flex-row flex-wrap gap-2 mt-3">
+            {CATEGORIES.map((c, i) => (
+              <Link key={c.slug} href={`/category/${c.slug}` as never} asChild>
+                <Pressable>
+                  <Sticker tilt={i % 2 === 0 ? -1 : 1} shadow={2} shadowColor="#1A0F2E">
+                    <View className="bg-ink rounded-xl border-2 border-muted px-3 py-2 flex-row items-center gap-2">
+                      <Text className="text-lg">{c.emoji}</Text>
+                      <Text className="font-display text-paper text-sm">{c.name}</Text>
+                    </View>
+                  </Sticker>
+                </Pressable>
+              </Link>
+            ))}
+          </View>
+        </View>
+
+        {/* ── FAQ ──────────────────────────────────────────────────────── */}
+        <View className="mt-10">
+          <Text className="font-display text-paper text-2xl">faq</Text>
+          <View className="gap-3 mt-3">
+            {FAQ.map((f, i) => (
+              <Sticker key={f.q} tilt={i % 2 === 0 ? -0.5 : 0.5} shadow={2} shadowColor="#1A0F2E">
+                <View className="bg-ink rounded-2xl border-2 border-muted p-4">
+                  <Text className="font-display text-lime text-base">{f.q}</Text>
+                  <Text className="font-body text-paper text-sm mt-1">{f.a}</Text>
+                </View>
+              </Sticker>
+            ))}
+          </View>
+        </View>
+
+        {/* ── Footer ───────────────────────────────────────────────────── */}
+        <View className="mt-10 pb-2 border-t border-ink pt-4">
+          <View className="flex-row justify-between flex-wrap gap-2">
+            <Link href="/credits" asChild>
+              <Pressable>
+                <Text className="font-mono text-muted text-xs underline">image credits</Text>
+              </Pressable>
+            </Link>
+            <Link href="/friends" asChild>
+              <Pressable>
+                <Text className="font-mono text-muted text-xs underline">play with friends</Text>
+              </Pressable>
+            </Link>
+            <Link href="/profile" asChild>
+              <Pressable>
+                <Text className="font-mono text-muted text-xs underline">profile</Text>
+              </Pressable>
+            </Link>
+          </View>
+          <Text className="font-mono text-muted text-xs mt-3">
+            made by humans · v0.1 · phase 0 · playbrainrot.app
+          </Text>
+        </View>
+      </ScrollView>
     </Screen>
   );
 }

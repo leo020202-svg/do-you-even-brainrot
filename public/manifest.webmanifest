@@ -1,0 +1,40 @@
+{
+  "name": "Do You Even Brainrot?",
+  "short_name": "Brainrot",
+  "description": "The daily brainrot trivia game. 5 questions a day about Italian brainrot, Skibidi lore, Gen Alpha slang, and TikTok culture.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0F0A1E",
+  "theme_color": "#A8FF3E",
+  "orientation": "portrait",
+  "categories": ["games", "trivia", "entertainment"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og/screenshot-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Daily challenge — 5 questions a day"
+    }
+  ]
+}

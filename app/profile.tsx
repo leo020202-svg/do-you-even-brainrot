@@ -4,6 +4,7 @@ import { Screen } from "@/components/Screen";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
+import { SeoHead } from "@/components/SeoHead";
 import { useDailyStore } from "@/features/daily/store";
 
 export default function Profile() {
@@ -30,6 +31,7 @@ export default function Profile() {
 
   return (
     <Screen>
+      <SeoHead title="Profile" path="/profile" noindex />
       <EmojiSplat seed={123 + totalPlayed} count={8} />
 
       <View className="flex-row justify-between items-center pt-6">

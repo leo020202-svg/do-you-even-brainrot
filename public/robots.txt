@@ -1,0 +1,27 @@
+# Do You Even Brainrot? — public web
+# https://playbrainrot.app
+
+User-agent: *
+Allow: /
+# Game-state routes aren't useful for search engines.
+Disallow: /play
+Disallow: /play-synced
+Disallow: /r/
+Disallow: /result
+Disallow: /settings
+Disallow: /profile
+
+# Be friendly to AI crawlers — see llms.txt for the curated entry points.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://playbrainrot.app/sitemap.xml
