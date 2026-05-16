@@ -18,6 +18,13 @@ import { useSettingsStore, difficultyMixFor } from "@/features/settings/store";
 import { buildPattern, buildShareText } from "@/lib/share";
 import { pickDailyBots, botRound, answerHistogram, type Bot } from "@/lib/bots";
 import { codeToSeed, isValidRoomCode, normalizeRoomCode } from "@/lib/room";
+import {
+  finaleHaptic,
+  skipHaptic,
+  successHaptic,
+  tapHaptic,
+  wrongHaptic,
+} from "@/lib/haptics";
 import type { AnswerOutcome } from "@/features/daily/store";
 import type { AnswerId, Question } from "@/lib/questions";
 
@@ -120,6 +127,7 @@ export default function Play() {
   const [playerPick, setPlayerPick] = useState<AnswerId | null>(null);
   const [playerOutcome, setPlayerOutcome] = useState<AnswerOutcome | null>(null);
   const [playerMs, setPlayerMs] = useState<number>(0);
+  const [pointsThisRound, setPointsThisRound] = useState(0);
   const [outcomes, setOutcomes] = useState<AnswerOutcome[]>([]);
   const [playerScore, setPlayerScore] = useState(0);
   const [tick, setTick] = useState(0);
@@ -191,20 +199,31 @@ export default function Play() {
     setPlayerPick(answer);
     setPlayerOutcome(outcome);
     setPlayerMs(msTaken);
+    setPointsThisRound(pts);
     setPlayerScore((s) => s + pts);
     setOutcomes((prev) => [...prev, outcome]);
+    // Haptics: the tap if you picked, the warning if you timed out, then the
+    // outcome ding once we land on the reveal screen.
+    if (answer === null) skipHaptic();
+    else tapHaptic();
+    setTimeout(() => {
+      if (outcome === "correct") successHaptic();
+      else if (outcome === "wrong") wrongHaptic();
+    }, 60);
     // Jump straight to reveal — no waiting for the timer.
     setPhase("reveal");
   }
 
   function advance() {
     if (idx + 1 >= totalQuestions) {
+      finaleHaptic();
       finalize(outcomes, playerScore);
     } else {
       setIdx((i) => i + 1);
       setPlayerPick(null);
       setPlayerOutcome(null);
       setPlayerMs(0);
+      setPointsThisRound(0);
       setPhase("question");
     }
   }
@@ -278,6 +297,7 @@ export default function Play() {
         playerOutcome={playerOutcome}
         playerMs={playerMs}
         playerScore={playerScore}
+        pointsEarned={pointsThisRound}
         bots={bots}
         botRunningScores={botRunningScores}
         onNext={advance}
@@ -391,6 +411,7 @@ type RevealProps = {
   playerOutcome: AnswerOutcome | null;
   playerMs: number;
   playerScore: number;
+  pointsEarned: number;
   bots: Bot[];
   botRunningScores: Record<string, number>;
   onNext: () => void;
@@ -404,6 +425,7 @@ function RevealScreen({
   playerPick,
   playerOutcome,
   playerScore,
+  pointsEarned,
   bots,
   botRunningScores,
   onNext,
@@ -488,6 +510,15 @@ function RevealScreen({
             </Text>
           </View>
         </Sticker>
+        {pointsEarned > 0 ? (
+          <View className="mt-3">
+            <Sticker tilt={3} shadow={4} shadowColor="#3EFFE9">
+              <View className="bg-cyan rounded-full px-5 py-1 border-2 border-ink">
+                <Text className="font-display text-ink text-2xl">+{pointsEarned.toLocaleString()} pts</Text>
+              </View>
+            </Sticker>
+          </View>
+        ) : null}
       </View>
 
       <View className="mt-6">

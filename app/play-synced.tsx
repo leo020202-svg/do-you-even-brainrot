@@ -28,6 +28,7 @@ import {
   SYNC_QUESTION_MS,
   SYNC_REVEAL_MS,
 } from "@/lib/sync";
+import { skipHaptic, successHaptic, tapHaptic, wrongHaptic } from "@/lib/haptics";
 import type { AnswerOutcome } from "@/features/daily/store";
 import type { AnswerId } from "@/lib/questions";
 
@@ -93,6 +94,9 @@ export default function PlaySynced() {
   const [picks, setPicks] = useState<Record<number, AnswerId | null>>({});
   const [pickTimestamps, setPickTimestamps] = useState<Record<number, number>>({});
   const finalizedRef = useRef(false);
+  // Tracks which question index has already triggered its reveal haptic so we
+  // don't re-fire it every wall-clock tick during the reveal window.
+  const hapticedIdxRef = useRef<number>(-1);
 
   if (!roomCode || !challenge || !sync || startTs === null) {
     return (
@@ -106,6 +110,20 @@ export default function PlaySynced() {
   }
 
   const currentQ = questionsById[challenge.questionIds[sync.idx] ?? ""];
+
+  // ── Outcome haptic, once per question on reveal entry ───────────────────
+  useEffect(() => {
+    if (!sync || !challenge || sync.phase !== "reveal") return;
+    if (hapticedIdxRef.current === sync.idx) return;
+    hapticedIdxRef.current = sync.idx;
+    const qid = challenge.questionIds[sync.idx];
+    const qq = qid ? questionsById[qid] : undefined;
+    if (!qq) return;
+    const pick = picks[sync.idx] ?? null;
+    if (pick === null) skipHaptic();
+    else if (pick === qq.correct_answer) successHaptic();
+    else wrongHaptic();
+  }, [sync, challenge, picks]);
 
   // ── End-of-game: navigate to result once ────────────────────────────────
   useEffect(() => {
@@ -191,6 +209,7 @@ export default function PlaySynced() {
     const isLocked = currentPick !== null;
 
     function lockIn(answer: AnswerId) {
+      tapHaptic();
       setPicks((p) => ({ ...p, [sync!.idx]: answer }));
       setPickTimestamps((p) => ({ ...p, [sync!.idx]: Date.now() }));
     }
@@ -353,6 +372,18 @@ export default function PlaySynced() {
 
     const playerRank = leaderboard.findIndex((r) => r.isYou) + 1;
 
+    // Points earned just for THIS question — feeds the +N pts badge below.
+    const pointsThisRound = (() => {
+      const pickTs =
+        pickTimestamps[sync.idx] ??
+        startTs + sync.idx * (SYNC_QUESTION_MS + SYNC_REVEAL_MS) + SYNC_QUESTION_MS;
+      const msTaken = Math.max(
+        0,
+        pickTs - (startTs + sync.idx * (SYNC_QUESTION_MS + SYNC_REVEAL_MS)),
+      );
+      return correct ? syncPointsFor(true, msTaken) : 0;
+    })();
+
     return (
       <Screen>
         <EmojiSplat seed={codeToSeed(roomCode) + sync.idx * 31 + 99} count={6} />
@@ -388,6 +419,17 @@ export default function PlaySynced() {
               </Text>
             </View>
           </Sticker>
+          {pointsThisRound > 0 ? (
+            <View className="mt-2">
+              <Sticker tilt={3} shadow={3} shadowColor="#3EFFE9">
+                <View className="bg-cyan rounded-full px-4 py-1 border-2 border-ink">
+                  <Text className="font-display text-ink text-xl">
+                    +{pointsThisRound.toLocaleString()} pts
+                  </Text>
+                </View>
+              </Sticker>
+            </View>
+          ) : null}
         </View>
 
         <View className="mt-3">
