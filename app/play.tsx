@@ -19,6 +19,7 @@ import { useSettingsStore, difficultyMixFor } from "@/features/settings/store";
 import { buildPattern, buildShareText } from "@/lib/share";
 import { pickDailyBots, botRound, answerHistogram, type Bot } from "@/lib/bots";
 import { codeToSeed, isValidRoomCode, normalizeRoomCode } from "@/lib/room";
+import { useWebKeyboard } from "@/hooks/useWebKeyboard";
 import {
   finaleHaptic,
   skipHaptic,
@@ -116,6 +117,18 @@ export default function Play() {
   // Only the real daily blocks replays; practice + rooms always let you replay.
   const alreadyPlayed = !isPractice && !isRoom && dailyAlreadyPlayed;
 
+  // Show a first-time onboarding tooltip on Q1 of the daily if the player has
+  // never finished one before. Dismissable; auto-hides after 6 seconds.
+  const hasHistory = useDailyStore((s) => Object.keys(s.results).length > 0);
+  const showOnboarding =
+    !isPractice && !isRoom && !hasHistory;
+  const [onboardingDismissed, setOnboardingDismissed] = useState(false);
+  useEffect(() => {
+    if (!showOnboarding) return;
+    const id = setTimeout(() => setOnboardingDismissed(true), 6000);
+    return () => clearTimeout(id);
+  }, [showOnboarding]);
+
   // Bots seeded off whatever uniquely identifies this run.
   const bots = useMemo(() => {
     if (isRoom && roomCode) return pickDailyBots(codeToSeed(roomCode) % 100000);
@@ -190,6 +203,35 @@ export default function Play() {
   const remainingPct = phase === "question" ? remainingMs / perQuestionMs : 0;
   const remainingSec = Math.ceil(remainingMs / 1000);
   const lowTime = remainingPct < 0.25 && remainingPct > 0;
+
+  // Web-only: 1/2/3/4 (and A/B/C/D) lock in the corresponding answer,
+  // Enter on the reveal screen advances. Ignored if a modifier is held so
+  // we don't hijack browser shortcuts like Cmd+Shift+1.
+  const keyMap: Record<string, AnswerId> = {
+    "1": "A",
+    "2": "B",
+    "3": "C",
+    "4": "D",
+    a: "A",
+    b: "B",
+    c: "C",
+    d: "D",
+  };
+  useWebKeyboard((e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+    if (phase === "question") {
+      const pick = keyMap[e.key.toLowerCase()];
+      if (pick) {
+        e.preventDefault();
+        lockIn(pick);
+      }
+    } else if (phase === "reveal") {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        advance();
+      }
+    }
+  });
 
   function lockIn(answer: AnswerId | null) {
     if (phase !== "question") return;
@@ -310,6 +352,21 @@ export default function Play() {
     <Screen>
       <SeoHead title="Playing" path="/play" noindex />
       <EmojiSplat seed={challenge.index + idx * 17 + 3} count={6} />
+
+      {showOnboarding && !onboardingDismissed && idx === 0 ? (
+        <Pressable onPress={() => setOnboardingDismissed(true)} className="pt-3">
+          <Sticker tilt={-1} shadow={4} shadowColor="#FF3EA5">
+            <View className="bg-ink rounded-2xl border-2 border-lime px-4 py-3">
+              <Text className="font-display text-lime text-sm">first round? quick rules:</Text>
+              <Text className="font-body text-paper text-xs mt-1">
+                · 30s per question · answer fast for bonus points
+                {Platform.OS === "web" ? " · press 1–4 or tap" : " · tap to lock in"}
+              </Text>
+              <Text className="font-mono text-muted text-xs mt-1">tap to dismiss</Text>
+            </View>
+          </Sticker>
+        </Pressable>
+      ) : null}
 
       {isPractice ? (
         <View className="items-center pt-3">

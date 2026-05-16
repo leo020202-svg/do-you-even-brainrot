@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { Platform, View, type ViewStyle } from "react-native";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type Props = {
   children: ReactNode;
@@ -24,20 +25,27 @@ export function Sticker({
   className,
   style,
 }: Props) {
+  // Honour OS-level reduced-motion: drop the rotation and halve the chunky
+  // offset shadow so the UI reads as still-stylised but not animated.
+  const reducedMotion = useReducedMotion();
+  const effectiveTilt = reducedMotion ? 0 : tilt;
+  const effectiveShadow = reducedMotion ? Math.max(2, Math.floor(shadow / 2)) : shadow;
   const baseShadow: ViewStyle =
     Platform.OS === "web"
-      ? ({ boxShadow: `${shadow}px ${shadow}px 0 0 ${shadowColor}` } as ViewStyle)
+      ? ({
+          boxShadow: `${effectiveShadow}px ${effectiveShadow}px 0 0 ${shadowColor}`,
+        } as ViewStyle)
       : {
           shadowColor,
-          shadowOffset: { width: shadow, height: shadow },
+          shadowOffset: { width: effectiveShadow, height: effectiveShadow },
           shadowOpacity: 1,
           shadowRadius: 0,
-          elevation: shadow,
+          elevation: effectiveShadow,
         };
   return (
     <View
       className={className}
-      style={[{ transform: [{ rotate: `${tilt}deg` }] }, baseShadow, style ?? {}]}
+      style={[{ transform: [{ rotate: `${effectiveTilt}deg` }] }, baseShadow, style ?? {}]}
     >
       {children}
     </View>

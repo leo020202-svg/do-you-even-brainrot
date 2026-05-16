@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Text, View } from "react-native";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 // Decorative floating emojis to make every screen feel like a chaotic sticker
 // sheet. pointerEvents="none" so they never intercept taps.
@@ -46,9 +47,12 @@ type Props = {
 };
 
 export function EmojiSplat({ count = 9, seed = 42, pool = POOL }: Props) {
+  // Reduced-motion users see fewer decorations (cuts visual noise too).
+  const reducedMotion = useReducedMotion();
+  const effectiveCount = reducedMotion ? Math.min(3, count) : count;
   const items = useMemo<Emoji[]>(() => {
     const rng = mulberry(seed);
-    return Array.from({ length: count }).map((_, i) => {
+    return Array.from({ length: effectiveCount }).map((_, i) => {
       const charIdx = Math.floor(rng() * pool.length);
       return {
         char: pool[charIdx] ?? "✨",
@@ -58,7 +62,7 @@ export function EmojiSplat({ count = 9, seed = 42, pool = POOL }: Props) {
         rotate: Math.floor(rng() * 60) - 30,
       } satisfies Emoji;
     });
-  }, [count, seed, pool]);
+  }, [effectiveCount, seed, pool]);
 
   return (
     <View
