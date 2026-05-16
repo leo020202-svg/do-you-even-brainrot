@@ -2,8 +2,8 @@
 // to /home so the daily flow stays one tap away. The full strategy + layout
 // rationale is in docs/STRATEGY.md §5.
 
-import { useMemo } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { useMemo, useState } from "react";
+import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { Link, Redirect, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Button } from "@/components/Button";
@@ -11,6 +11,7 @@ import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
 import { useDailyStore } from "@/features/daily/store";
+import { isValidRoomCode, normalizeRoomCode } from "@/lib/room";
 
 const MODES: Array<{ emoji: string; title: string; line: string; href: string; color: string }> = [
   {
@@ -86,6 +87,21 @@ export default function Landing() {
     return <Redirect href="/home" />;
   }
 
+  // Inline room-code input. Kahoot.it's whole joiner flow is one box; we
+  // shouldn't make players click through to /friends just to type a code
+  // they were given. See docs/COMPETITOR_LANDING_AUDIT.md.
+  const [roomInput, setRoomInput] = useState("");
+  const [roomError, setRoomError] = useState<string | null>(null);
+  function onJoinRoom() {
+    const code = normalizeRoomCode(roomInput);
+    if (!isValidRoomCode(code)) {
+      setRoomError("codes are 6 chars · letters + numbers");
+      return;
+    }
+    setRoomError(null);
+    router.push(`/play?room=${code}`);
+  }
+
   const dailyPlayerCount = useMemo(() => "pre-launch · join the first wave", []);
 
   return (
@@ -137,8 +153,63 @@ export default function Landing() {
             />
           </View>
 
-          <Text className="font-mono text-muted text-xs mt-4">
-            {dailyPlayerCount} · {streak > 0 ? `🔥 streak: ${streak}` : "no signup · no install"}
+          {/* Inline room-code join — the single biggest conversion win per
+              docs/COMPETITOR_LANDING_AUDIT.md §"what to fix". Friend gives
+              you the code, you paste it here, no click-through to /friends. */}
+          <View className="mt-5">
+            <Sticker tilt={-0.5} shadow={3} shadowColor="#3EFFE9">
+              <View className="bg-ink rounded-2xl border-2 border-cyan p-3">
+                <Text className="font-mono text-muted text-xs mb-2">
+                  got a friend&apos;s room code?
+                </Text>
+                <View className="flex-row gap-2">
+                  <TextInput
+                    value={roomInput}
+                    onChangeText={(t) => {
+                      setRoomInput(normalizeRoomCode(t));
+                      setRoomError(null);
+                    }}
+                    placeholder="RIZZ42"
+                    placeholderTextColor="#7A6B99"
+                    autoCapitalize="characters"
+                    autoCorrect={false}
+                    maxLength={6}
+                    onSubmitEditing={onJoinRoom}
+                    className="bg-bg rounded-xl border-2 border-muted px-3 py-2 flex-1 font-mono text-paper text-xl tracking-widest text-center"
+                    style={{ letterSpacing: 6 }}
+                  />
+                  <Pressable
+                    onPress={onJoinRoom}
+                    className="bg-cyan rounded-xl border-2 border-ink px-4 py-2 items-center justify-center active:opacity-80"
+                  >
+                    <Text className="font-display text-ink text-base">join 🚪</Text>
+                  </Pressable>
+                </View>
+                {roomError ? (
+                  <Text className="font-body text-blood text-xs mt-2">{roomError}</Text>
+                ) : null}
+              </View>
+            </Sticker>
+          </View>
+
+          {/* Trust strip — Kahoot's "No credit card needed" equivalent. */}
+          <View className="flex-row flex-wrap gap-2 mt-5">
+            {[
+              "no signup",
+              "no install",
+              "free forever",
+              streak > 0 ? `🔥 ${streak}` : "200 hand-curated qs",
+            ].map((label, i) => (
+              <Sticker key={label} tilt={i % 2 === 0 ? -0.5 : 0.5} shadow={2} shadowColor="#1A0F2E">
+                <View className="bg-ink rounded-full border border-muted px-3 py-1">
+                  <Text className="font-mono text-paper text-xs">{label}</Text>
+                </View>
+              </Sticker>
+            ))}
+          </View>
+
+          <Text className="font-mono text-muted text-xs mt-3 italic">
+            {dailyPlayerCount}
           </Text>
         </View>
 
