@@ -2,9 +2,9 @@
 // to /home so the daily flow stays one tap away. The full strategy + layout
 // rationale is in docs/STRATEGY.md §5.
 
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { Link, Redirect, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
@@ -78,11 +78,13 @@ export default function Landing() {
 
   // Returning players (anyone with at least one completed daily) auto-bounce
   // to /home so the daily CTA is one tap away. First-time visitors stay here.
-  useEffect(() => {
-    if (hydrated && hasHistory) {
-      router.replace("/home");
-    }
-  }, [hydrated, hasHistory, router]);
+  // Using <Redirect> instead of router.replace() so the navigation is queued
+  // against the router's "ready" lifecycle — imperative navigation in a
+  // useEffect races the Root Layout's font-load gate and throws
+  // "Attempted to navigate before mounting the Root Layout".
+  if (hydrated && hasHistory) {
+    return <Redirect href="/home" />;
+  }
 
   const dailyPlayerCount = useMemo(() => "pre-launch · join the first wave", []);
 
