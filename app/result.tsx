@@ -139,7 +139,7 @@ export default function Result() {
           <Sticker tilt={-2} shadow={3} shadowColor="#FF3EA5">
             <View className="bg-hot rounded-md px-3 py-1 border-2 border-ink">
               <Text className="font-mono text-ink text-xs uppercase tracking-widest">
-                🎯 PRACTICE · streak untouched
+                ♾️ UNLIMITED · streak untouched
               </Text>
             </View>
           </Sticker>
@@ -160,7 +160,7 @@ export default function Result() {
         <View className="bg-ink rounded-3xl border-4 border-paper p-5">
           <Text className="font-mono text-muted text-xs">
             {isPractice
-              ? "PRACTICE ROUND"
+              ? "UNLIMITED ROUND"
               : isRoom && roomCode
                 ? `FRIEND ROOM · ${roomCode}`
                 : `BRAINROT DAILY · #${challenge.index}`}
@@ -283,7 +283,7 @@ export default function Result() {
           <Button label="share" variant="secondary" onPress={onShare} full />
         ) : (
           <Button
-            label="practice mode 🎯"
+            label="unlimited mode ♾️"
             variant="secondary"
             onPress={() => router.replace("/play?practice=1")}
             full

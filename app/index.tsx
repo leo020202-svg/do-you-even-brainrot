@@ -12,6 +12,15 @@ import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
 import { useDailyStore } from "@/features/daily/store";
 import { isValidRoomCode, normalizeRoomCode } from "@/lib/room";
+import { useMidnightCountdown } from "@/lib/countdown";
+import { getDailyChallenge } from "@/lib/daily";
+import { questionsById } from "@/lib/questions";
+import { SampleQuestion } from "@/components/SampleQuestion";
+
+// Sample question shown on the landing. q001 (Tralalero Tralala) is iconic
+// enough that it gives a cold visitor an immediate sense of the content
+// without spoiling anything they'd reasonably encounter as a daily later.
+const SAMPLE_Q_ID = "q001";
 
 const MODES: Array<{ emoji: string; title: string; line: string; href: string; color: string }> = [
   {
@@ -34,6 +43,13 @@ const MODES: Array<{ emoji: string; title: string; line: string; href: string; c
     line: "Kahoot-style countdown. everyone plays at once. shared reveals. discord-call ready.",
     href: "/friends",
     color: "#3EFFE9",
+  },
+  {
+    emoji: "♾️",
+    title: "Unlimited Mode",
+    line: "play as many rounds as you want. doesn't touch your streak. configure question count + timer in settings.",
+    href: "/play?practice=1",
+    color: "#FF5C3E",
   },
 ];
 
@@ -103,6 +119,9 @@ export default function Landing() {
   }
 
   const dailyPlayerCount = useMemo(() => "pre-launch · join the first wave", []);
+  const challenge = useMemo(() => getDailyChallenge(), []);
+  const sampleQuestion = useMemo(() => questionsById[SAMPLE_Q_ID], []);
+  const countdown = useMidnightCountdown();
 
   return (
     <Screen>
@@ -114,8 +133,30 @@ export default function Landing() {
       <EmojiSplat seed={3001} count={11} />
 
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 24 }}>
+        {/* Prominent daily chip — clickable, headline-treatment. Replaces the
+            tiny tag this used to be; per docs/COMPETITOR_LANDING_AUDIT.md,
+            Wordle leads with the daily and we should too. */}
+        <View className="pt-5">
+          <Pressable onPress={() => router.push("/play")}>
+            <Sticker tilt={-1.5} shadow={4} shadowColor="#A8FF3E">
+              <View className="bg-lime rounded-2xl border-4 border-ink px-4 py-3 flex-row items-center justify-between">
+                <View>
+                  <Text className="font-mono text-ink text-xs uppercase tracking-widest">
+                    🔥 today&apos;s daily
+                  </Text>
+                  <Text className="font-display text-ink text-2xl">#{challenge.index}</Text>
+                </View>
+                <View className="items-end">
+                  <Text className="font-mono text-ink text-xs">next drops in</Text>
+                  <Text className="font-display text-ink text-base">{countdown}</Text>
+                </View>
+              </View>
+            </Sticker>
+          </Pressable>
+        </View>
+
         {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <View className="pt-8">
+        <View className="pt-6">
           <Sticker tilt={-2} shadow={5} shadowColor="#3EFFE9">
             <Text className="font-display text-lime text-5xl leading-none">DO YOU</Text>
           </Sticker>
@@ -212,6 +253,18 @@ export default function Landing() {
             {dailyPlayerCount}
           </Text>
         </View>
+
+        {/* ── Sample question (tap-to-peek) ────────────────────────────── */}
+        {sampleQuestion ? (
+          <View className="mt-10">
+            <Text className="font-display text-paper text-2xl">taste the content</Text>
+            <Text className="font-body text-muted text-sm mt-1 mb-3">
+              not a real round — no streak, no timer. just so you see what
+              you&apos;re signing up for.
+            </Text>
+            <SampleQuestion question={sampleQuestion} />
+          </View>
+        ) : null}
 
         {/* ── How it works ─────────────────────────────────────────────── */}
         <View className="mt-10">

@@ -373,7 +373,7 @@ export default function Play() {
           <Sticker tilt={-2} shadow={3} shadowColor="#FF3EA5">
             <View className="bg-hot rounded-md px-3 py-1 border-2 border-ink">
               <Text className="font-mono text-ink text-xs uppercase tracking-widest">
-                🎯 PRACTICE · doesn&apos;t count
+                ♾️ UNLIMITED · doesn&apos;t count
               </Text>
             </View>
           </Sticker>

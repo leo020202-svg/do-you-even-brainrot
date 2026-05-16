@@ -92,7 +92,7 @@ export default function CategoryPage() {
             full
           />
           <Button
-            label="practice with these questions"
+            label="unlimited mode with these questions"
             emoji="🎯"
             variant="secondary"
             onPress={() => router.push("/play?practice=1")}

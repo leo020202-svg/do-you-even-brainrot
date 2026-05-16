@@ -115,7 +115,7 @@ export default function Home() {
                 full
               />
               <Button
-                label="practice mode"
+                label="unlimited mode"
                 emoji="🎯"
                 variant="ghost"
                 onPress={() => router.push("/play?practice=1")}
@@ -133,7 +133,7 @@ export default function Home() {
                 full
               />
               <Button
-                label="practice mode"
+                label="unlimited mode"
                 emoji="🎯"
                 variant="ghost"
                 onPress={() => router.push("/play?practice=1")}

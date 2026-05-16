@@ -93,14 +93,14 @@ export default function Settings() {
 
       <ScrollView className="flex-1 mt-4" contentContainerStyle={{ paddingBottom: 24 }}>
         <Text className="font-body text-muted text-xs italic mb-3">
-          settings apply to practice mode. the daily + friend rooms use the
+          settings apply to unlimited mode. the daily + friend rooms use the
           canonical 5 questions / 30s mix so everyone gets the same game.
         </Text>
 
         <Sticker tilt={-1} shadow={4} shadowColor="#A8FF3E">
           <View className="bg-ink rounded-2xl border-4 border-lime p-4">
             <Text className="font-display text-paper text-lg">questions per round</Text>
-            <Text className="font-body text-muted text-xs">how many you face per practice run.</Text>
+            <Text className="font-body text-muted text-xs">how many you face per unlimited run.</Text>
             <OptionRow
               options={QUESTIONS_OPTIONS}
               value={questionsPerRound}
@@ -144,7 +144,7 @@ export default function Settings() {
 
       <View className="pb-6 gap-2">
         <Button
-          label="try practice round 🎯"
+          label="try unlimited round ♾️"
           onPress={() => router.push("/play?practice=1")}
           full
         />
