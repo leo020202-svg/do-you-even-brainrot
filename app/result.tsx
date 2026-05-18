@@ -6,6 +6,12 @@ import { SeoHead } from "@/components/SeoHead";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
+import { Confetti } from "@/components/Confetti";
+import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
+
+// Streak counts that deserve a confetti burst — landed on these, you're
+// doing the daily ritual right.
+const STREAK_MILESTONES = new Set([3, 7, 14, 30, 50, 100, 365]);
 import { useDailyStore } from "@/features/daily/store";
 import { getDailyChallenge, getRoomChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { buildShareText, shareResult } from "@/lib/share";
@@ -73,6 +79,16 @@ export default function Result() {
         : 0
       : (stored?.score ?? 0);
 
+  // Animated score climb — feels heavier than just slapping the final number on.
+  const animatedScore = useAnimatedNumber(playerTotalScore, 900);
+  const animatedCorrect = useAnimatedNumber(correct, 700);
+
+  // Confetti rules: perfect score on any mode always pops; daily landings on
+  // a streak milestone also pop (3 / 7 / 14 / 30 / 50 / 100 / 365 days).
+  const isPerfect = correct === totalQuestions;
+  const showMilestoneConfetti = !isPractice && !isRoom && STREAK_MILESTONES.has(streak);
+  const showResultConfetti = isPerfect || showMilestoneConfetti;
+
   // Final standings vs the 4 fake bots that played today.
   const bots = useMemo(() => pickDailyBots(challenge.index), [challenge.index]);
   const finalBotScores = useMemo(
@@ -128,6 +144,7 @@ export default function Result() {
   return (
     <Screen>
       <SeoHead title="Your score" path="/result" noindex />
+      <Confetti show={showResultConfetti} count={isPerfect ? 80 : 60} />
       <EmojiSplat seed={challenge.index * 7 + correct} count={10} />
 
       <View className="pt-2 items-center">
@@ -169,7 +186,7 @@ export default function Result() {
           <Text className="font-body text-paper text-sm mt-1">{verdict.line}</Text>
 
           <View className="flex-row items-end mt-3">
-            <Text className="font-display text-lime text-6xl leading-none">{correct}</Text>
+            <Text className="font-display text-lime text-6xl leading-none">{animatedCorrect}</Text>
             <Text className="font-display text-muted text-2xl ml-1 mb-1">
               / {totalQuestions}
             </Text>
@@ -177,8 +194,8 @@ export default function Result() {
 
           <Text className="font-mono text-paper text-2xl tracking-widest mt-3">{pattern}</Text>
 
-          <Text className="font-body text-muted text-xs mt-3">
-            playbrainrot.app · run it back tomorrow
+          <Text className="font-mono text-muted text-xs mt-3">
+            <Text className="text-cyan">{animatedScore.toLocaleString()}</Text> pts · playbrainrot.app · run it back tomorrow
           </Text>
         </View>
       </Sticker>

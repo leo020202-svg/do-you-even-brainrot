@@ -12,6 +12,8 @@ import { Screen } from "@/components/Screen";
 import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/Button";
 import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
+import { Confetti } from "@/components/Confetti";
+import { Shake } from "@/components/Shake";
 import { categoryImage } from "@/lib/category-images";
 import { getRoomChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
@@ -386,6 +388,7 @@ export default function PlaySynced() {
 
     return (
       <Screen>
+        <Confetti show={correct} count={50} />
         <EmojiSplat seed={codeToSeed(roomCode) + sync.idx * 31 + 99} count={6} />
 
         {banner ? (

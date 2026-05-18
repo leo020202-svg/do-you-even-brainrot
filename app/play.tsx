@@ -6,6 +6,8 @@ import { Sticker } from "@/components/Sticker";
 import { Button } from "@/components/Button";
 import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
+import { Confetti } from "@/components/Confetti";
+import { Shake } from "@/components/Shake";
 import { categoryImage } from "@/lib/category-images";
 import {
   getDailyChallenge,
@@ -529,9 +531,15 @@ function RevealScreen({
   const playerRank = rows.findIndex((r) => r.isYou) + 1;
 
   const banner = categoryImage(question.category);
+  const isCorrect = playerOutcome === "correct";
+  const isWrong = playerOutcome === "wrong";
+  // Trigger shake every time we land on a wrong reveal. The counter changes
+  // per (question, correctness) so subsequent wrong answers re-shake.
+  const shakeTrigger = `${questionIdx}-${isWrong ? "wrong" : "ok"}`;
 
   return (
     <Screen>
+      <Confetti show={isCorrect} count={50} />
       <EmojiSplat seed={dailyIndex + questionIdx * 31 + 99} count={6} />
 
       {banner ? (
@@ -580,6 +588,7 @@ function RevealScreen({
         ) : null}
       </View>
 
+      <Shake trigger={shakeTrigger}>
       <View className="mt-6">
         <Text className="font-mono text-muted text-xs">CORRECT ANSWER</Text>
         <Sticker tilt={-1} shadow={5} shadowColor="#3EFFE9">
@@ -593,6 +602,7 @@ function RevealScreen({
           </View>
         </Sticker>
       </View>
+      </Shake>
 
       {playerPick && !correct && !skipped ? (
         <Text className="font-body text-muted text-xs mt-3">
