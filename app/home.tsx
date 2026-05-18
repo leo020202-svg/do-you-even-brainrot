@@ -17,6 +17,7 @@ import { getDailyChallenge } from "@/lib/daily";
 import { useDailyStore } from "@/features/daily/store";
 import { ALL_CHARACTERS_IMAGE } from "@/lib/character-images";
 import { useMidnightCountdown } from "@/lib/countdown";
+import { Heading } from "@/components/Heading";
 
 const TAGLINES = [
   "how cooked are you?",
@@ -64,11 +65,13 @@ export default function Home() {
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 24 }}>
         {/* ── Top bar ──────────────────────────────────────────────────── */}
         <View className="flex-row justify-between items-center pt-5">
-          <Sticker tilt={-3} shadow={4} shadowColor="#FF3EA5">
-            <View className="bg-ink rounded-xl px-3 py-2 border-2 border-hot">
-              <Text className="font-display text-hot text-lg">brainrot</Text>
-            </View>
-          </Sticker>
+          <Heading level={1} accessibilityLabel="brainrot">
+            <Sticker tilt={-3} shadow={4} shadowColor="#FF3EA5">
+              <View className="bg-ink rounded-xl px-3 py-2 border-2 border-hot">
+                <Text className="font-display text-hot text-lg">brainrot</Text>
+              </View>
+            </Sticker>
+          </Heading>
           <View className="flex-row gap-2">
             <Link href="/settings" asChild>
               <Pressable>
@@ -105,6 +108,7 @@ export default function Home() {
                 source={ALL_CHARACTERS_IMAGE}
                 style={{ width: "100%", height: 140 }}
                 resizeMode="cover"
+                accessibilityLabel="The Italian Brainrot character cast — Tralalero Tralala, Bombardiro Crocodilo, Ballerina Cappuccina, and friends"
               />
               <View className="absolute left-3 bottom-3 bg-ink/80 rounded-md px-2 py-1 border border-paper">
                 <Text className="font-display text-paper text-xs">↳ {tagline}</Text>

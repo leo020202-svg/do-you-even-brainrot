@@ -6,6 +6,7 @@ import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
+import { Heading } from "@/components/Heading";
 import { shareResult } from "@/lib/share";
 import {
   generateRoomCode,
@@ -97,11 +98,13 @@ export default function Friends() {
       <EmojiSplat seed={888} count={9} />
 
       <View className="flex-row justify-between items-center pt-6">
-        <Sticker tilt={-2} shadow={4} shadowColor="#FF3EA5">
-          <View className="bg-ink rounded-xl px-3 py-2 border-2 border-hot">
-            <Text className="font-display text-hot text-xl">friends.party</Text>
-          </View>
-        </Sticker>
+        <Heading level={1} accessibilityLabel="Play with friends">
+          <Sticker tilt={-2} shadow={4} shadowColor="#FF3EA5">
+            <View className="bg-ink rounded-xl px-3 py-2 border-2 border-hot">
+              <Text className="font-display text-hot text-xl">friends.party</Text>
+            </View>
+          </Sticker>
+        </Heading>
         <Button label="← back" variant="ghost" onPress={() => router.back()} />
       </View>
 

@@ -15,6 +15,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { categoryBySlug } from "@/lib/categories";
 import { questions } from "@/lib/questions";
 import { ALL_CHARACTERS_IMAGE } from "@/lib/character-images";
+import { Heading } from "@/components/Heading";
 import { useAchievementsStore } from "@/features/achievements/store";
 import { useEffect } from "react";
 
@@ -79,6 +80,7 @@ export default function CategoryPage() {
                   source={ALL_CHARACTERS_IMAGE}
                   style={{ width: "100%", height: 180 }}
                   resizeMode="cover"
+                  accessibilityLabel="The Italian Brainrot character cast composite"
                 />
               </View>
             </Sticker>
@@ -88,11 +90,13 @@ export default function CategoryPage() {
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <View className="mt-4">
           <Text className="text-5xl mb-2">{meta.emoji}</Text>
-          <Sticker tilt={-1} shadow={5} shadowColor="#FF3EA5">
-            <Text className="font-display text-lime text-4xl leading-tight">
-              {meta.name}
-            </Text>
-          </Sticker>
+          <Heading level={1} accessibilityLabel={`${meta.name} quiz`}>
+            <Sticker tilt={-1} shadow={5} shadowColor="#FF3EA5">
+              <Text className="font-display text-lime text-4xl leading-tight">
+                {meta.name}
+              </Text>
+            </Sticker>
+          </Heading>
           <Text className="font-display text-paper text-xl mt-3">
             Quiz · {categoryQuestions.length} questions · daily-rotation pool
           </Text>

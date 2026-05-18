@@ -10,6 +10,7 @@ import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
+import { Heading } from "@/components/Heading";
 import { useDailyStore } from "@/features/daily/store";
 import { isValidRoomCode, normalizeRoomCode } from "@/lib/room";
 import { useMidnightCountdown } from "@/lib/countdown";
@@ -153,19 +154,23 @@ export default function Landing() {
             pushes its glyph above the bounding box; pt-7 read as flush-to-top
             on desktop. */}
         <View className="pt-12">
-          <Sticker tilt={-2} shadow={5} shadowColor="#3EFFE9">
-            <Text className="font-display text-lime text-5xl leading-none">DO YOU</Text>
-          </Sticker>
-          <View className="self-end mt-1">
-            <Sticker tilt={3} shadow={5} shadowColor="#FF3EA5">
-              <Text className="font-display text-cyan text-5xl leading-none">EVEN</Text>
+          {/* The stacked headline is the page's h1 — render as a single
+              semantic heading so Google sees one h1 per page. */}
+          <Heading level={1} accessibilityLabel="Do you even brainrot?">
+            <Sticker tilt={-2} shadow={5} shadowColor="#3EFFE9">
+              <Text className="font-display text-lime text-5xl leading-none">DO YOU</Text>
             </Sticker>
-          </View>
-          <View className="mt-1">
-            <Sticker tilt={-1} shadow={5} shadowColor="#FF5C3E">
-              <Text className="font-display text-hot text-5xl leading-none">BRAINROT?</Text>
-            </Sticker>
-          </View>
+            <View className="self-end mt-1">
+              <Sticker tilt={3} shadow={5} shadowColor="#FF3EA5">
+                <Text className="font-display text-cyan text-5xl leading-none">EVEN</Text>
+              </Sticker>
+            </View>
+            <View className="mt-1">
+              <Sticker tilt={-1} shadow={5} shadowColor="#FF5C3E">
+                <Text className="font-display text-hot text-5xl leading-none">BRAINROT?</Text>
+              </Sticker>
+            </View>
+          </Heading>
 
           <Text className="font-body text-paper text-base mt-5">
             chaotic trivia about Italian brainrot, Skibidi lore, Gen Alpha

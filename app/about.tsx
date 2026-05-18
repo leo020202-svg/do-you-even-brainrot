@@ -5,6 +5,7 @@ import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
+import { Heading } from "@/components/Heading";
 
 export default function About() {
   const router = useRouter();
@@ -28,9 +29,11 @@ export default function About() {
         </View>
 
         <View className="mt-6 gap-4">
-          <Text className="font-display text-paper text-3xl leading-tight">
-            the daily brainrot trivia game.
-          </Text>
+          <Heading level={1} accessibilityLabel="the daily brainrot trivia game">
+            <Text className="font-display text-paper text-3xl leading-tight">
+              the daily brainrot trivia game.
+            </Text>
+          </Heading>
           <Text className="font-body text-paper text-base leading-relaxed">
             <Text className="font-display text-lime">Do You Even Brainrot?</Text>{" "}
             is a free web and mobile trivia game about Italian brainrot,
