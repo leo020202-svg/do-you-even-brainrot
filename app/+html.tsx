@@ -15,7 +15,7 @@ import { type PropsWithChildren } from "react";
 const SITE_NAME = "Do You Even Brainrot?";
 const SITE_URL = "https://playbrainrot.app";
 const DESCRIPTION =
-  "The daily brainrot trivia game. 5 questions a day about Italian brainrot, Skibidi lore, Gen Alpha slang, and TikTok culture. Free, no signup, share with friends.";
+  "Chaotic brainrot trivia. Drop in solo (bots fill the lobby) or spin up a room for your friends. Italian brainrot, Skibidi lore, Gen Alpha slang, TikTok culture. Free, no signup.";
 const OG_IMAGE = `${SITE_URL}/og/default.png`;
 const TWITTER_HANDLE = "@playbrainrot";
 
@@ -30,13 +30,13 @@ export default function Root({ children }: PropsWithChildren) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
 
-        <title>{SITE_NAME} — daily brainrot trivia</title>
+        <title>{SITE_NAME} — chaotic brainrot trivia</title>
         <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href={SITE_URL} />
 
         {/* Open Graph */}
         <meta property="og:site_name" content={SITE_NAME} />
-        <meta property="og:title" content={`${SITE_NAME} — daily brainrot trivia`} />
+        <meta property="og:title" content={`${SITE_NAME} — chaotic brainrot trivia`} />
         <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={SITE_URL} />
@@ -50,7 +50,7 @@ export default function Root({ children }: PropsWithChildren) {
         <meta name="twitter:creator" content={TWITTER_HANDLE} />
         <meta
           name="twitter:title"
-          content={`${SITE_NAME} — daily brainrot trivia`}
+          content={`${SITE_NAME} — chaotic brainrot trivia`}
         />
         <meta name="twitter:description" content={DESCRIPTION} />
         <meta name="twitter:image" content={OG_IMAGE} />

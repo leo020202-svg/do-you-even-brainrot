@@ -25,15 +25,15 @@ const SAMPLE_Q_ID = "q001";
 const MODES: Array<{ emoji: string; title: string; line: string; href: string; color: string }> = [
   {
     emoji: "🔥",
-    title: "Daily Challenge",
-    line: "one shot per day. 5 questions. build a streak. lose it overnight.",
-    href: "/play",
+    title: "Open Round",
+    line: "drop in for a quick round. bots fill the lobby if no humans are around (which is most of the time, fr).",
+    href: "/play?practice=1",
     color: "#A8FF3E",
   },
   {
     emoji: "👯",
     title: "Friend Rooms (async)",
-    line: "share a 6-char code. everyone gets the same 5 questions. play whenever.",
+    line: "share a 6-char code. everyone gets the same questions. play whenever.",
     href: "/friends",
     color: "#FF3EA5",
   },
@@ -45,10 +45,10 @@ const MODES: Array<{ emoji: string; title: string; line: string; href: string; c
     color: "#3EFFE9",
   },
   {
-    emoji: "♾️",
-    title: "Unlimited Mode",
-    line: "play as many rounds as you want. doesn't touch your streak. configure question count + timer in settings.",
-    href: "/play?practice=1",
+    emoji: "📅",
+    title: "Daily Challenge",
+    line: "the named once-a-day variant. ranked, streak on the line. for the duolingo-coded among us.",
+    href: "/play",
     color: "#FF5C3E",
   },
 ];
@@ -67,15 +67,23 @@ const CATEGORIES: Array<{ slug: string; emoji: string; name: string }> = [
 const FAQ: Array<{ q: string; a: string }> = [
   {
     q: "is this free?",
-    a: "yes. daily challenges and friend rooms are free forever. Phase 1 will add an optional $2.99 unlock for extra question packs.",
+    a: "yes. open rounds and friend rooms are free forever. Phase 1 will add an optional $2.99 unlock for extra question packs.",
+  },
+  {
+    q: "who am i playing against?",
+    a: "humans when they're around, brainrot-named bots when they're not. the bots are deterministically fake but they keep the lobby moving so you're not staring at an empty leaderboard.",
   },
   {
     q: "do i need to sign up?",
-    a: "nope. just open it. your streak saves on your device. cross-device sync ships when we wire Supabase auth (Phase 0 close-out).",
+    a: "nope. just open it. settings save on your device. cross-device sync ships when we wire Supabase auth.",
   },
   {
     q: "how do i play with friends?",
-    a: "tap 'play with friends' → generate a 6-char code → send the link. everyone on the link gets the same 5 questions.",
+    a: "tap 'play with friends' → generate a 6-char code → send the link. everyone on the link gets the same questions. sync mode (Kahoot-style countdown) is one tap away.",
+  },
+  {
+    q: "what's the daily then?",
+    a: "a named once-a-day variant for the duolingo-coded — same engine, just ranked + tracks a streak. not the main event, ignorable if streaks aren't your thing.",
   },
   {
     q: "what's brainrot anyway?",
@@ -133,30 +141,8 @@ export default function Landing() {
       <EmojiSplat seed={3001} count={11} />
 
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 24 }}>
-        {/* Prominent daily chip — clickable, headline-treatment. Replaces the
-            tiny tag this used to be; per docs/COMPETITOR_LANDING_AUDIT.md,
-            Wordle leads with the daily and we should too. */}
-        <View className="pt-5">
-          <Pressable onPress={() => router.push("/play")}>
-            <Sticker tilt={-1.5} shadow={4} shadowColor="#A8FF3E">
-              <View className="bg-lime rounded-2xl border-4 border-ink px-4 py-3 flex-row items-center justify-between">
-                <View>
-                  <Text className="font-mono text-ink text-xs uppercase tracking-widest">
-                    🔥 today&apos;s daily
-                  </Text>
-                  <Text className="font-display text-ink text-2xl">#{challenge.index}</Text>
-                </View>
-                <View className="items-end">
-                  <Text className="font-mono text-ink text-xs">next drops in</Text>
-                  <Text className="font-display text-ink text-base">{countdown}</Text>
-                </View>
-              </View>
-            </Sticker>
-          </Pressable>
-        </View>
-
         {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <View className="pt-6">
+        <View className="pt-7">
           <Sticker tilt={-2} shadow={5} shadowColor="#3EFFE9">
             <Text className="font-display text-lime text-5xl leading-none">DO YOU</Text>
           </Sticker>
@@ -172,17 +158,18 @@ export default function Landing() {
           </View>
 
           <Text className="font-body text-paper text-base mt-5">
-            the daily trivia game about Italian brainrot, Skibidi lore, Gen
-            Alpha slang, and TikTok culture. 5 questions. 30 seconds each.
+            chaotic trivia about Italian brainrot, Skibidi lore, Gen Alpha
+            slang, and TikTok culture. drop in solo (bots fill the lobby) or
+            spin up a room for your friends.
             <Text className="font-display text-lime"> how cooked are you?</Text>
           </Text>
 
           <View className="gap-3 mt-6">
             <Button
-              label="play today's daily"
+              label="PLAY NOW"
               emoji="🔥"
               tilt={-1}
-              onPress={() => router.push("/play")}
+              onPress={() => router.push("/play?practice=1")}
               full
             />
             <Button
@@ -193,6 +180,17 @@ export default function Landing() {
               full
             />
           </View>
+
+          {/* Secondary: today's daily — for the streak-coded. Tucked below
+              the primary CTAs so it's findable but not the headline. */}
+          <Pressable onPress={() => router.push("/play")} className="mt-3">
+            <View className="flex-row items-center justify-between bg-ink rounded-xl border border-muted px-3 py-2">
+              <Text className="font-mono text-muted text-xs">
+                📅 daily #{challenge.index} · once a day · streak on the line
+              </Text>
+              <Text className="font-mono text-cyan text-xs">{countdown} →</Text>
+            </View>
+          </Pressable>
 
           {/* Inline room-code join — the single biggest conversion win per
               docs/COMPETITOR_LANDING_AUDIT.md §"what to fix". Friend gives
