@@ -31,6 +31,13 @@ const MODES: Array<{ emoji: string; title: string; line: string; href: string; c
     color: "#A8FF3E",
   },
   {
+    emoji: "♾️",
+    title: "Endless Survival",
+    line: "questions get harder. one wrong = game over. how far can you go?",
+    href: "/endless",
+    color: "#FF5C3E",
+  },
+  {
     emoji: "👯",
     title: "Friend Rooms (async)",
     line: "share a 6-char code. everyone gets the same questions. play whenever.",
@@ -173,9 +180,16 @@ export default function Landing() {
               full
             />
             <Button
+              label="endless mode"
+              emoji="♾️"
+              variant="secondary"
+              onPress={() => router.push("/endless")}
+              full
+            />
+            <Button
               label="play with friends"
               emoji="👯"
-              variant="secondary"
+              variant="ghost"
               onPress={() => router.push("/friends")}
               full
             />

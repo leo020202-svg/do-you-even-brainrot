@@ -13,6 +13,7 @@ import { JetBrainsMono_400Regular } from "@expo-google-fonts/jetbrains-mono";
 import "../global.css";
 import { useDailyStore } from "@/features/daily/store";
 import { useSettingsStore } from "@/features/settings/store";
+import { useAchievementsStore } from "@/features/achievements/store";
 
 // Keep the splash visible while we load fonts so we never flash unstyled text.
 void SplashScreen.preventAutoHideAsync().catch(() => {
@@ -22,6 +23,7 @@ void SplashScreen.preventAutoHideAsync().catch(() => {
 export default function RootLayout() {
   const hydrate = useDailyStore((s) => s.hydrate);
   const hydrateSettings = useSettingsStore((s) => s.hydrate);
+  const hydrateAchievements = useAchievementsStore((s) => s.hydrate);
 
   const [fontsLoaded] = useSpaceGrotesk({
     SpaceGrotesk_700Bold,
@@ -33,7 +35,8 @@ export default function RootLayout() {
   useEffect(() => {
     void hydrate();
     void hydrateSettings();
-  }, [hydrate, hydrateSettings]);
+    void hydrateAchievements();
+  }, [hydrate, hydrateSettings, hydrateAchievements]);
 
   useEffect(() => {
     if (fontsLoaded) {

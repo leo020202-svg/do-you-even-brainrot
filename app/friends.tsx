@@ -13,6 +13,7 @@ import {
   normalizeRoomCode,
   roomShareUrl,
 } from "@/lib/room";
+import { useAchievementsStore } from "@/features/achievements/store";
 
 // How far ahead "start synced" schedules the kick-off. Long enough for friends
 // to actually open the link + see the countdown, short enough that nobody loses
@@ -27,10 +28,20 @@ export default function Friends() {
   const [joinError, setJoinError] = useState<string | null>(null);
   const [copyState, setCopyState] = useState<"idle" | "shared" | "copied" | "failed">("idle");
 
+  const recordRoomCreated = useAchievementsStore((s) => s.recordRoomCreated);
+  const unlockAchievement = useAchievementsStore((s) => s.unlock);
+  const roomsCreated = useAchievementsStore((s) => s.roomsCreated);
+
   function onCreate() {
-    setCreatedCode(generateRoomCode());
+    const code = generateRoomCode();
+    setCreatedCode(code);
     setSyncStartTs(null);
     setCopyState("idle");
+    void recordRoomCreated(code).then(() => {
+      // Friend Magnet unlocks at 3 distinct rooms. Check after the +1.
+      const total = roomsCreated.length + 1;
+      if (total >= 3) void unlockAchievement("friend_magnet");
+    });
   }
 
   function onSyncStart() {

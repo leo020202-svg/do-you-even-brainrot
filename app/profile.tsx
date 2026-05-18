@@ -5,6 +5,8 @@ import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
+import { useAchievementsStore } from "@/features/achievements/store";
+import { ACHIEVEMENTS, TIER_COLOR } from "@/features/achievements/definitions";
 import { useDailyStore } from "@/features/daily/store";
 
 export default function Profile() {
@@ -83,8 +85,9 @@ export default function Profile() {
         </Sticker>
       </View>
 
-      <Text className="font-display text-paper text-lg mt-6 mb-2">↳ recent dailies</Text>
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 12 }}>
+        <AchievementsSection />
+        <Text className="font-display text-paper text-lg mt-6 mb-2">↳ recent dailies</Text>
         {recent.length === 0 ? (
           <Sticker tilt={-1} shadow={3} shadowColor="#FF3EA5">
             <View className="bg-ink rounded-2xl p-5 border-2 border-hot">
@@ -133,5 +136,51 @@ export default function Profile() {
         <Button label="wipe local data 🧹" variant="ghost" onPress={() => void reset()} full />
       </View>
     </Screen>
+  );
+}
+
+// ── Achievements section — rendered inside /profile's ScrollView ─────────
+function AchievementsSection() {
+  const isUnlocked = useAchievementsStore((s) => s.isUnlocked);
+  const endlessHigh = useAchievementsStore((s) => s.endlessHighScore);
+  const unlockedCount = ACHIEVEMENTS.filter((a) => isUnlocked(a.id)).length;
+
+  return (
+    <View>
+      <View className="flex-row justify-between items-center mt-6 mb-2">
+        <Text className="font-display text-paper text-lg">↳ achievements</Text>
+        <Text className="font-mono text-muted text-xs">
+          {unlockedCount} / {ACHIEVEMENTS.length}
+          {endlessHigh > 0 ? <Text> · ♾️ {endlessHigh} hi</Text> : null}
+        </Text>
+      </View>
+      <View className="flex-row flex-wrap" style={{ marginHorizontal: -4 }}>
+        {ACHIEVEMENTS.map((a, i) => {
+          const unlocked = isUnlocked(a.id);
+          const tilt = i % 2 === 0 ? -1 : 1;
+          return (
+            <View key={a.id} style={{ width: "50%", padding: 4 }}>
+              <Sticker tilt={tilt} shadow={unlocked ? 4 : 2} shadowColor={unlocked ? TIER_COLOR[a.tier] : "#1A0F2E"}>
+                <View
+                  className={`rounded-2xl p-3 border-2 ${unlocked ? "bg-ink border-paper" : "bg-ink border-muted"}`}
+                  style={{ opacity: unlocked ? 1 : 0.4 }}
+                >
+                  <Text style={{ fontSize: 32 }}>{unlocked ? a.emoji : "🔒"}</Text>
+                  <Text className="font-display text-paper text-base mt-1">
+                    {unlocked ? a.title : "???"}
+                  </Text>
+                  <Text className="font-body text-muted text-xs mt-1">
+                    {unlocked ? a.description : a.hint}
+                  </Text>
+                  <Text className="font-mono text-xs mt-2" style={{ color: TIER_COLOR[a.tier] }}>
+                    {a.tier}
+                  </Text>
+                </View>
+              </Sticker>
+            </View>
+          );
+        })}
+      </View>
+    </View>
   );
 }

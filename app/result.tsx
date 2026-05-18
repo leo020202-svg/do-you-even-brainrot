@@ -17,6 +17,8 @@ import { getDailyChallenge, getRoomChallenge, DAILY_QUESTION_COUNT } from "@/lib
 import { buildShareText, shareResult } from "@/lib/share";
 import { pickDailyBots, botFinalScores } from "@/lib/bots";
 import { codeToSeed, generateRoomCode, isValidRoomCode, normalizeRoomCode, roomShareUrl } from "@/lib/room";
+import { useAchievementsStore } from "@/features/achievements/store";
+import { useEffect } from "react";
 
 type Verdict = { headline: string; line: string; emoji: string; color: string };
 
@@ -82,6 +84,24 @@ export default function Result() {
   // Animated score climb — feels heavier than just slapping the final number on.
   const animatedScore = useAnimatedNumber(playerTotalScore, 900);
   const animatedCorrect = useAnimatedNumber(correct, 700);
+
+  // Achievement gates. Done in a single effect so re-renders don't re-fire.
+  const unlockAchievement = useAchievementsStore((s) => s.unlock);
+  const totalRunsPlayed = useDailyStore((s) =>
+    Object.keys(s.results).length,
+  );
+  useEffect(() => {
+    void unlockAchievement("first_run");
+    if (correct === totalQuestions && totalQuestions > 0) {
+      void unlockAchievement("certified_sigma");
+    }
+    if (correct === 0 && totalQuestions > 0 && !isPractice && !isRoom) {
+      void unlockAchievement("cooked");
+    }
+    if (totalRunsPlayed >= 30) void unlockAchievement("brainrot_veteran");
+    if (streak >= 7 && !isPractice && !isRoom) void unlockAchievement("streak_builder");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [correct, totalQuestions, totalRunsPlayed, streak, isPractice, isRoom]);
 
   // Confetti rules: perfect score on any mode always pops; daily landings on
   // a streak milestone also pop (3 / 7 / 14 / 30 / 50 / 100 / 365 days).

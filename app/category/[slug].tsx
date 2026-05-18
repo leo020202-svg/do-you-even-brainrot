@@ -15,11 +15,18 @@ import { SeoHead } from "@/components/SeoHead";
 import { categoryBySlug } from "@/lib/categories";
 import { questions } from "@/lib/questions";
 import { ALL_CHARACTERS_IMAGE } from "@/lib/character-images";
+import { useAchievementsStore } from "@/features/achievements/store";
+import { useEffect } from "react";
 
 export default function CategoryPage() {
   const router = useRouter();
   const params = useLocalSearchParams<{ slug?: string }>();
   const meta = params.slug ? categoryBySlug(params.slug) : undefined;
+  // Visiting any category page = "Lore-pilled" achievement.
+  const unlockAchievement = useAchievementsStore((s) => s.unlock);
+  useEffect(() => {
+    if (meta) void unlockAchievement("lore_pilled");
+  }, [meta, unlockAchievement]);
 
   if (!meta) {
     return (

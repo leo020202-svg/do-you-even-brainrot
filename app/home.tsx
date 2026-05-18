@@ -119,9 +119,16 @@ export default function Home() {
             full
           />
           <Button
+            label="endless mode"
+            emoji="♾️"
+            variant="secondary"
+            onPress={() => router.push("/endless")}
+            full
+          />
+          <Button
             label="play with friends"
             emoji="👯"
-            variant="secondary"
+            variant="ghost"
             onPress={() => router.push("/friends")}
             full
           />
