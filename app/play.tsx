@@ -417,7 +417,10 @@ export default function Play() {
         />
       </View>
 
-      <View className="flex-1 justify-center">
+      {/* Stack naturally — used to be `flex-1 justify-center` which vertically
+          centered the question card. Fine on phone, but on desktop's taller
+          window it created a 200+ px void between the timer and the question. */}
+      <View className="pt-6">
         <View className="flex-row items-center gap-2 mb-3">
           <Text className="text-3xl">{categoryEmoji}</Text>
           <Sticker tilt={-1} shadow={2} shadowColor="#FF3EA5">

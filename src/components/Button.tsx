@@ -41,7 +41,17 @@ export function Button({
 }: Props) {
   const v = styles[variant];
   return (
-    <Sticker tilt={tilt} shadow={variant === "ghost" ? 3 : 6} shadowColor={v.shadow}>
+    // `alignSelf: "stretch"` on the Sticker forces it to fill the flex
+    // parent's cross-axis when full=true. Without this the Sticker sized
+    // to its child's intrinsic width and the "w-full" on the Pressable
+    // had nothing to be 100% of — buttons rendered as content-width chips
+    // instead of full-width primary CTAs.
+    <Sticker
+      tilt={tilt}
+      shadow={variant === "ghost" ? 3 : 6}
+      shadowColor={v.shadow}
+      style={full ? { alignSelf: "stretch" } : undefined}
+    >
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={label}

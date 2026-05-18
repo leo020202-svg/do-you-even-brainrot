@@ -94,12 +94,16 @@ export default function Home() {
         </View>
 
         {/* ── Cast banner ──────────────────────────────────────────────── */}
+        {/* Fixed height instead of aspectRatio — RN-Web's <Image> doesn't
+            honor aspectRatio on raster sources, it falls back to the
+            image's intrinsic dimensions which made the composite render as
+            a huge portrait block pushing PLAY NOW below the fold. */}
         <View className="mt-4">
           <Sticker tilt={-1.5} shadow={5} shadowColor="#FF3EA5">
             <View className="rounded-2xl overflow-hidden border-4 border-paper">
               <Image
                 source={ALL_CHARACTERS_IMAGE}
-                style={{ width: "100%", aspectRatio: 21 / 9 }}
+                style={{ width: "100%", height: 140 }}
                 resizeMode="cover"
               />
               <View className="absolute left-3 bottom-3 bg-ink/80 rounded-md px-2 py-1 border border-paper">

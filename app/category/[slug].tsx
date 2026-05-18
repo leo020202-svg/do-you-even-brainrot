@@ -77,7 +77,7 @@ export default function CategoryPage() {
               <View className="rounded-2xl overflow-hidden border-4 border-paper">
                 <Image
                   source={ALL_CHARACTERS_IMAGE}
-                  style={{ width: "100%", aspectRatio: 16 / 9 }}
+                  style={{ width: "100%", height: 180 }}
                   resizeMode="cover"
                 />
               </View>

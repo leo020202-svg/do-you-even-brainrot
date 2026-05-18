@@ -85,7 +85,7 @@ export default function Profile() {
         </Sticker>
       </View>
 
-      <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 12 }}>
+      <ScrollView className="flex-1 mt-4" contentContainerStyle={{ paddingBottom: 12 }}>
         <AchievementsSection />
         <Text className="font-display text-paper text-lg mt-6 mb-2">↳ recent dailies</Text>
         {recent.length === 0 ? (

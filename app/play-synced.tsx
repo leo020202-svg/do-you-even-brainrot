@@ -258,7 +258,8 @@ export default function PlaySynced() {
           />
         </View>
 
-        <View className="flex-1 justify-center">
+        {/* Question — stack naturally; vertical centering created a desktop void. */}
+        <View className="pt-5">
           <View className="flex-row items-center gap-2 mb-3">
             <Text className="text-3xl">{categoryEmoji}</Text>
             <Sticker tilt={-1} shadow={2} shadowColor="#FF3EA5">

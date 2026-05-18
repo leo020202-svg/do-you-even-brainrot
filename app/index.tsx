@@ -149,7 +149,10 @@ export default function Landing() {
 
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 24 }}>
         {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <View className="pt-7">
+        {/* pt-12 (48 px) — the Sticker -2deg rotation on the 5xl headline
+            pushes its glyph above the bounding box; pt-7 read as flush-to-top
+            on desktop. */}
+        <View className="pt-12">
           <Sticker tilt={-2} shadow={5} shadowColor="#3EFFE9">
             <Text className="font-display text-lime text-5xl leading-none">DO YOU</Text>
           </Sticker>
