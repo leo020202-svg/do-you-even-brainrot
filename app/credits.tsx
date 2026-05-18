@@ -5,7 +5,9 @@ import { SeoHead } from "@/components/SeoHead";
 import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { categoryImage } from "@/lib/category-images";
+import { CHARACTER_IMAGES, ALL_CHARACTERS_IMAGE } from "@/lib/character-images";
 import creditsData from "../data/category-images-credits.json";
+import characterCreditsData from "../data/character-images-credits.json";
 
 const HEAD_TITLE = "Image credits";
 const HEAD_DESC = "Attribution for the CC-licensed category banner images, all from Wikimedia Commons.";
@@ -19,6 +21,7 @@ type Credit = {
 };
 
 const credits = creditsData as Record<string, Credit>;
+const characterCredits = characterCreditsData as Record<string, Credit>;
 
 // Strip HTML tags out of the API-supplied attribution strings (we get e.g.
 // `<a href="...">Frettie</a>` — we just want "Frettie" for the credit line).
@@ -67,6 +70,56 @@ export default function Credits() {
                     <Text className="font-body text-paper text-xs mt-1">
                       by{" "}
                       <Text className="text-lime">{clean(c.user) || "unknown"}</Text> ·{" "}
+                      <Text className="text-cyan">{c.license || "—"}</Text>
+                    </Text>
+                    <Pressable
+                      onPress={() => {
+                        void Linking.openURL(c.descurl);
+                      }}
+                      className="mt-2"
+                    >
+                      <Text className="font-mono text-hot text-xs underline">
+                        view on commons →
+                      </Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </Sticker>
+            </View>
+          );
+        })}
+
+        <Text className="font-display text-paper text-lg mt-4 mb-2">
+          characters
+        </Text>
+        <Text className="font-body text-paper text-sm mb-2">
+          Italian-brainrot character images, all Public Domain on Wikimedia
+          Commons.
+        </Text>
+        {Object.entries(characterCredits).map(([slug, c], i) => {
+          const tilt = i % 2 === 0 ? -1 : 1;
+          const img =
+            slug === "_all-characters" ? ALL_CHARACTERS_IMAGE : CHARACTER_IMAGES[slug];
+          const displayName =
+            slug === "_all-characters"
+              ? "all characters (composite)"
+              : slug.replace(/-/g, " ");
+          return (
+            <View key={slug} className="mb-4">
+              <Sticker tilt={tilt} shadow={3} shadowColor="#3EFFE9">
+                <View className="bg-ink rounded-2xl border-2 border-muted overflow-hidden">
+                  {img ? (
+                    <Image source={img} style={{ width: "100%", height: 120 }} resizeMode="cover" />
+                  ) : null}
+                  <View className="p-3">
+                    <Text className="font-display text-paper text-base">
+                      {displayName}
+                    </Text>
+                    <Text className="font-body text-muted text-xs mt-1">
+                      {clean(c.title.replace(/^File:/, ""))}
+                    </Text>
+                    <Text className="font-body text-paper text-xs mt-1">
+                      by <Text className="text-lime">{clean(c.user) || "unknown"}</Text> ·{" "}
                       <Text className="text-cyan">{c.license || "—"}</Text>
                     </Text>
                     <Pressable

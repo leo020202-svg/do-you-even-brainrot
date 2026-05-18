@@ -9,6 +9,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { Confetti } from "@/components/Confetti";
 import { Shake } from "@/components/Shake";
 import { categoryImage } from "@/lib/category-images";
+import { characterImageForQuestion } from "@/lib/character-images";
 import {
   getDailyChallenge,
   getPracticeChallenge,
@@ -530,7 +531,12 @@ function RevealScreen({
 
   const playerRank = rows.findIndex((r) => r.isYou) + 1;
 
-  const banner = categoryImage(question.category);
+  // Prefer per-character art when the question mentions a known character;
+  // fall back to the generic category banner. Both come from Wikimedia
+  // Commons under safe licenses — see data/character-images-credits.json
+  // and data/category-images-credits.json.
+  const banner =
+    characterImageForQuestion(question) ?? categoryImage(question.category);
   const isCorrect = playerOutcome === "correct";
   const isWrong = playerOutcome === "wrong";
   // Trigger shake every time we land on a wrong reveal. The counter changes

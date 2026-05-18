@@ -15,6 +15,7 @@ import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
 import { Confetti } from "@/components/Confetti";
 import { Shake } from "@/components/Shake";
 import { categoryImage } from "@/lib/category-images";
+import { characterImageForQuestion } from "@/lib/character-images";
 import { getRoomChallenge, DAILY_QUESTION_COUNT } from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
 import { buildPattern, buildShareText } from "@/lib/share";
@@ -217,7 +218,7 @@ export default function PlaySynced() {
     }
 
     const categoryEmoji = CATEGORY_EMOJI[q.category] ?? "✨";
-    const banner = categoryImage(q.category);
+    const banner = characterImageForQuestion(q) ?? categoryImage(q.category);
 
     return (
       <Screen>
@@ -328,7 +329,7 @@ export default function PlaySynced() {
     const skipped = pick === null;
     const correctOption = q.options.find((o) => o.id === q.correct_answer);
     const remainingSec = Math.ceil(sync.msRemainingInPhase / 1000);
-    const banner = categoryImage(q.category);
+    const banner = characterImageForQuestion(q) ?? categoryImage(q.category);
 
     // Lightweight leaderboard during reveal — running scores against bots
     // (cumulative through current question for both the player AND the bots).

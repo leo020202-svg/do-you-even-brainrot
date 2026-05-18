@@ -5,7 +5,7 @@
 // double duty as a study guide and as the topical-authority anchor for
 // each cluster of keywords (see docs/STRATEGY.md §7).
 
-import { Text, View, ScrollView, Pressable, Linking } from "react-native";
+import { Image, Text, View, ScrollView, Pressable, Linking } from "react-native";
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Button } from "@/components/Button";
@@ -14,6 +14,7 @@ import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
 import { categoryBySlug } from "@/lib/categories";
 import { questions } from "@/lib/questions";
+import { ALL_CHARACTERS_IMAGE } from "@/lib/character-images";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -59,6 +60,23 @@ export default function CategoryPage() {
           </Link>
           <Text className="font-mono text-cyan text-xs">{categoryQuestions.length} questions</Text>
         </View>
+
+        {/* Italian-brainrot category gets the cast-composite hero image
+            (Public Domain, Wikimedia Commons). Other categories use just
+            the emoji + name. */}
+        {meta.slug === "italian-brainrot" ? (
+          <View className="mt-4">
+            <Sticker tilt={-1.5} shadow={5} shadowColor="#FF3EA5">
+              <View className="rounded-2xl overflow-hidden border-4 border-paper">
+                <Image
+                  source={ALL_CHARACTERS_IMAGE}
+                  style={{ width: "100%", aspectRatio: 16 / 9 }}
+                  resizeMode="cover"
+                />
+              </View>
+            </Sticker>
+          </View>
+        ) : null}
 
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <View className="mt-4">
