@@ -1,0 +1,31 @@
+# Do You Even Brainrot?
+
+> The daily brainrot trivia game. 5 questions a day about Italian brainrot, Skibidi Toilet lore, Gen Alpha slang, and TikTok culture. Free, no signup, share with friends via a 6-character room code, build a streak.
+
+Do You Even Brainrot? is a free web and mobile trivia game by playbrainrot.app. Players answer 5 multiple-choice questions about brainrot meme culture, with a 30-second timer per question and a speed bonus on correct answers. Each day's daily challenge is the same for everyone in the same timezone. The game also supports asynchronous and synchronized friend rooms via shareable 6-character codes.
+
+## Daily Challenge
+- [Play today's daily](https://playbrainrot.app/): 5 questions, 30 seconds each, build a streak
+
+## Categories (the question pool)
+- [Italian Brainrot](https://playbrainrot.app/category/italian-brainrot): Tralalero Tralala, Bombardiro Crocodilo, Ballerina Cappuccina, Tung Tung Tung Sahur, Brr Brr Patapim, etc. — AI-generated anthropomorphic characters from Italian TikTok 2024–2025
+- [Skibidi Toilet Lore](https://playbrainrot.app/category/skibidi): The Cameramen vs. Skibidi Toilet universe by DaFuq!?Boom! on YouTube
+- [Gen Alpha Slang](https://playbrainrot.app/category/gen-alpha-slang): rizz, sigma, ohio, gyatt, fanum tax, mewing, brain rot, mid, no cap, slay, and the rest of the 2023–2025 lexicon
+- [Viral Moments](https://playbrainrot.app/category/viral-moments): Pedro the raccoon, Hawk Tuah, Costco Guys, Moo Deng, and other 2024–2025 viral content
+- [Creators](https://playbrainrot.app/category/creators): The people behind the memes — MrBeast, IShowSpeed, Kai Cenat, Druski, etc.
+- [Cross-Platform](https://playbrainrot.app/category/cross-platform): Memes that crossed from one platform to another (TikTok → Twitter, Twitch → YouTube, etc.)
+- [Deep Cuts](https://playbrainrot.app/category/deep-cuts): Pre-2023 internet history that informs modern brainrot — vine, deep-fried memes, ironic shitposting
+- [Absurdity](https://playbrainrot.app/category/absurdity): Memes that are funny because nothing else explains them
+
+## Modes
+- Daily Challenge (free, one shot per day, builds a streak)
+- Practice Mode (unlimited rounds, configurable, doesn't affect streak)
+- Friend Rooms — Async (share a code, everyone gets the same 5 questions)
+- Friend Rooms — Synced (Kahoot-style countdown, everyone plays at the same time)
+
+## About
+- [About](https://playbrainrot.app/about): Background, content sourcing, who made it
+- [Credits](https://playbrainrot.app/credits): Image attribution (CC-licensed Wikimedia sources)
+
+## Sources for our content
+Questions are hand-curated from the [Italian Brainrot Wiki](https://italianbrainrot.fandom.com/), [Know Your Meme](https://knowyourmeme.com/), and direct observation of TikTok comment sections. Every "expert" tier question carries a source URL in the data file.
