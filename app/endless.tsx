@@ -89,6 +89,12 @@ export default function Endless() {
   const [playerPick, setPlayerPick] = useState<AnswerId | null>(null);
   const [pointsThisQuestion, setPointsThisQuestion] = useState(0);
   const [tick, setTick] = useState(0);
+  // Power-ups — one of each per run, both available at start. Skip
+  // advances to the next question without ending the game; 50/50 hides
+  // two wrong options so it's effectively a coin flip.
+  const [skipsLeft, setSkipsLeft] = useState(1);
+  const [fiftyLeft, setFiftyLeft] = useState(1);
+  const [hiddenOptions, setHiddenOptions] = useState<Set<AnswerId>>(new Set());
   const questionStartRef = useRef<number>(Date.now());
   const finalizedRef = useRef(false);
 
@@ -110,6 +116,8 @@ export default function Endless() {
     setPointsThisQuestion(0);
     setPhase("question");
     setTick(0);
+    // Fresh question = clear any 50/50 hidden options from the prior round.
+    setHiddenOptions(new Set());
     questionStartRef.current = Date.now();
     void unlockAchievement("first_run");
   }, [streak, poolsByDiff, seenIds, unlockAchievement]);
@@ -218,13 +226,16 @@ export default function Endless() {
   if (phase === "over") {
     const beatHighScore = streak > 0 && streak >= highScore;
     return <EndlessOver streak={streak} score={score} highScore={highScore} beat={beatHighScore} onReplay={() => {
-      // Hard reset.
+      // Hard reset — including power-ups.
       finalizedRef.current = false;
       setStreak(0);
       setScore(0);
       setSeenIds(new Set());
       setCurrentQ(null);
       setPhase("question");
+      setSkipsLeft(1);
+      setFiftyLeft(1);
+      setHiddenOptions(new Set());
       pickNextQuestion();
     }} onHome={() => router.replace("/home")} />;
   }
@@ -287,6 +298,63 @@ export default function Endless() {
         {phase === "question" ? `${remainingSec}s` : isCorrect ? `+${pointsThisQuestion} pts · next →` : "💀 game over"}
       </Text>
 
+      {/* Power-ups — only visible during the question phase. */}
+      {phase === "question" ? (
+        <View className="flex-row gap-2 mt-3">
+          <Pressable
+            disabled={skipsLeft === 0}
+            onPress={() => {
+              if (skipsLeft === 0 || phase !== "question") return;
+              setSkipsLeft((n) => n - 1);
+              setStreak((s) => s + 1); // counts toward survival, no score
+              setSeenIds((prev) => new Set(prev).add(q.id));
+              pickNextQuestion();
+              tapHaptic();
+            }}
+            className={`flex-1 rounded-xl border-2 px-3 py-2 ${
+              skipsLeft > 0 ? "bg-cyan border-ink" : "bg-ink border-muted opacity-40"
+            }`}
+            style={Platform.OS === "web" ? { cursor: skipsLeft > 0 ? "pointer" : "auto" } : undefined}
+          >
+            <Text className={`font-display text-xs text-center ${skipsLeft > 0 ? "text-ink" : "text-paper"}`}>
+              ⏭ skip ({skipsLeft})
+            </Text>
+          </Pressable>
+          <Pressable
+            disabled={fiftyLeft === 0 || hiddenOptions.size > 0}
+            onPress={() => {
+              if (fiftyLeft === 0 || hiddenOptions.size > 0) return;
+              setFiftyLeft((n) => n - 1);
+              // Hide two random wrong answers.
+              const wrongs = q.options
+                .filter((o) => o.id !== q.correct_answer)
+                .map((o) => o.id);
+              // Shuffle + take 2.
+              for (let i = wrongs.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const a = wrongs[i], b = wrongs[j];
+                if (a !== undefined && b !== undefined) {
+                  wrongs[i] = b;
+                  wrongs[j] = a;
+                }
+              }
+              setHiddenOptions(new Set(wrongs.slice(0, 2)));
+              tapHaptic();
+            }}
+            className={`flex-1 rounded-xl border-2 px-3 py-2 ${
+              fiftyLeft > 0 && hiddenOptions.size === 0
+                ? "bg-hot border-ink"
+                : "bg-ink border-muted opacity-40"
+            }`}
+            style={Platform.OS === "web" ? { cursor: fiftyLeft > 0 ? "pointer" : "auto" } : undefined}
+          >
+            <Text className={`font-display text-xs text-center ${fiftyLeft > 0 && hiddenOptions.size === 0 ? "text-paper" : "text-paper"}`}>
+              ✂ 50 / 50 ({fiftyLeft})
+            </Text>
+          </Pressable>
+        </View>
+      ) : null}
+
       {/* Question — stack naturally; vertical centering created a desktop void. */}
       <View className="pt-5">
         <View className="flex-row items-center gap-2 mb-3">
@@ -314,6 +382,7 @@ export default function Endless() {
         {q.options.map((opt) => {
           const correctReveal = isReveal && opt.id === q.correct_answer;
           const wrongReveal = isReveal && playerPick === opt.id && opt.id !== q.correct_answer;
+          const isHidden = hiddenOptions.has(opt.id) && !isReveal;
           const box = correctReveal
             ? "bg-cyan border-paper"
             : wrongReveal
@@ -330,16 +399,19 @@ export default function Endless() {
               tilt={isReveal ? 0 : OPTION_TILT[opt.id]}
               shadow={5}
               shadowColor="#1A0F2E"
+              style={isHidden ? { opacity: 0.15 } : undefined}
             >
               <Pressable
                 onPress={() => lockIn(opt.id)}
-                disabled={isReveal}
+                disabled={isReveal || isHidden}
                 className={`rounded-2xl px-5 py-4 border-4 active:opacity-80 ${box}`}
-                style={Platform.OS === "web" ? { cursor: isReveal ? "auto" : "pointer" } : undefined}
+                style={Platform.OS === "web" ? { cursor: isReveal || isHidden ? "auto" : "pointer" } : undefined}
               >
                 <View className="flex-row items-center gap-3">
                   <Text className={`font-display text-2xl ${txt}`}>{opt.id}</Text>
-                  <Text className={`font-display text-lg flex-1 ${txt}`}>{opt.text}</Text>
+                  <Text className={`font-display text-lg flex-1 ${txt}`}>
+                    {isHidden ? "— removed by 50/50 —" : opt.text}
+                  </Text>
                   {correctReveal ? <Text className="text-2xl">✅</Text> : null}
                   {wrongReveal ? <Text className="text-2xl">💀</Text> : null}
                 </View>
