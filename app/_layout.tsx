@@ -16,6 +16,7 @@ import { useSettingsStore } from "@/features/settings/store";
 import { useAchievementsStore } from "@/features/achievements/store";
 import { AchievementToast } from "@/components/AchievementToast";
 import { StreakCelebration } from "@/components/StreakCelebration";
+import { registerServiceWorker } from "@/lib/register-sw";
 
 // Keep the splash visible while we load fonts so we never flash unstyled text.
 void SplashScreen.preventAutoHideAsync().catch(() => {
@@ -38,6 +39,7 @@ export default function RootLayout() {
     void hydrate();
     void hydrateSettings();
     void hydrateAchievements();
+    registerServiceWorker();
   }, [hydrate, hydrateSettings, hydrateAchievements]);
 
   useEffect(() => {

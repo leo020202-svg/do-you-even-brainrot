@@ -1,40 +1,47 @@
 {
   "name": "Do You Even Brainrot?",
   "short_name": "Brainrot",
-  "description": "The daily brainrot trivia game. 5 questions a day about Italian brainrot, Skibidi lore, Gen Alpha slang, and TikTok culture.",
+  "description": "Chaotic brainrot trivia. Drop in solo (bots fill the lobby) or spin up a room for your friends. Italian brainrot, Skibidi lore, Gen Alpha slang, TikTok culture. Free, no signup, install to home screen.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "background_color": "#0F0A1E",
   "theme_color": "#A8FF3E",
-  "orientation": "portrait",
-  "categories": ["games", "trivia", "entertainment"],
+  "orientation": "portrait-primary",
+  "categories": ["games", "trivia", "entertainment", "social"],
+  "id": "playbrainrot.app",
+  "prefer_related_applications": false,
   "icons": [
-    {
-      "src": "/icons/icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
-    },
-    {
-      "src": "/icons/icon-512-maskable.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
-    }
+    { "src": "/icons/icon-192.png",          "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/icons/icon-512.png",          "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "/icons/icon-512-maskable.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" },
+    { "src": "/icons/apple-touch-icon.png",  "type": "image/png", "sizes": "180x180", "purpose": "any" },
+    { "src": "/favicon.svg",                  "type": "image/svg+xml", "sizes": "any",     "purpose": "any" }
   ],
-  "screenshots": [
+  "shortcuts": [
     {
-      "src": "/og/screenshot-1.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "label": "Daily challenge — 5 questions a day"
+      "name": "Today's daily",
+      "short_name": "Daily",
+      "description": "Jump straight to today's 5-question daily.",
+      "url": "/play",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Endless mode",
+      "short_name": "Endless",
+      "description": "Survival run — how far can you go?",
+      "url": "/endless",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Play with friends",
+      "short_name": "Friends",
+      "description": "Create a room or join one with a 6-char code.",
+      "url": "/friends",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
