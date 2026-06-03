@@ -8,6 +8,7 @@ import { CATEGORY_EMOJI, EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
 import { Confetti } from "@/components/Confetti";
 import { Shake } from "@/components/Shake";
+import { LobbyJoining } from "@/components/LobbyJoining";
 import { categoryImage } from "@/lib/category-images";
 import { characterImageForQuestion } from "@/lib/character-images";
 import {
@@ -141,6 +142,9 @@ export default function Play() {
 
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState<Phase>("question");
+  // Lobby-joining overlay shown only at the very start of a fresh round,
+  // not in friend rooms (those have their own join flow on /friends).
+  const [showLobby, setShowLobby] = useState(!isRoom);
   const [playerPick, setPlayerPick] = useState<AnswerId | null>(null);
   const [playerOutcome, setPlayerOutcome] = useState<AnswerOutcome | null>(null);
   const [playerMs, setPlayerMs] = useState<number>(0);
@@ -355,6 +359,10 @@ export default function Play() {
     <Screen>
       <SeoHead title="Playing" path="/play" noindex />
       <EmojiSplat seed={challenge.index + idx * 17 + 3} count={6} />
+
+      {showLobby ? (
+        <LobbyJoining bots={bots} onDone={() => setShowLobby(false)} />
+      ) : null}
 
       {showOnboarding && !onboardingDismissed && idx === 0 ? (
         <Pressable onPress={() => setOnboardingDismissed(true)} className="pt-3">
