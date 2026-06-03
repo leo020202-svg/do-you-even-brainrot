@@ -19,12 +19,15 @@ export type GameSettings = {
   secondsPerQuestion: number;
   /** Difficulty mix preset, applied to practice mode. */
   difficulty: DifficultyPreset;
+  /** Web Audio synth effects on every tap, reveal, finale, unlock. */
+  soundsEnabled: boolean;
 };
 
 export const DEFAULTS: GameSettings = {
   questionsPerRound: 5,
   secondsPerQuestion: 30,
   difficulty: "mixed",
+  soundsEnabled: true,
 };
 
 export const QUESTIONS_OPTIONS = [3, 5, 7, 10] as const;
@@ -92,6 +95,10 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
         difficulty:
           DIFFICULTY_OPTIONS.find((d) => d === parsed.difficulty) ??
           DEFAULTS.difficulty,
+        soundsEnabled:
+          typeof parsed.soundsEnabled === "boolean"
+            ? parsed.soundsEnabled
+            : DEFAULTS.soundsEnabled,
         hydrated: true,
       });
     } catch {
@@ -103,6 +110,7 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       questionsPerRound: patch.questionsPerRound ?? get().questionsPerRound,
       secondsPerQuestion: patch.secondsPerQuestion ?? get().secondsPerQuestion,
       difficulty: patch.difficulty ?? get().difficulty,
+      soundsEnabled: patch.soundsEnabled ?? get().soundsEnabled,
     };
     set(next);
     await storage.setItem(STORAGE_KEY, JSON.stringify(next));

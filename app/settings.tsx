@@ -20,7 +20,7 @@ const DIFFICULTY_LABEL: Record<DifficultyPreset, { name: string; line: string; e
   spicy: { name: "spicy", line: "mostly hard. prove the lore.", emoji: "🔥" },
 };
 
-function OptionRow<T extends string | number>({
+function OptionRow<T extends string | number | boolean>({
   options,
   value,
   onPick,
@@ -70,6 +70,7 @@ export default function Settings() {
   const questionsPerRound = useSettingsStore((s) => s.questionsPerRound);
   const secondsPerQuestion = useSettingsStore((s) => s.secondsPerQuestion);
   const difficulty = useSettingsStore((s) => s.difficulty);
+  const soundsEnabled = useSettingsStore((s) => s.soundsEnabled);
   const update = useSettingsStore((s) => s.update);
   const reset = useSettingsStore((s) => s.reset);
 
@@ -136,6 +137,26 @@ export default function Settings() {
                 value={difficulty}
                 onPick={(v) => void update({ difficulty: v })}
                 format={(v) => `${DIFFICULTY_LABEL[v].emoji} ${DIFFICULTY_LABEL[v].name}`}
+              />
+            </View>
+          </Sticker>
+        </View>
+
+        {/* Sounds — applies globally (taps, reveals, finale, achievement
+            unlocks). Off by default for people who hate snappy chiptune. */}
+        <View className="mt-4">
+          <Sticker tilt={0.5} shadow={4} shadowColor="#A8FF3E">
+            <View className="bg-ink rounded-2xl border-4 border-lime p-4">
+              <Text className="font-display text-paper text-lg">sounds</Text>
+              <Text className="font-body text-muted text-xs">
+                snappy synth chimes on every tap, reveal, and unlock. (web only
+                for now — native sounds in a later drop.)
+              </Text>
+              <OptionRow
+                options={[true, false]}
+                value={soundsEnabled}
+                onPick={(v) => void update({ soundsEnabled: v })}
+                format={(v) => (v ? "🔊 on" : "🔇 off")}
               />
             </View>
           </Sticker>

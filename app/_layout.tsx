@@ -14,6 +14,7 @@ import "../global.css";
 import { useDailyStore } from "@/features/daily/store";
 import { useSettingsStore } from "@/features/settings/store";
 import { useAchievementsStore } from "@/features/achievements/store";
+import { AchievementToast } from "@/components/AchievementToast";
 
 // Keep the splash visible while we load fonts so we never flash unstyled text.
 void SplashScreen.preventAutoHideAsync().catch(() => {
@@ -61,6 +62,9 @@ export default function RootLayout() {
             animation: "fade",
           }}
         />
+        {/* Global achievement unlock toast — listens to the store and pops
+            a sticker overlay every time a new achievement unlocks. */}
+        <AchievementToast />
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

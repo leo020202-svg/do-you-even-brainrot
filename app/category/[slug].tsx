@@ -16,6 +16,7 @@ import { categoryBySlug } from "@/lib/categories";
 import { questions } from "@/lib/questions";
 import { ALL_CHARACTERS_IMAGE } from "@/lib/character-images";
 import { Heading } from "@/components/Heading";
+import { QuizSchema } from "@/components/QuizSchema";
 import { useAchievementsStore } from "@/features/achievements/store";
 import { useEffect } from "react";
 
@@ -56,6 +57,14 @@ export default function CategoryPage() {
         title={`${meta.name} Quiz`}
         description={meta.blurb}
         path={`/category/${meta.slug}`}
+      />
+      {/* Schema.org Quiz JSON-LD — Google's "practice problem" rich-result
+          eligible, signals topical authority for the category keywords. */}
+      <QuizSchema
+        name={meta.name}
+        description={meta.blurb}
+        url={`https://playbrainrot.app/category/${meta.slug}`}
+        questions={categoryQuestions}
       />
       <EmojiSplat seed={meta.slug.length * 31 + 7} count={6} />
 
