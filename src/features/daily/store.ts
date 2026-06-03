@@ -23,6 +23,18 @@ type Persisted = {
   results: Record<string, DailyResult>; // keyed by dateKey
 };
 
+/**
+ * Transient signal — set when the streak ticks UP this completion, cleared
+ * by the celebration overlay when it dismisses. Not persisted; lives only
+ * in memory because a refresh shouldn't re-trigger the animation.
+ */
+export type StreakBump = {
+  newStreak: number;
+  previousStreak: number;
+  isMilestone: boolean; // 3 / 7 / 14 / 30 / 50 / 100 / 365
+  ts: number; // Date.now() — useful for de-duping fast double-fires
+};
+
 const initial: Persisted = {
   currentStreak: 0,
   longestStreak: 0,
@@ -32,11 +44,16 @@ const initial: Persisted = {
 
 type DailyStore = Persisted & {
   hydrated: boolean;
+  /** Transient streak-bump signal — see StreakBump comment. */
+  streakBump: StreakBump | null;
   hydrate: () => Promise<void>;
   completeDaily: (r: Omit<DailyResult, "completedAt">) => Promise<void>;
+  clearStreakBump: () => void;
   reset: () => Promise<void>;
   hasPlayed: (dateKey: string) => boolean;
 };
+
+const MILESTONES = new Set([3, 7, 14, 30, 50, 100, 365, 500, 1000]);
 
 function yesterdayKeyOf(dateKey: string): string {
   const [y, m, d] = dateKey.split("-").map(Number);
@@ -49,6 +66,8 @@ function yesterdayKeyOf(dateKey: string): string {
 export const useDailyStore = create<DailyStore>((set, get) => ({
   ...initial,
   hydrated: false,
+  streakBump: null,
+  clearStreakBump: () => set({ streakBump: null }),
   hydrate: async () => {
     const raw = await storage.getItem(STORAGE_KEY);
     if (!raw) {
@@ -82,7 +101,20 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
       lastCompletedDateKey: r.dateKey,
       results: { ...prev.results, [r.dateKey]: completed },
     };
-    set(next);
+    // Fire a streak-bump signal whenever the streak actually went up.
+    // The StreakCelebration overlay listens for this and pops a moment.
+    const bumped = !sameDay && newStreak > prev.currentStreak;
+    set({
+      ...next,
+      streakBump: bumped
+        ? {
+            newStreak,
+            previousStreak: prev.currentStreak,
+            isMilestone: MILESTONES.has(newStreak),
+            ts: Date.now(),
+          }
+        : null,
+    });
     await storage.setItem(STORAGE_KEY, JSON.stringify(next));
   },
   reset: async () => {

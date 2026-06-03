@@ -15,6 +15,7 @@ import { useDailyStore } from "@/features/daily/store";
 import { useSettingsStore } from "@/features/settings/store";
 import { useAchievementsStore } from "@/features/achievements/store";
 import { AchievementToast } from "@/components/AchievementToast";
+import { StreakCelebration } from "@/components/StreakCelebration";
 
 // Keep the splash visible while we load fonts so we never flash unstyled text.
 void SplashScreen.preventAutoHideAsync().catch(() => {
@@ -65,6 +66,10 @@ export default function RootLayout() {
         {/* Global achievement unlock toast — listens to the store and pops
             a sticker overlay every time a new achievement unlocks. */}
         <AchievementToast />
+        {/* Streak-up celebration — fires when completeDaily() bumps the
+            streak. Milestone streaks get heavier confetti + a different
+            headline. Transient signal cleared via clearStreakBump. */}
+        <StreakCelebration />
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );
