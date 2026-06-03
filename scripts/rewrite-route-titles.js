@@ -46,6 +46,7 @@ const ROUTES = {
   "+not-found.html":       { title: "Not found",                                    h1: "Page not found" },
   "category/[slug].html":  { title: "Category quiz",                                h1: "Brainrot category quiz" },
   "r/[code].html":         { title: "Joining a room",                               h1: "Joining a brainrot room" },
+  "glossary.html":         { title: "Brainrot Glossary — rizz, skibidi, Italian brainrot, defined", h1: "Brainrot Glossary — slang, characters, lore defined" },
 };
 
 const DIST = path.resolve(__dirname, "..", "dist");
