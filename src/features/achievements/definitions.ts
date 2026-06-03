@@ -106,3 +106,47 @@ export const TIER_COLOR: Record<Achievement["tier"], string> = {
   epic: "#FF3EA5",
   legendary: "#A8FF3E",
 };
+
+/**
+ * Progress hint for locked achievements — a 0-1 ratio of how close the
+ * player is to the unlock. UI renders this as a progress bar inside
+ * locked cards so the next unlock feels reachable. Only cleanly-
+ * progressable achievements have entries; others (binary unlocks like
+ * `cooked` or `lore_pilled`) return null.
+ */
+export type ProgressContext = {
+  endlessHighScore: number;
+  totalRunsPlayed: number;
+  currentStreak: number;
+  roomsCreated: number;
+};
+
+export function achievementProgress(
+  id: AchievementId,
+  ctx: ProgressContext,
+): { ratio: number; label: string } | null {
+  switch (id) {
+    case "marathon":
+      return {
+        ratio: Math.min(1, ctx.endlessHighScore / 10),
+        label: `${ctx.endlessHighScore} / 10 survived`,
+      };
+    case "brainrot_veteran":
+      return {
+        ratio: Math.min(1, ctx.totalRunsPlayed / 30),
+        label: `${ctx.totalRunsPlayed} / 30 played`,
+      };
+    case "friend_magnet":
+      return {
+        ratio: Math.min(1, ctx.roomsCreated / 3),
+        label: `${ctx.roomsCreated} / 3 rooms hosted`,
+      };
+    case "streak_builder":
+      return {
+        ratio: Math.min(1, ctx.currentStreak / 7),
+        label: `${ctx.currentStreak} / 7 day streak`,
+      };
+    default:
+      return null;
+  }
+}

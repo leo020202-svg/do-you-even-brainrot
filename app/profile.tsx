@@ -6,7 +6,7 @@ import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
 import { useAchievementsStore } from "@/features/achievements/store";
-import { ACHIEVEMENTS, TIER_COLOR } from "@/features/achievements/definitions";
+import { ACHIEVEMENTS, TIER_COLOR, achievementProgress } from "@/features/achievements/definitions";
 import { useDailyStore } from "@/features/daily/store";
 
 export default function Profile() {
@@ -143,7 +143,17 @@ export default function Profile() {
 function AchievementsSection() {
   const isUnlocked = useAchievementsStore((s) => s.isUnlocked);
   const endlessHigh = useAchievementsStore((s) => s.endlessHighScore);
+  const roomsCreated = useAchievementsStore((s) => s.roomsCreated.length);
+  const currentStreak = useDailyStore((s) => s.currentStreak);
+  const totalRunsPlayed = useDailyStore((s) => Object.keys(s.results).length);
   const unlockedCount = ACHIEVEMENTS.filter((a) => isUnlocked(a.id)).length;
+
+  const progressCtx = {
+    endlessHighScore: endlessHigh,
+    totalRunsPlayed,
+    currentStreak,
+    roomsCreated,
+  };
 
   return (
     <View>
@@ -158,12 +168,13 @@ function AchievementsSection() {
         {ACHIEVEMENTS.map((a, i) => {
           const unlocked = isUnlocked(a.id);
           const tilt = i % 2 === 0 ? -1 : 1;
+          const progress = !unlocked ? achievementProgress(a.id, progressCtx) : null;
           return (
             <View key={a.id} style={{ width: "50%", padding: 4 }}>
               <Sticker tilt={tilt} shadow={unlocked ? 4 : 2} shadowColor={unlocked ? TIER_COLOR[a.tier] : "#1A0F2E"}>
                 <View
                   className={`rounded-2xl p-3 border-2 ${unlocked ? "bg-ink border-paper" : "bg-ink border-muted"}`}
-                  style={{ opacity: unlocked ? 1 : 0.4 }}
+                  style={{ opacity: unlocked ? 1 : 0.55 }}
                 >
                   <Text style={{ fontSize: 32 }}>{unlocked ? a.emoji : "🔒"}</Text>
                   <Text className="font-display text-paper text-base mt-1">
@@ -172,6 +183,21 @@ function AchievementsSection() {
                   <Text className="font-body text-muted text-xs mt-1">
                     {unlocked ? a.description : a.hint}
                   </Text>
+                  {/* Progress bar — only on locked achievements with a measurable
+                      track. Makes the next unlock feel reachable. */}
+                  {progress ? (
+                    <View className="mt-2">
+                      <View className="h-1.5 rounded-full bg-bg overflow-hidden border border-muted">
+                        <View
+                          className="h-full bg-lime"
+                          style={{ width: `${Math.round(progress.ratio * 100)}%` }}
+                        />
+                      </View>
+                      <Text className="font-mono text-muted text-xs mt-1">
+                        {progress.label}
+                      </Text>
+                    </View>
+                  ) : null}
                   <Text className="font-mono text-xs mt-2" style={{ color: TIER_COLOR[a.tier] }}>
                     {a.tier}
                   </Text>
