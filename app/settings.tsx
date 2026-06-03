@@ -6,6 +6,7 @@ import { Button } from "@/components/Button";
 import { Sticker } from "@/components/Sticker";
 import { EmojiSplat } from "@/components/EmojiSplat";
 import { SeoHead } from "@/components/SeoHead";
+import { setLocale, SUPPORTED_LOCALES, useLocale, type Locale } from "@/lib/i18n";
 import {
   useSettingsStore,
   QUESTIONS_OPTIONS,
@@ -161,6 +162,9 @@ export default function Settings() {
             </View>
           </Sticker>
         </View>
+
+        {/* Language — brainrot is literally Italian, so we ship in it. */}
+        <LocaleRow />
       </ScrollView>
 
       <View className="pb-6 gap-2">
@@ -177,5 +181,56 @@ export default function Settings() {
         />
       </View>
     </Screen>
+  );
+}
+
+// Language picker row — rendered inside the settings ScrollView.
+function LocaleRow() {
+  const locale = useLocale();
+  return (
+    <View className="mt-4">
+      <Sticker tilt={-0.5} shadow={4} shadowColor="#3EFFE9">
+        <View className="bg-ink rounded-2xl border-4 border-cyan p-4">
+          <Text className="font-display text-paper text-lg">language · lingua</Text>
+          <Text className="font-body text-muted text-xs">
+            UI strings only. Questions stay in English (the brainrot proper
+            nouns are Italian anyway).
+          </Text>
+          <View className="flex-row gap-2 mt-3">
+            {SUPPORTED_LOCALES.map((l, i) => {
+              const active = locale === l.code;
+              return (
+                <Pressable
+                  key={l.code}
+                  onPress={() => setLocale(l.code as Locale)}
+                  accessibilityRole="button"
+                  className="flex-1"
+                >
+                  <Sticker
+                    tilt={active ? (i % 2 === 0 ? -0.5 : 0.5) : 0}
+                    shadow={active ? 4 : 2}
+                    shadowColor={active ? "#A8FF3E" : "#1A0F2E"}
+                  >
+                    <View
+                      className={`rounded-xl px-3 py-3 border-2 items-center ${
+                        active ? "bg-lime border-ink" : "bg-ink border-muted"
+                      }`}
+                    >
+                      <Text
+                        className={`font-display text-base ${
+                          active ? "text-ink" : "text-paper"
+                        }`}
+                      >
+                        {l.flag} {l.name}
+                      </Text>
+                    </View>
+                  </Sticker>
+                </Pressable>
+              );
+            })}
+          </View>
+        </View>
+      </Sticker>
+    </View>
   );
 }

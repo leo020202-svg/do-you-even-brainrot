@@ -13,6 +13,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { Heading } from "@/components/Heading";
 import { useDailyStore } from "@/features/daily/store";
 import { isValidRoomCode, normalizeRoomCode } from "@/lib/room";
+import { t, useLocale } from "@/lib/i18n";
 import { useMidnightCountdown } from "@/lib/countdown";
 import { getDailyChallenge } from "@/lib/daily";
 import { questionsById } from "@/lib/questions";
@@ -105,6 +106,7 @@ const FAQ: Array<{ q: string; a: string }> = [
 
 export default function Landing() {
   const router = useRouter();
+  useLocale(); // subscribe so language flips re-render this component
   const hydrated = useDailyStore((s) => s.hydrated);
   const hasHistory = useDailyStore((s) => Object.keys(s.results).length > 0);
   const streak = useDailyStore((s) => s.currentStreak);
@@ -181,21 +183,21 @@ export default function Landing() {
 
           <View className="gap-3 mt-6">
             <Button
-              label="PLAY NOW"
+              label={t("play_now")}
               emoji="🔥"
               tilt={-1}
               onPress={() => router.push("/play?practice=1")}
               full
             />
             <Button
-              label="endless mode"
+              label={t("endless_mode")}
               emoji="♾️"
               variant="secondary"
               onPress={() => router.push("/endless")}
               full
             />
             <Button
-              label="play with friends"
+              label={t("play_with_friends")}
               emoji="👯"
               variant="ghost"
               onPress={() => router.push("/friends")}
@@ -256,10 +258,10 @@ export default function Landing() {
           {/* Trust strip — Kahoot's "No credit card needed" equivalent. */}
           <View className="flex-row flex-wrap gap-2 mt-5">
             {[
-              "no signup",
-              "no install",
-              "free forever",
-              streak > 0 ? `🔥 ${streak}` : "200 hand-curated qs",
+              t("no_signup"),
+              t("no_install"),
+              t("free_forever"),
+              streak > 0 ? `🔥 ${streak}` : `225 ${t("make_questions")}`,
             ].map((label, i) => (
               <Sticker key={label} tilt={i % 2 === 0 ? -0.5 : 0.5} shadow={2} shadowColor="#1A0F2E">
                 <View className="bg-ink rounded-full border border-muted px-3 py-1">

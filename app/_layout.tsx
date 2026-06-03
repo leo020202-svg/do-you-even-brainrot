@@ -17,6 +17,11 @@ import { useAchievementsStore } from "@/features/achievements/store";
 import { AchievementToast } from "@/components/AchievementToast";
 import { StreakCelebration } from "@/components/StreakCelebration";
 import { registerServiceWorker } from "@/lib/register-sw";
+import { bootstrapLocale } from "@/lib/i18n";
+
+// One-time locale bootstrap before React mounts so first paint reflects
+// the user's saved language (or auto-detected from navigator.language).
+bootstrapLocale();
 
 // Keep the splash visible while we load fonts so we never flash unstyled text.
 void SplashScreen.preventAutoHideAsync().catch(() => {
