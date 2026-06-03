@@ -18,15 +18,28 @@ mostly green, with two real gaps (auth, EAS builds — see below).
 | 30s per-Q timer + speed bonus    | Skips remainder on answer, no waiting              |
 | Wordle-style emoji score card    | Text share via Web Share API → clipboard fallback  |
 | Streak tracking (local)          | AsyncStorage on native, localStorage on web        |
+| **Streak-up celebration overlay**| Spring-in card + confetti when daily bumps streak  |
 | Reveal screen between questions  | Correct answer + decoy count + running leaderboard |
 | Fake bot leaderboard             | 4 brainrot-named bots, deterministic per day       |
+| **Lobby-joining overlay**        | Bots arrive as named chips before each round       |
 | Final standings + medals         | Closes the daily with a Kahoot-style ranking       |
-| Practice Mode (`/play?practice=1`) | Unlimited replays, no streak side effects        |
-| Friend Rooms (`/friends`, `/r/[code]`) | Async no-backend "play with friends" via 6-char codes |
+| Unlimited Mode (`/play?practice=1`) | Unlimited replays, no streak side effects        |
+| **Endless Mode (`/endless`)**    | One-wrong-=-game-over survival, difficulty ramp    |
+| **Endless power-ups**            | One skip + one 50/50 per run                        |
+| **Endless daily themes**         | 7-day rotation: Speed Demon / Sigma / category-only |
+| Friend Rooms (`/friends`, `/r/[code]`) | Async + synced no-backend multiplayer via 6-char codes |
+| **Achievement system** (8 starter) | First Run / Sigma / Cooked / Marathon / Veteran / Magnet / Streak / Lore |
+| **Achievement unlock toast**     | Tier-coloured sticker pops on each new unlock      |
+| **Achievement progress bars**    | Live %-to-unlock on locked cards in /profile       |
+| **Cross-platform sound effects** | Web Audio synth, settings toggle, every interaction|
 | Category artwork                 | 8 CC-licensed Wikimedia thumbnails on reveal screen|
+| Character imagery                | 6 PD-licensed Italian-brainrot character images    |
 | Credits screen (`/credits`)      | CC-BY-SA attribution                               |
 | Loud "sticker" UI                | Per `docs/DESIGN_NOTES.md` — chunky shadows, tilts, emoji clutter |
-| Phone-width content cap          | 480px max on web so desktop renders phone-sized    |
+| Phone-width content cap          | 480px max on web; desktop ambient emoji decor      |
+| **Per-route SEO titles + h1s**   | 15 base routes + 8 category slugs each pre-rendered|
+| **Quiz schema.org JSON-LD**      | Per-category, rich-result eligible                 |
+| **Internal cross-linking**       | Every category page links to every other          |
 
 ### Stubbed / open
 
@@ -159,9 +172,23 @@ start.
 
 ## Recent commits worth knowing about
 
+(most-recent first)
+
+- `65b560e` — Endless daily themes (7-day rotation, score multipliers)
+- `588f747` — Streak-up celebration overlay
+- `d7317aa` — Achievement progress bars on locked cards
+- `0c13f40` — Endless power-ups (skip + 50/50)
+- `166ca2c` — LobbyJoining overlay (bots as arriving players)
+- `7622f5b` — Pre-rendered category slug pages + internal linking
+- `1e38628` — Sound system + achievement toast + Quiz schema
+- `ac84554` — Per-route titles + h1 injection + Image alt
+- `c1d0749` — 6 PD-licensed Italian-brainrot character images
+- `9abbbca` — Confetti / Shake / animated score rollup
+- `f9ee012` — Endless Mode + Achievement system + Viral Plan doc
+- `af25929` — Synced friend rooms (Kahoot-style countdown)
 - `05ed49a` — Friend Rooms (async, no backend)
 - `c56667a` — Cap content width to fix desktop overlap
-- `3a21017` — Practice Mode (unlimited replays)
+- `3a21017` — Unlimited Mode
 - `c76361f` — 8 CC-licensed category images + credits screen
 - `596e35f` — Reveal phase + fake bot leaderboard
 - `145fc8d` — Sticker / chunky UI pass
