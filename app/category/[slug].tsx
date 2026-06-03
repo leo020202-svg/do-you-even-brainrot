@@ -20,6 +20,20 @@ import { QuizSchema } from "@/components/QuizSchema";
 import { useAchievementsStore } from "@/features/achievements/store";
 import { useEffect } from "react";
 
+// Internal-link target list. Each category page renders these (minus its
+// own slug) as crawl-able anchor links, distributing link equity across
+// the topical cluster — every category is one hop from every other.
+const RELATED_CATEGORIES: Array<{ slug: string; emoji: string; name: string }> = [
+  { slug: "italian-brainrot", emoji: "🍝", name: "Italian Brainrot" },
+  { slug: "skibidi",          emoji: "🚽", name: "Skibidi Lore" },
+  { slug: "gen-alpha-slang",  emoji: "💀", name: "Gen Alpha Slang" },
+  { slug: "viral-moments",    emoji: "📱", name: "Viral Moments" },
+  { slug: "creators",         emoji: "🎬", name: "Creators" },
+  { slug: "cross-platform",   emoji: "🌐", name: "Cross-Platform" },
+  { slug: "deep-cuts",        emoji: "🕳️", name: "Deep Cuts" },
+  { slug: "absurdity",        emoji: "🤡", name: "Absurdity" },
+];
+
 export default function CategoryPage() {
   const router = useRouter();
   const params = useLocalSearchParams<{ slug?: string }>();
@@ -227,6 +241,27 @@ export default function CategoryPage() {
                 </Sticker>
               );
             })}
+          </View>
+        </View>
+
+        {/* ── Related categories — internal linking for SEO link-equity flow ── */}
+        <View className="mt-10">
+          <Text className="font-mono text-muted text-xs uppercase tracking-widest">
+            other brainrot categories
+          </Text>
+          <View className="flex-row flex-wrap gap-2 mt-2">
+            {RELATED_CATEGORIES.filter((c) => c.slug !== meta.slug).map((c, i) => (
+              <Link key={c.slug} href={`/category/${c.slug}` as never} asChild>
+                <Pressable accessibilityRole="link">
+                  <Sticker tilt={i % 2 === 0 ? -0.5 : 0.5} shadow={2} shadowColor="#1A0F2E">
+                    <View className="bg-ink rounded-full border-2 border-muted px-3 py-1 flex-row items-center gap-1">
+                      <Text className="text-base">{c.emoji}</Text>
+                      <Text className="font-mono text-paper text-xs">{c.name}</Text>
+                    </View>
+                  </Sticker>
+                </Pressable>
+              </Link>
+            ))}
           </View>
         </View>
 

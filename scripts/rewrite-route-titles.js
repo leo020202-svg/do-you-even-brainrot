@@ -67,6 +67,22 @@ const descRe = /<meta name="description" content="[^"]*"\/?>/;
 const SR_STYLE =
   "position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;";
 
+// Category slugs that need their own static HTML file. The Expo Router
+// static export emits one template at category/[slug].html — we duplicate
+// it per known slug so each has its own canonical URL with a unique
+// <title> and <h1> in the served HTML (crawlers without JS get the real
+// thing).
+const CATEGORY_SLUGS = [
+  ["italian-brainrot", "Italian Brainrot quiz — Tralalero Tralala + the cast", "Italian Brainrot quiz — characters, lore, and trivia"],
+  ["skibidi", "Skibidi Toilet lore quiz", "Skibidi Toilet quiz — Cameramen, TV-men, Speakers, lore"],
+  ["gen-alpha-slang", "Gen Alpha Slang quiz — rizz, sigma, gyatt, more", "Gen Alpha slang quiz — rizz / sigma / ohio / gyatt / fanum tax"],
+  ["viral-moments", "Viral Moments quiz", "Viral Moments quiz — 2024-2026 TikTok+IG meta"],
+  ["creators", "Creators quiz", "Creators quiz — MrBeast, IShowSpeed, Kai Cenat, Druski"],
+  ["cross-platform", "Cross-Platform Memes quiz", "Cross-Platform Memes quiz — TikTok-to-Twitter migrations"],
+  ["deep-cuts", "Brainrot Deep Cuts quiz", "Deep Cuts quiz — pre-2023 internet history that shaped brainrot"],
+  ["absurdity", "Brainrot Absurdity quiz", "Absurdity quiz — memes that make no sense, by design"],
+];
+
 let touched = 0;
 let missed = [];
 
@@ -107,4 +123,29 @@ for (const [rel, route] of Object.entries(ROUTES)) {
 if (missed.length > 0) {
   process.stderr.write(`[rewrite-title] WARN: missed (file not in dist): ${missed.join(", ")}\n`);
 }
+
+// ── Category slug pre-rendering ─────────────────────────────────────────
+// Expo Router static export emits one [slug].html template; we copy it
+// per known slug so each category gets a real URL the crawler can index.
+const slugTemplatePath = path.join(DIST, "category", "[slug].html");
+if (fs.existsSync(slugTemplatePath)) {
+  const template = fs.readFileSync(slugTemplatePath, "utf8");
+  for (const [slug, titlePhrase, h1Phrase] of CATEGORY_SLUGS) {
+    const outPath = path.join(DIST, "category", `${slug}.html`);
+    let html = template;
+    const titleText = render(titlePhrase);
+    html = html.replace(titleRe, `<title>${titleText}</title>`);
+    html = html.replace(ogTitleRe, `<meta property="og:title" content="${titleText}"/>`);
+    html = html.replace(twTitleRe, `<meta name="twitter:title" content="${titleText}"/>`);
+    // Replace the existing data-seo h1 with the slug-specific one.
+    html = html.replace(
+      /<h1 data-seo="h1"[^>]*>[\s\S]*?<\/h1>/,
+      `<h1 data-seo="h1" style="${SR_STYLE}">${h1Phrase}</h1>`,
+    );
+    fs.writeFileSync(outPath, html, "utf8");
+    touched++;
+    process.stdout.write(`[rewrite-title] category/${slug}.html → ${titleText}\n`);
+  }
+}
+
 process.stdout.write(`[rewrite-title] done — ${touched} files updated\n`);
