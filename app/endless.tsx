@@ -22,6 +22,7 @@ import { useWebKeyboard } from "@/hooks/useWebKeyboard";
 import { tapHaptic, successHaptic, wrongHaptic, skipHaptic, finaleHaptic } from "@/lib/haptics";
 import { useAchievementsStore } from "@/features/achievements/store";
 import { shareResult } from "@/lib/share";
+import { themeForDate } from "@/lib/endless-themes";
 
 // Difficulty schedule — what level of question the player sees at each
 // streak position. Past index 12 we stay on hard forever (the engine
@@ -73,13 +74,22 @@ export default function Endless() {
     if (!achievementsHydrated) void hydrateAchievements();
   }, [achievementsHydrated, hydrateAchievements]);
 
+  // Today's theme — same for everyone in the same timezone, rotates by
+  // day-of-week. See src/lib/endless-themes.ts.
+  const theme = useMemo(() => themeForDate(), []);
+
   // Pre-partitioned question pools by difficulty so picking is O(1) at run-
-  // time and we don't repeatedly filter the 200-question array.
-  const poolsByDiff = useMemo(() => ({
-    easy: questions.filter((q) => q.difficulty === "easy"),
-    medium: questions.filter((q) => q.difficulty === "medium"),
-    hard: questions.filter((q) => q.difficulty === "hard"),
-  }), []);
+  // time and we don't repeatedly filter the 200-question array. The theme
+  // filter is applied on top so a "skibidi only" run draws from the skibidi
+  // slice of each difficulty bucket.
+  const poolsByDiff = useMemo(() => {
+    const themed = questions.filter(theme.filter);
+    return {
+      easy: themed.filter((q) => q.difficulty === "easy"),
+      medium: themed.filter((q) => q.difficulty === "medium"),
+      hard: themed.filter((q) => q.difficulty === "hard"),
+    };
+  }, [theme]);
 
   const [streak, setStreak] = useState(0);
   const [score, setScore] = useState(0);
@@ -99,7 +109,12 @@ export default function Endless() {
   const finalizedRef = useRef(false);
 
   const currentDifficulty = difficultyAt(streak);
-  const perQuestionMs = timeAtMs(currentDifficulty);
+  // Apply the theme's timer multiplier — Speed Demon shortens, others
+  // leave it alone. Min 5 s so things don't get unfair.
+  const perQuestionMs = Math.max(
+    5000,
+    Math.round(timeAtMs(currentDifficulty) * theme.timerMultiplier),
+  );
 
   // First-load + every new question: pick a fresh one, prefer unseen, fall
   // back to repeats if we've burned the pool.
@@ -148,9 +163,11 @@ export default function Endless() {
       if (phase !== "question" || !currentQ) return;
       const msTaken = answer === null ? perQuestionMs : Date.now() - questionStartRef.current;
       const isCorrect = answer !== null && answer === currentQ.correct_answer;
-      const pts = isCorrect
+      const rawPts = isCorrect
         ? 100 + Math.max(0, 200 - Math.floor((msTaken / perQuestionMs) * 200))
         : 0;
+      // Theme score multiplier — "Sigma Mode" doubles, etc.
+      const pts = Math.round(rawPts * theme.scoreMultiplier);
       setPlayerPick(answer);
       setPointsThisQuestion(pts);
       setPhase("reveal");
@@ -262,8 +279,26 @@ export default function Endless() {
       <Confetti show={isReveal && isCorrect} count={40} />
       <EmojiSplat seed={streak * 17 + 9} count={5} />
 
+      {/* Today's theme chip — pop above the HUD so players know what
+          variant they're in. */}
+      <View className="pt-3 items-center">
+        <Sticker tilt={-1} shadow={3} shadowColor="#3EFFE9">
+          <View className="bg-ink rounded-md px-3 py-1 border-2 border-cyan flex-row items-center gap-2">
+            <Text className="text-base">{theme.emoji}</Text>
+            <Text className="font-mono text-cyan text-xs uppercase tracking-widest">
+              today: {theme.name}
+            </Text>
+            {theme.scoreMultiplier > 1 ? (
+              <Text className="font-mono text-lime text-xs">
+                ×{theme.scoreMultiplier}
+              </Text>
+            ) : null}
+          </View>
+        </Sticker>
+      </View>
+
       {/* HUD */}
-      <View className="flex-row justify-between items-center pt-4">
+      <View className="flex-row justify-between items-center pt-3">
         <Sticker tilt={-2} shadow={3} shadowColor="#FF3EA5">
           <View className="bg-hot rounded-md px-3 py-1 border-2 border-ink">
             <Text className="font-mono text-ink text-xs uppercase tracking-widest">
